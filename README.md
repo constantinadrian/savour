@@ -1,52 +1,364 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Savour
 
-Welcome USER_NAME,
+![Savour](static/readme/savour.png)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+Savour is a web app build to attract all categories of users that are interrested in cooking, eager to lear new recipes and also to be able to share their own recipe from different cuisine. 
 
-## Gitpod Reminders
+[View live project here]()
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Table of Contents
 
-`python3 -m http.server`
+1. [UX](#ux)
 
-A blue button should appear to click: _Make Public_,
+    - [User stories](#user-stories)
 
-Another blue button should appear to click: _Open Browser_.
+    - [Strategy](#strategy)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+    - [Scope](#scope)
 
-A blue button should appear to click: _Make Public_,
+    - [Structure](#structure)
 
-Another blue button should appear to click: _Open Browser_.
+    - [Skeleton](#skeleton)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+    - [Surface](#surface) 
 
-To log into the Heroku toolbelt CLI you can use:
+2. [Technologies Used](#technologies-used)
 
-`heroku login -i`
+3. [Testing](#testing)
 
-If you have Multi-Factor Authentication (MFA) enabled then use the API key that was generated for you at [Heroku](https://dashboard.heroku.com/account) as your password.
-This API key is unique and private to you so do not share it. If you accidently make it public then you can create a new one with _Regenerate API Key_.
+4. [Deployment](#deployment)
 
-## Updates Since The Instructional Video
+    - [Inception project](#inception-project)
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+    - [GitHub Pages](#github-pages)
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+    - [Local Clone](#local-clone)
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+5. [Credit](#credit)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+6. [Disclaimer](#disclaimer)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+[Back to Top](#table-of-contents)
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+-----
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- ### UX:
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+  - #### User stories
 
----
+    I.	First Time Visitor Goals:
 
-Happy coding!
+    - To be able to quickly understand the purpose of the website. 
+
+    - To be able to find recipe from different cuisine.
+
+    - To be able to find recipe from different categories like: appetizer, breakfast, lunch etc.
+
+    II.	Returning User Goals:
+
+    - When I return to the website, I wanna be able to register to website.
+
+    - I wanna be able to share my recipe thru the website to other users, by uploading my own recipes.
+
+    - I wanna be able to edit/delete the recipes the was uploaded by me.
+
+    III.	Site Owner Goals:
+
+    - To be able to add, edit and delete my own recipes
+
+    - To be able to add, edit and delete recipe categories.
+
+    - Be able to receive feedback from user.
+
+    - To promote my brand of cooking tools
+
+
+ - #### Strategy
+
+    - The website was build to those users who love to cook and are eager to learn and try new recipe. The website is designed with search functionality that allow users to search recipes from different category and with different keywords. In order to attract more users and keep them on the website users can register and share their own recipe as well with other users by create/edit/delete their recipe. The purpose of all functionality it's for the owner of website to promote his brand of kitchen tools.
+
+    | Opportunity                                 | Importance | Viability / Feasibility |
+    | :------------------------------------------ | :--------: | :---------------------: |
+    | Home Page                                   |     5      |            5            |
+    | Recipe Page - Search Recipes By Keywords    |     5      |            5            |
+    | Shop Page                                   |     5      |            5            |
+    | Register Page                               |     4      |            5            |
+    | Login Page                                  |     4      |            5            |
+    | Manage Recipe Category Page                 |     5      |            5            |
+    | Create / Edit / Delete Recipes              |     5      |            4            |
+
+
+[Back to Top](#table-of-contents)
+
+-----
+    
+ - #### Scope
+
+    Based on the strategy table all the feature were implemented in order to achieve user and owner goals
+
+    - Home page - to quickly understand the purpose of the website
+
+    - Recipe Page - where users can view all recipes
+
+    - Shop Page - where the owner of website can promote his brand of kitchen tools
+
+    - Register Page - where user can create an account on the website
+
+    - Login Page - where user can login to the his profile to add/edit/delete recipes
+
+    - Manage Recipe Category Page - where the admin can create/edit/ delete category
+
+[Back to Top](#table-of-contents)
+
+-----
+    
+  - #### Structure
+
+    - ##### Features: 
+
+        Responsive on all screen devices.
+
+      - ##### Existing Features:
+    
+        1. Home Page 
+
+          - The logo of Savour
+
+          - Navigation bar - to help user navigate between the site pages: Categories, Recipes, Shop, Register, Login
+          
+          - Landing section - Where the user it's welcome with a hero image and welcome text.
+
+          - Recipe section - Where the user can see three random recipes
+
+          - Shop section - Where the user can see the kitchen tools
+
+          - Footer - Where user can find links to site social media pages
+
+        2. Recipe Page 
+
+          - Landing section - Where user can see the recipe of the day 
+
+          - Search field - Where user can search specific recipe
+
+        3. Shop Page
+
+          - Where site owner promote a brand of cooking tools
+
+        4. Register
+
+          - Where the user can create an account.
+
+        5. Login Page
+
+          - Where the user can login in into their account
+
+        6. 404 Page
+
+          - 404 Page - was added in case users redirect to a page that does not exist.
+ 
+      - ##### Future Features to Implement:
+
+        - Email Verification - Before registraion is complete 
+
+        - Reset/Forget Password - Where user can recover their password
+
+[Back to Top](#table-of-contents)
+
+-----
+
+- #### Skeleton
+
+    -  Phone Wireframes: [Home](static/wireframes/index-phone.png) [Recipe]()
+
+    -  Tablet Wireframes: [Home](static/wireframes/index-tablet.png) [Recipe]()
+
+    -  Desktop Wireframes: [Home](static/wireframes/index-desktop.png) [Recipe]()
+
+[Back to Top](#table-of-contents)
+
+-----
+
+- #### Surface
+
+    -  ##### Colour Scheme
+
+        - Palette:
+
+            ![Palette Colors](static/readme/palette-colors.png) 
+
+    -  ##### Typography
+
+        - For the consistency...
+
+    -  ##### Imagery
+
+        - 
+
+[Back to Top](#table-of-contents)
+
+-----
+
+- ### Technologies Used
+
+  - #### Languages:
+
+    - [HTML5](https://en.wikipedia.org/wiki/HTML5) - used to structure website and its content.
+
+    - [CSS3](https://en.wikipedia.org/wiki/CSS) - to format the contents of each webpage.
+
+    - [JS](https://en.wikipedia.org/wiki/JavaScript) - for DOM manipulation.
+
+    - [Pyhton3](https://www.python.org/) – to add functionalities to the server-side
+
+    - [MongoDB Atlas](https://www.mongodb.com/) - for database
+
+  - #### Frameworks, Libraries & Programs:
+
+    - [Bootstrap](https://getbootstrap.com/) – CSS framework used to help with the navbar, contact form, and other classes that were used to make the app responsive.
+
+    - [Google Fonts](https://fonts.google.com/) - to import the font-family used in the website: PT Serif.
+
+    - [Font Awesome](https://fontawesome.com/) - icons are a visual way to help add meaning to elements.
+
+    - [GitHub](https://github.com/) - used to create and host the repository
+
+    - [Git](https://git-scm.com/) - used for the version-control system for tracking changes in any set of files
+
+    - [Gitpod](https://gitpod.io/) - IDE used to develop the project 
+
+    - [Flask](https://flask.palletsprojects.com/en/1.1.x/) – Python micro web framework
+
+    - [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) – Python template engine 
+
+    - [PyMongo](https://pypi.org/project/pymongo/) to make communication between Python and MongoDB database
+
+    - [PIP](https://pypi.org/project/pip/) for installation of tools needed in this project.
+
+    - [JQuery](https://jquery.com/)
+
+
+  - #### Additional tools:
+
+    - [VS Code](https://code.visualstudio.com/) - IDE
+
+    - [Autoprefixer CSS](https://autoprefixer.github.io/) - used to add prefix to css code
+
+    - [Tinypng](https://tinypng.com/) - used to compress all image files in order to reduce loading time on each page
+
+    - [HTML Validator](https://validator.w3.org/) - used to check HTML code for error
+
+    - [CSS Validator](https://jigsaw.w3.org/css-validator/) - used to check CSS code for error
+
+    - [JSHint](https://jshint.com/) - used to check JS code for error
+
+    - [JSDoc](https://jsdoc.app/) - document the JavaScript code with JSDoc
+
+    - [PEP8 Validator](http://pep8online.com/) - was used to validate Python
+
+    - [I Am Responsive](http://ami.responsivedesign.is/) - for the main image in Readme to show responsive to different screen size
+
+    - [Balsamiq](https://balsamiq.com/) - used to make the wireframes for the project
+
+    - [Coolors](https://coolors.co/) - used for color palette
+
+    - [Adobe Photoshop 2020](https://www.adobe.com/ie/products/photoshop.html?gclid=Cj0KCQjwrsGCBhD1ARIsALILBYpcZ9gNDfvVo1tJUaPzX_D5Bbo7kr6tDseIjZmjRTGbiBTqIURjULAaAvGnEALw_wcB&mv=search&sdid=LZ32SYVR&ef_id=Cj0KCQjwrsGCBhD1ARIsALILBYpcZ9gNDfvVo1tJUaPzX_D5Bbo7kr6tDseIjZmjRTGbiBTqIURjULAaAvGnEALw_wcB:G:s&s_kwcid=AL!3085!3!441664403997!b!!g!!%2Bphotoshop!1423510553!55397634865) - used to create logo and favicon for this project
+
+[Back to Top](#table-of-contents)
+
+-----
+
+- ### Testing
+
+    - Testing documentation can be found [HERE](TESTING.md)
+
+ [Back to Top](#table-of-contents)
+
+-----
+
+- ### Deployment
+
+  - #### Inception project 
+
+    1. This project was created from the Code Institute project template from [here](https://github.com/Code-Institute-Org/gitpod-full-template) on Github by clicking on "Use this template"
+
+        ![](static/readme/code-institute-project-template.png)
+
+    2. Once the project was created I rename it from the settings 
+
+        ![](static/readme/rename-project-from-settings.png)
+
+    3. When the repository was finally completed I open the project with [Gitpod](https://chrome.google.com/webstore/detail/gitpod-dev-environments-i/dodmmooeoklaejobgleioelladacbeki?hl=en) in Chrome browser
+
+    4. In order to push this project from Gitpod on Github a set of commands were used:
+
+        ```
+        - git status  - Check the status of the repository and see if there were any changes in files 
+
+        - git add .  - Add the files that were modified/created, so we can commit it 
+
+        - git commit -m "message for commit"  - Commits all the changes
+
+        - git push  - Pushes all committed versions to Github
+        ```
+
+  - #### Heroku
+
+    - The project was deployed to Heroku using the following steps:
+
+        1. 
+
+        2. 
+
+        3. 
+
+        4. 
+
+        5. 
+
+  - #### Local Clone
+
+    1. Log in to GitHub and locate GitHub Repository
+
+    2. At the top of the repository click on Code 
+
+    3. From the dropdown menu under HTTPS copy the link
+
+    4. Now on your IDE create a directory where you wanna make the clone 
+
+    5. Type git clone and paste the link that you copy from step 3. 
+
+[Back to Top](#table-of-contents)
+
+-----
+
+- ### Credit
+
+  - #### Code
+
+    - [Bootstrap](https://getbootstrap.com/) - 
+
+    - [Favicon](https://favicon.io/favicon-converter/) - for the code for use in this project; the favicon was created by the developer and saved in all sizes that were needed
+
+  - #### Content
+
+    - 
+
+  - #### Media
+
+    - 
+
+  - #### Acknowledgements
+
+    - [Code Institute](https://codeinstitute.net/) for all course material 
+
+    - Slack community
+
+    - My mentor Oluwafemi Medale for his support and feedback that he has given me for this milestone project.
+
+[Back to Top](#table-of-contents)
+
+-----
+
+- ### Disclaimer
+
+  - This project is for educational purposes only.
