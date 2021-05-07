@@ -1,0 +1,87 @@
+body {
+    background: #F0EFEB;
+}
+
+/* -------------------------------------- Navbar ----------------------- */
+.navbar {
+    padding: 1rem 1rem;
+}
+
+.bg-light {
+    background-color: #ecb7b7 !important;
+}
+
+.logo {
+    width: 60px;
+    height: auto;
+}
+
+.navbar .navbar-toggler {
+    border: none;
+}
+
+.nav-item {
+    margin-right: auto;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0;
+    padding-right: 0;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.9);
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+.active {
+    border-bottom: 1px solid #000;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    background-color: #ecb7b7 !important;
+}
+
+.dropdown-item:focus, 
+.dropdown-item:hover {
+    background-color: #E8D1C5;
+}
+
+.navbar .form-control {
+    border: 4px solid #E8D1C5;
+}
+
+.navbar .form-control:focus {
+    background: transparent;
+    box-shadow: none;
+}
+
+.bg-form-control--transparent {
+    background: transparent;
+}
+
+.btn--champagne-pink {
+    color: #000;
+    background-color: #E8D1C5;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+@media only screen and (min-width: 992px) {
+
+    .navbar {
+        padding: 1rem 6rem;
+    }
+    .nav-item {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    .navbar .form-inline {
+        margin-left: 1rem;
+    }
+
+}
+/* ---------------------------------- End of Navbar -------------------------------- */
