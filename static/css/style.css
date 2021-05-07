@@ -92,6 +92,54 @@ main {
 }
 /* ----------------------------------- End of Main --------------------------------- */
 
+/* --------------------------- Landing section ------------------------------- */
+.landing {
+    width: 100%;
+    min-height: calc(100vh - 109.8px);
+    position: relative;
+}
+
+.bg-landing-section {
+    background: url("../img/pexels-terje-sollie-299347.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.landing-textbox {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.landing-title {
+    font-family: 'Mr Dafoe', cursive; 
+    font-size: 34px;
+}
+
+@media only screen and (min-width: 992px) {
+    .landing-textbox {
+        padding: 0 6rem;
+    }
+
+    .landing-title {
+        font-size: 60px;
+    }
+}
+
+@media only screen and (min-width:576px) and (max-width: 991px){
+    .landing-title {
+        font-size: 50px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 575px) {
+    .landing-title {
+        font-size: 40px;
+    }
+} 
+/* --------------------------- End of Landing section ------------------------------- */
+
 /* ------------------------------------- Footer ------------------------------------ */
 .footer {
     width: 100%;
