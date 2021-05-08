@@ -20,59 +20,26 @@
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
             <div class="recipes-section-row-recipes">
-                <a href="#" class="recipe-ancor-tag">
-                    <div class="card">
-                        <img class="recipe-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
-                        <img src="{{ url_for('static', filename='img/pexels-terje-sollie-299347.jpg') }}" class="recipe-card-img" alt="Recipe Image">
-                        <div class="card-body">
-                            <p class="card-text card-recipe-title">Pork Chops with Plum Tomato Sauce and Cauliflower Puree</p>
-                            <span class=""><i class="far fa-clock"></i> 40 Min</span>
-                            <hr>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
-                        </div>
-                    </div>
-                </a>
+                {% for recipe in recipes %}
+                    <a href="#" class="recipe-ancor-tag">
+                        <div class="card">
+                            <img class="recipe-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+                            <img src="{{ recipe.recipeImageURL }}" class="recipe-card-img" alt="Recipe Image">
+                            <div class="card-body">
+                                <p class="card-text card-recipe-title">{{ recipe.recipeName }}</p>
+                                <span class=""><i class="far fa-clock"></i> {{ recipe.time }} Min</span>
+                                <hr>
+                                {% if recipe.ratings.ratingStatus == false %}
+                                    {% for star in range(0, 5) %}
+                                    <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                                    {% endfor %}
+                                {% endif %}
 
-                <a href="#" class="recipe-ancor-tag">
-                    <div class="card">
-                        <img class="recipe-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
-                        <img src="{{ url_for('static', filename='img/pexels-terje-sollie-299347.jpg') }}" class="recipe-card-img" alt="Recipe Image">
-                        <div class="card-body">
-                            <p class="card-text card-recipe-title">Pork Chops with Plum Tomato Sauce and Cauliflower Puree</p>
-                            <span class=""><i class="far fa-clock"></i> 40 Min</span>
-                            <hr>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            
-                <a href="#" class="recipe-ancor-tag">
-                    <div class="card">
-                        <img class="recipe-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
-                        <img src="{{ url_for('static', filename='img/pexels-terje-sollie-299347.jpg') }}" class="recipe-card-img" alt="Recipe Image">
-                        <div class="card-body">
-                            <p class="card-text card-recipe-title">Pork Chops with Plum Tomato Sauce and Cauliflower Puree</p>
-                            <span class=""><i class="far fa-clock"></i> 40 Min</span>
-                            <hr>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="fas fa-star" aria-hidden="true"></i></span>
-                            
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                {% endfor %}
+                
                 
             </div>
             <div class="recipes-section-item-row-more-recipes">

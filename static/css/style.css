@@ -269,6 +269,7 @@ main {
 
 .card-recipe-title {
     font-family: 'Crete Round', serif;
+    min-height: 48px;
 }
 
 .rated-star {

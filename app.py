@@ -1,16 +1,28 @@
 import os
-from flask import Flask, render_template
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for)
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 if os.path.exists("env.py"):
     import env
 
 
 app = Flask(__name__)
 
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
 
-@app.route("/")
-@app.route("/home")
+
+mongo = PyMongo(app)
+
+
+@app.route("/", methods=["GET", "POST"])
+@app.route("/home", methods=["GET", "POST"])
 def home():
-    return render_template("pages/index.html")
+    recipes = mongo.db.recipes.aggregate([{'$sample': {'size': 3}}])
+    return render_template("pages/index.html", recipes=recipes)
 
 
 if __name__ == "__main__":
