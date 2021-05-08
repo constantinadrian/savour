@@ -1,0 +1,95 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    <section class="recipe-description-section">
+        <div class="recipe-container">
+            <div class="recipe-top-items">
+                <div class="card recipe-box-img">
+                    <img class="recipe-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+                    <img src="{{ recipe.recipeImageURL }}" class="recipe-img" alt="Recipe Image">
+                </div>
+                <div class="card recipe-top-description">
+                    <h2 class="about-recipe-title">{{ recipe.recipeName }}</h2>
+                    <div class="recipe-created-by">By <a href="#">{{ recipe.createdBy }}</a></div>
+                    <div class="recipe-rating">
+                        <div class="recipe-rating-star">
+                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                        </div>
+
+                        {% if recipe.ratingStatus == false %}
+                            <div class="recipe-total-rating">0 / 5</div>
+                        {% endif %}
+
+                        <div class="recipe-rating-link"><a href="#rate-recipe">Rate</a></div>
+                    </div>
+                    <div class="recipe-information">
+                        <div class="recipe-cook-time">
+                            <i class="far fa-clock" aria-hidden="true"></i><span class="cook-time">&nbsp;{{ recipe.time }} Min</span>
+                        </div>
+                        <div class="recipe-serve">
+                           <i class="fas fa-utensils" aria-hidden="true"></i><span class="recipe-serve-people">&nbsp;{{ recipe.serve }}</span>
+                        </div>
+                    </div>
+                    <div class="recipe-description-content">
+                       {{ recipe.description }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-bottom-items">
+                <div class="card recipe-ingredients">
+
+                    {% for ingredient in recipe.ingredients %}
+                        <p>{{ ingredient }}</p>
+                    {% endfor %}
+
+                </div>
+                <div class="card recipe-methods">
+                    {% for step in recipe.methods %}
+                        <div class="recipe-method-title">Step {{ loop.index }}</div>
+                        <div class="recipe-method-description">{{ step }}</div>
+                    {% endfor %}
+
+                    {% if recipe.tips %}
+                        <div class="recipe-tips-title"><i class="far fa-lightbulb"></i>&nbsp;&nbsp;Tips</div>
+                        <div class="recipe-tips">{{ recipe.tips }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="rating" id="rate-recipe">
+        <h2>Rate this recipe</h2>
+        <form class="rating-form">
+
+            <fieldset class="rating-stars">
+                <legend class="sr-only">What is your star rating out of 5?</legend>
+                
+                <input type="radio" class="ratings d-none" id="stars-5" name="stars" value="5">
+                <label class="star" for="stars-5"><span class="sr-only">5 stars out of 5</span></label>
+                
+                <input type="radio" class="ratings d-none" id="stars-4" name="stars" value="4">
+                <label class="star" for="stars-4"><span class="sr-only">4 stars out of 5</span></label>
+                
+                <input type="radio" class="ratings d-none" id="stars-3" name="stars" value="3">
+                <label class="star" for="stars-3"><span class="sr-only">3 stars out of 5</span></label>
+                
+                <input type="radio" class="ratings d-none" id="stars-2" name="stars" value="2">
+                <label class="star" for="stars-2"><span class="sr-only">2 stars out of 5</span></label>
+                
+                <input type="radio" class="ratings d-none" id="stars-1" name="stars" value="1">
+                <label class="star" for="stars-1"><span class="sr-only">1 star out of 5</span></label>
+
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}

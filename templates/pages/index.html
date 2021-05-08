@@ -21,7 +21,7 @@
             </div>
             <div class="recipes-section-row-recipes">
                 {% for recipe in recipes %}
-                    <a href="#" class="recipe-ancor-tag">
+                    <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">
                         <div class="card">
                             <img class="recipe-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
                             <img src="{{ recipe.recipeImageURL }}" class="recipe-card-img" alt="Recipe Image">
@@ -31,7 +31,7 @@
                                 <hr>
                                 {% if recipe.ratings.ratingStatus == false %}
                                     {% for star in range(0, 5) %}
-                                    <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                                        <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
                                     {% endfor %}
                                 {% endif %}
 

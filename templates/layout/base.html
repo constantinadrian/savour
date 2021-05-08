@@ -31,6 +31,9 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    {% if page == "recipe" %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recipe.css') }}" type="text/css">
+    {% endif %}
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="115x101" href="{{ url_for('static', filename='img/favicon/savour-115x101.ico') }}">
@@ -164,6 +167,8 @@
 
     <!-- Main JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    
+    {% if page == "recipe" %}
+    <script src="{{ url_for('static', filename='js/recipe.js') }}"></script>
+    {% endif %}
 </body>
 </html>
