@@ -61,12 +61,12 @@ function updateRecipeRating(response) {
         }
         else if (ratedStar > 0 && ratedStar < 1) {
             star = `
-                    <span class="rated-star"><i class="fas fa-star-half-alt" aria-hidden="true"></i></span>
+                    <i class="fas fa-star-half-alt" aria-hidden="true"></i>
                   `;
         } 
         else {
             star = `
-                    <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                    <i class="far fa-star" aria-hidden="true"></i>
                   `;
         }
 
