@@ -1,7 +1,7 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, json)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
@@ -33,6 +33,12 @@ def recipe(recipe_id):
     """
     Display the recipe on-page for each recipe id that was requested
     """
+    # Update the rating if it's an AJAX call
+    if request.method == "POST":
+        print("ajax request")
+        rating = request.form.get("stars")
+        return json.dumps({'status':'OK', 'rating':rating})
+
     page = "recipe"
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("pages/recipe.html", recipe=recipe, page=page)  

@@ -48,6 +48,17 @@ body {
     background-color: #E8D1C5;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    color: #000;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.dropdown a.dropdown-toggle:focus {
+    border: none;
+    outline: 0 !important; 
+}
+
 .navbar .form-control {
     border: 4px solid #E8D1C5;
 }
@@ -108,7 +119,7 @@ main {
 .landing-textbox {
     position: absolute;
     right: 0px;
-    bottom: 0px;
+    bottom: 30px;
     text-align: center;
     padding: 0 1rem;
 }
@@ -121,6 +132,7 @@ main {
 @media only screen and (min-width: 992px) {
     .landing-textbox {
         padding: 0 6rem;
+        bottom: 10px;
     }
 
     .landing-title {
@@ -129,6 +141,11 @@ main {
 }
 
 @media only screen and (min-width:576px) and (max-width: 991px){
+    .landing-textbox {
+        bottom: 60px;
+        background-color: rgba(250,250,250,0.5);
+    }
+    
     .landing-title {
         font-size: 50px;
     }

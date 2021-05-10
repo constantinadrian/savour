@@ -12,7 +12,7 @@
                     <h2 class="about-recipe-title">{{ recipe.recipeName }}</h2>
                     <div class="recipe-created-by">By <a href="#">{{ recipe.createdBy }}</a></div>
                     <div class="recipe-rating">
-                        <div class="recipe-rating-star">
+                        <div class="recipe-rating-star js-rating-star-div">
                             <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
                             <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
                             <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
@@ -68,10 +68,10 @@
 
     <div class="rating" id="rate-recipe">
         <h2>Rate this recipe</h2>
-        <form class="rating-form">
-
-            <fieldset class="rating-stars">
-                <legend class="sr-only">What is your star rating out of 5?</legend>
+        <form class="rating-form" id="rating-form" method="POST" action="{{ url_for('recipe', recipe_id=recipe._id) }}">
+            
+            <div class="rating-stars">
+                <div class="sr-only">What is your star rating out of 5?</div>
                 
                 <input type="radio" class="ratings d-none" id="stars-5" name="stars" value="5">
                 <label class="star" for="stars-5"><span class="sr-only">5 stars out of 5</span></label>
@@ -88,8 +88,9 @@
                 <input type="radio" class="ratings d-none" id="stars-1" name="stars" value="1">
                 <label class="star" for="stars-1"><span class="sr-only">1 star out of 5</span></label>
 
-            </fieldset>
+            </div>
         </form>
+        <div class="rating-ajax-response"></div>
     </div>
 
 {% endblock %}
