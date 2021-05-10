@@ -35,39 +35,33 @@ $("#rating-form").submit(function(event) {
  */
 function updateRecipeRating(response) {
     let recipeRatingStar = document.querySelector(".js-rating-star-div");
-    // remove all children from the parrent element
+    // remove all children from the parrent element in order to add new elements with updated rating
     while (recipeRatingStar.lastElementChild) {
         recipeRatingStar.removeChild(recipeRatingStar.lastElementChild);
     }
     responseObj = JSON.parse(response)
 
-    // create and insert new children with the new rating
+    // get the updated rating 
     let ratedStar = responseObj['rating']
 
-    // display new rating 5 stars from response
+    // use a for loop to display new rating 5 stars from response
     for (let i = 0; i < 5; i++) {
     
-        // create new element
+        // create new element and insert new children with the new rating
         let span = document.createElement('span');
-        // add a class to the element
+        // add class to the element
         span.setAttribute("class", "rated-star");
         
         // declare variable that will dispay the star ratings
         let star;
         if (ratedStar >= 1) {
-            star = `
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                  `;
+            star = `<i class="fas fa-star" aria-hidden="true"></i>`;
         }
         else if (ratedStar > 0 && ratedStar < 1) {
-            star = `
-                    <i class="fas fa-star-half-alt" aria-hidden="true"></i>
-                  `;
+            star = `<i class="fas fa-star-half-alt" aria-hidden="true"></i>`;
         } 
         else {
-            star = `
-                    <i class="far fa-star" aria-hidden="true"></i>
-                  `;
+            star = `<i class="far fa-star" aria-hidden="true"></i>`;
         }
 
         // set the span element content
@@ -80,6 +74,7 @@ function updateRecipeRating(response) {
         else {
         recipeRatingStar.insertBefore(span, recipeRatingStar.lastChild.nextSibling);
         }
+        // decrement the actual rating value to check the next display for the star
         --ratedStar;
     }
 
