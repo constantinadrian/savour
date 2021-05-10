@@ -23,10 +23,10 @@
                 {% for recipe in recipes %}
                     <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">
                         <div class="card">
-                            <img class="recipe-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+                            <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
                             <img src="{{ recipe.recipeImageURL }}" class="recipe-card-img" alt="Recipe Image">
                             <div class="card-body">
-                                <p class="card-text card-recipe-title">{{ recipe.recipeName }}</p>
+                                <p class="recipe-card-title js-card-title">{{ recipe.recipeName|title }}</p>
                                 <span class=""><i class="far fa-clock"></i> {{ recipe.time }} Min</span>
                                 <hr>
                                 {% if recipe.ratings.ratingStatus == false %}
@@ -51,4 +51,58 @@
 
     </section>
     <!-- /.Recipe section -->
+
+    <!-- Shop section -->
+    <section class="shop-section">
+        <div class="container">
+            <div class="shop-section-row-title">
+                <div class="col"><hr class="section-hr-left"></div>
+                <div class="col-auto">
+                    <h2><a href="#" class="section-title">Shop</a></h2>
+                </div>
+                <div class="col"><hr class="section-hr-right"></div>
+            </div>
+            <div class="shop-section-row-products">
+                <a href="#" class="shop-ancor-tag">
+                    <div class="card">
+                        <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+                        <img src="https://images.pexels.com/photos/3827668/pexels-photo-3827668.jpeg" class="shop-card-img" alt="Product Image">
+                        <div class="card-body">
+                            <p class="shop-card-title js-card-title">Modern Professional Knives For Cooking</p>
+                            <span class=""><i class="fas fa-euro-sign" aria-hidden="true"></i> 139.99</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="shop-ancor-tag">
+                    <div class="card">
+                        <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+                        <img src="https://images.pexels.com/photos/1450903/pexels-photo-1450903.jpeg" class="shop-card-img" alt="Product Image">
+                        <div class="card-body">
+                            <p class="shop-card-title js-card-title">Kitchenaid Stand Mixer</p>
+                            <span class=""><i class="fas fa-euro-sign" aria-hidden="true"></i> 69.99</span>
+                        </div>
+                    </div>
+                </a>
+            
+                <a href="#" class="shop-ancor-tag">
+                    <div class="card">
+                        <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+                        <img src="https://cdn.pixabay.com/photo/2020/06/29/11/18/render-5352379_1280.jpg" class="shop-card-img" alt="Product Image">
+                        <div class="card-body">
+                            <p class="shop-card-title js-card-title">3 Piece Cookware Set</p>
+                            <span class=""><i class="fas fa-euro-sign" aria-hidden="true"></i> 49.99</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="shop-section-item-row-more-products">
+                <a href="#" class="shop-ancor-tag">
+                    MORE PRODUCTS&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </section>
+    <!-- /.End Shop section -->
 {% endblock %}
