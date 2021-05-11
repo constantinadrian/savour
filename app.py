@@ -25,8 +25,9 @@ def home():
     """
     Display three random recipes on home page
     """
+    categories = mongo.db.recipes.distinct("categoryName")
     recipes = mongo.db.recipes.aggregate([{'$sample': {'size': 3}}])
-    return render_template("pages/index.html", recipes=recipes)
+    return render_template("pages/index.html", recipes=recipes, categories=categories)
 
 
 @app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
@@ -41,8 +42,9 @@ def recipe(recipe_id):
         return json.dumps({'status': 'OK', 'rating': rating})
 
     page = "recipe"
+    categories = mongo.db.recipes.distinct("categoryName")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("pages/recipe.html", recipe=recipe, page=page)
+    return render_template("pages/recipe.html", recipe=recipe, page=page, categories=categories)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -55,12 +57,13 @@ def register():
         username = request.form.get("username").strip()
         email = request.form.get("email").strip()
         password = request.form.get("password").strip()
-        password_confirmation = request.form.get("passwordConfirmation").strip()
+        password_confirmation = request.form.get(
+            "passwordConfirmation").strip()
 
         if not username:
             flash("You must provide a username", category="alert-danger")
             return redirect("/register")
-        
+
         if not email:
             flash("You must provide a email", category="alert-danger")
             return redirect("/register")
@@ -68,19 +71,19 @@ def register():
         if password != password_confirmation:
             flash("Password does not match", category="alert-danger")
             return redirect("/register")
-        
+
         exist_user = mongo.db.users.find_one({"username": username.lower()})
         exist_email = mongo.db.users.find_one({"email": email})
 
         if exist_user and exist_email:
             flash("Username and email already in use", category="alert-danger")
             return redirect("/register")
-        
-        if exist_user:            
-            flash("Username already in use", category="alert-danger")
-            return redirect("/register") 
 
-        if exist_email:            
+        if exist_user:
+            flash("Username already in use", category="alert-danger")
+            return redirect("/register")
+
+        if exist_email:
             flash("Email already in use", category="alert-danger")
             return redirect("/register")
 
@@ -94,8 +97,9 @@ def register():
         flash("Registration Successful!", category="alert-success")
         return redirect("/home")
 
+    categories = mongo.db.recipes.distinct("categoryName")
     page = "form"
-    return render_template("pages/register.html", page=page)
+    return render_template("pages/register.html", page=page, categories=categories)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -120,11 +124,23 @@ def login():
             return redirect(url_for("login"))
 
         session["user"] = existing_user["username"]
-        flash("Welcome, {}".format(existing_user["username"]))
-        return redirect("/home")
+        return redirect(url_for(
+                    "profile", username=session["user"]))
 
+    categories = mongo.db.recipes.distinct("categoryName")
     page = "form"
-    return render_template("pages/login.html", page=page)
+    return render_template("pages/login.html", page=page, categories=categories)
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    """
+    Display the profile page
+    """
+    categories = mongo.db.recipes.distinct("categoryName")
+    print(categories)
+    recipes = mongo.db.recipes.find({"createdBy": username.lower()})
+    return render_template("pages/profile.html", username=username, recipes=recipes, categories=categories)
 
 
 if __name__ == "__main__":

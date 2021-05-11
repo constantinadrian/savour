@@ -1,0 +1,61 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    <!-- Landing section -->
+    <section class="profile-section">
+        <div class="profile-section-row-info">
+            <h1 class='section-title profile-title'>Welcome, {{ session["user"] }}</h1>
+        </div>
+        <hr class="hr-profile">
+        <div class="container">
+            <div class="profile-section-row-links">
+                <div class="profile-section-row-links-item">
+                    {% if session["user"] == "admin" %}
+                    <a href="{{ url_for('home') }}" class="btn btn--champagne-pink my-2 my-sm-0">Manage Category</a>
+                    {% endif %}
+                    <a href="{{ url_for('home') }}" class="btn btn--champagne-pink my-2 my-sm-0">Add Recipe</a>
+                </div>           
+            </div>
+        </div>
+    </section>
+    <!-- /.Landing section -->
+
+    <!-- Recipes section -->
+    <section class="recipes-section">
+        <div class="container">
+            <div class="recipes-section-row-title">
+                <div class="col"><hr class="section-hr-left"></div>
+                <div class="col-auto">
+                    <h2 class="section-title">My Recipes</h2>
+                </div>
+                <div class="col"><hr class="section-hr-right"></div>
+            </div>
+            {% if recipes %}
+            <div class="recipes-section-row-recipes">
+                {% for recipe in recipes %}
+                    <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">
+                        <div class="card">
+                            <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+                            <img src="{{ recipe.recipeImageURL }}" class="recipe-card-img" alt="Recipe Image">
+                            <div class="card-body">
+                                <p class="recipe-card-title js-card-title">{{ recipe.recipeName|title }}</p>
+                                <span class=""><i class="far fa-clock"></i> {{ recipe.time }} Min</span>
+                                <hr>
+                                {% if recipe.ratings.ratingStatus == false %}
+                                    {% for star in range(0, 5) %}
+                                        <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                                    {% endfor %}
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+    </section>
+    <!-- /.Recipe section -->
+
+{% endblock %}

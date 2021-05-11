@@ -70,9 +70,9 @@
                             Recipes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#" aria-label="Appetizer Page">Appetizer</a>
-                            <a class="dropdown-item" href="#" aria-label="Breakfast Page">Breakfast</a>
-                            <a class="dropdown-item" href="#" aria-label="Desert Page">Desert</a>
+                            {% for category in categories %}
+                                <a class="dropdown-item" href="#" aria-label="{{category|title}} Page">{{category|title}}</a>
+                            {% endfor %}
                         </div>
                     </li>
                     <li class="nav-item">

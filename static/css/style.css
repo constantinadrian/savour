@@ -179,6 +179,23 @@ main .alert-primary {
     margin: 7rem 0;
 }
 
+.profile-section {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;   
+       -ms-flex-align: center;   
+          align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
 .recipes-section-row-title,
 .shop-section-row-title,
 .login-section-row-title,
@@ -201,7 +218,7 @@ main .alert-primary {
 .section-hr-right {
     height: 2px;
     background:  -webkit-gradient(linear, left top, right top, from(#b38989ff), color-stop(#e8d1c5ff), color-stop(#efe5dcff), to(#f0efebff));
-    background:  -o-linear-gradient(left, #b38989ff #e8d1c5ff, #efe5dcff, #f0efebff);
+    background:  -o-linear-gradient(left, #b38989ff, #e8d1c5ff, #efe5dcff, #f0efebff);
     background:  linear-gradient(90deg, #b38989ff, #e8d1c5ff, #efe5dcff, #f0efebff);
 }
 
@@ -212,6 +229,21 @@ main .alert-primary {
     line-height: 1.2;
     text-transform: uppercase;
     word-break: break-word;
+}
+
+.profile-title {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.hr-profile {
+    width: 80%;
+    margin: 1rem 0;
+    height: 2px;
+    background:  -webkit-gradient(linear, left top, right top, from(#f0efebff), color-stop(#efe5dcff), color-stop(#e8d1c5ff), color-stop(#b38989ff), color-stop(#e8d1c5ff), color-stop(#efe5dcff), to(#f0efebff));
+    background:  -o-linear-gradient(left, #f0efebff, #efe5dcff, #e8d1c5ff, #b38989ff, #e8d1c5ff, #efe5dcff, #f0efebff);
+    background:  linear-gradient(90deg, #f0efebff, #efe5dcff, #e8d1c5ff, #b38989ff, #e8d1c5ff, #efe5dcff, #f0efebff);
 }
 
 .recipes-section-row-recipes,
@@ -232,7 +264,9 @@ main .alert-primary {
 }
 
 .login-section-row-info,
-.register-section-row-info {
+.register-section-row-info,
+.profile-section-row-info {
+    width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -245,6 +279,32 @@ main .alert-primary {
        -ms-flex-align: center;   
             align-items: center;
     margin-top: 2rem;
+}
+
+.profile-section-row-links {
+    margin-top: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;    
+        -ms-flex-pack: space-evenly;    
+            justify-content: space-evenly;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+}
+
+.profile-section-row-links-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
 }
 
 .recipes-section-row-recipes a,
