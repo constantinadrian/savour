@@ -104,6 +104,20 @@ main {
 }
 /* ----------------------------------- End of Main --------------------------------- */
 
+/* --------------------------- Remove style from flash message div------------------ */
+main .alert {
+    margin-bottom: 0;
+}
+
+main .border {
+    border: none !important;
+}
+
+main .alert-primary {
+    border: none;
+}
+/* ----------------------- End of Remove style from flash message div -------------- */
+
 /* --------------------------- Landing section ------------------------------- */
 .landing {
     width: 100%;

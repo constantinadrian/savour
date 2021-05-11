@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for, json)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -50,11 +51,47 @@ def register():
     Display the login page and check for authentofication
     """
     if request.method == "POST":
+        # make check on server side before sending data on database
         username = request.form.get("username").strip()
+        email = request.form.get("email").strip()
+        password = request.form.get("password").strip()
+        password_confirmation = request.form.get("passwordConfirmation").strip()
 
-        if username:
-            flash("You must provide a username", category="alert-primary")
+        if not username:
+            flash("You must provide a username", category="alert-danger")
             return redirect("/register")
+        
+        if not email:
+            flash("You must provide a email", category="alert-danger")
+            return redirect("/register")
+
+        if password != password_confirmation:
+            flash("Password does not match", category="alert-danger")
+            return redirect("/register")
+        
+        exist_user = mongo.db.users.find_one({"username": username.lower()})
+        exist_email = mongo.db.users.find_one({"email": email})
+
+        if exist_user and exist_email:
+            flash("Username and email already in use", category="alert-danger")
+            return redirect("/register")
+        
+        if exist_user:            
+            flash("Username already in use", category="alert-danger")
+            return redirect("/register") 
+
+        if exist_email:            
+            flash("Email already in use", category="alert-danger")
+            return redirect("/register")
+
+        new_user = {
+            "username": username.lower(),
+            "email": email,
+            "password": generate_password_hash(password)
+        }
+
+        mongo.db.users.insert_one(new_user)
+        flash("Registration Successful!", category="alert-success")
         return redirect("/home")
 
     page = "form"
@@ -67,6 +104,23 @@ def login():
     Display the login page and check for authentofication
     """
     if request.method == "POST":
+        if not request.form.get("email"):
+            flash("You must provide a email", category="alert-danger")
+            return redirect("/login")
+
+        if not request.form.get("password"):
+            flash("You must provide a password", category="alert-danger")
+            return redirect("/login")
+
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email")})
+        if not existing_user or not check_password_hash(
+                existing_user["password"], request.form.get("password")):
+            flash("Incorrect Email and/or Password", category="alert-danger")
+            return redirect(url_for("login"))
+
+        session["user"] = existing_user["username"]
+        flash("Welcome, {}".format(existing_user["username"]))
         return redirect("/home")
 
     page = "form"

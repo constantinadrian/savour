@@ -100,7 +100,7 @@
             {% if messages %}
                 {% for category, message in messages %}
                     <header>
-                        <div class="alert {{ category }} border text-center" id="flashMessage" role="alert">
+                        <div class="alert {{ category }} border text-center js-flash-message" role="alert">
                             {{ message }}
                         </div>
                     </header>

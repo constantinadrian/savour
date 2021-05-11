@@ -9,5 +9,5 @@ $(document).ready(function(){
     })
 
     // Hide flash message
-    $("#flashMessage").delay(5000).fadeOut();
+    $(".js-flash-message").delay(5000).fadeOut();
 });
