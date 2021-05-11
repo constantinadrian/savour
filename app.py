@@ -37,11 +37,23 @@ def recipe(recipe_id):
     if request.method == "POST":
         print("ajax request")
         rating = request.form.get("stars")
-        return json.dumps({'status':'OK', 'rating':rating})
+        return json.dumps({'status': 'OK', 'rating': rating})
 
     page = "recipe"
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("pages/recipe.html", recipe=recipe, page=page)  
+    return render_template("pages/recipe.html", recipe=recipe, page=page)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """
+    Display the login page and check for authentofication
+    """
+    if request.method == "POST":
+        return redirect("/home")
+
+    page = "form"
+    return render_template("pages/login.html", page=page)
 
 
 if __name__ == "__main__":

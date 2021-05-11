@@ -166,7 +166,8 @@ main {
 }
 
 .recipes-section-row-title,
-.shop-section-row-title {
+.shop-section-row-title,
+.login-section-row-title {
     margin-bottom: 2rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -199,7 +200,8 @@ main {
 }
 
 .recipes-section-row-recipes,
-.shop-section-row-products {
+.shop-section-row-products,
+.login-section-row-form {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -468,12 +470,12 @@ main {
 
 .footer-support-links-item a {
     text-decoration: none;
-    color: #fff;
+    color: #000;
 }
 
 .footer-support-links-item a:hover {
     text-decoration: none;
-    color: #fff;
+    color: #000;
 }
 
 
@@ -512,7 +514,7 @@ main {
 
 .footer-copyright-item {
     margin: 1rem 0;
-    color: #fff;
+    color: #000;
 }
 
 .footer-hr {
