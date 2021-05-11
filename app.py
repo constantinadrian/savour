@@ -50,6 +50,11 @@ def register():
     Display the login page and check for authentofication
     """
     if request.method == "POST":
+        username = request.form.get("username").strip()
+
+        if username:
+            flash("You must provide a username", category="alert-primary")
+            return redirect("/register")
         return redirect("/home")
 
     page = "form"
