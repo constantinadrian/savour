@@ -167,7 +167,8 @@ main {
 
 .recipes-section-row-title,
 .shop-section-row-title,
-.login-section-row-title {
+.login-section-row-title,
+.register-section-row-title {
     margin-bottom: 2rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -201,7 +202,8 @@ main {
 
 .recipes-section-row-recipes,
 .shop-section-row-products,
-.login-section-row-form {
+.login-section-row-form,
+.register-section-row-form {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -213,6 +215,22 @@ main {
     -webkit-box-align: center;   
         -ms-flex-align: center;   
             align-items: center;
+}
+
+.login-section-row-info,
+.register-section-row-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;   
+       -ms-flex-align: center;   
+            align-items: center;
+    margin-top: 2rem;
 }
 
 .recipes-section-row-recipes a,
@@ -264,6 +282,18 @@ main {
 .recipe-ancor-tag:hover,
 .shop-ancor-tag:hover {
     color: #000;
+    text-decoration: none;
+}
+
+.login-ancor-tag,
+.register-ancor-tag {
+    color: #0031e5;
+    text-decoration: none;
+}
+
+.login-ancor-tag:hover,
+.register-ancor-tag:hover {
+    color: #0031e5;
     text-decoration: none;
 }
 

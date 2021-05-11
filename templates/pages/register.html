@@ -1,0 +1,74 @@
+{% extends "layout/base.html" %}
+
+{% block content %}    
+    
+    <section class="register-section">
+        <div class="container register-container">
+
+            <div class="register-section-row-title">
+                <div class="col">
+                    <hr class="section-hr-left">
+                </div>
+                <div class="col-auto">
+                    <h2 class="section-title">Register</h2>
+                </div>
+                <div class="col">
+                    <hr class="section-hr-right">
+                </div>
+            </div>
+
+            <div class="register-section-row-form">
+                <form class="form-register" id='login-register' action="{{ url_for('register') }}" method="POST" autocomplete="off">
+
+                   <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="username" name="username" required>
+                                <label for="username"><span>Username</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email" name="email" required>
+                                <label for="email"><span>Email</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="password" name="password" required>
+                                <label for="password"><span>Password</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="passwordConfirmation" name="passwordConfirmation" required>
+                                <label for="passwordConfirmation"><span>Confirm Password</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 text-center mt-5">
+                            <button class="btn btn--champagne-pink my-2 my-sm-0" id="btn-submit-form" type="submit">Create Account</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="register-section-row-info">
+                <span class="text-center">Already have an account?</span>&nbsp;<a href="{{ url_for('login') }}" class="register-ancor-tag">Sign In</a>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

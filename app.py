@@ -44,6 +44,18 @@ def recipe(recipe_id):
     return render_template("pages/recipe.html", recipe=recipe, page=page)
 
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """
+    Display the login page and check for authentofication
+    """
+    if request.method == "POST":
+        return redirect("/home")
+
+    page = "form"
+    return render_template("pages/register.html", page=page)
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """

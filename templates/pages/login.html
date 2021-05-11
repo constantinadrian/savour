@@ -18,7 +18,7 @@
             </div>
 
             <div class="login-section-row-form">
-                <form class="form-login" id='login' action="{{ url_for('login') }}" method="POST" autocomplete="off">
+                <form class="form-login" id='login-register' action="{{ url_for('login') }}" method="POST" autocomplete="off">
                    
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
@@ -39,11 +39,15 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-12 col-sm-12 text-center">
+                        <div class="col-md-12 col-sm-12 text-center mt-5">
                             <button class="btn btn--champagne-pink my-2 my-sm-0" id="btn-submit-form" type="submit">Login</button>
                         </div>
                     </div>
                 </form>
+            </div>
+
+            <div class="login-section-row-info">
+                <span class="text-center">Are you new to Savour?</span>&nbsp;<a href="{{ url_for('register') }}" class="login-ancor-tag">Register Here</a>
             </div>
 
         </div>
