@@ -143,6 +143,17 @@ def profile(username):
     return render_template("pages/profile.html", username=username, recipes=recipes, categories=categories)
 
 
+@app.route("/logout")
+def logout():
+    """
+    Log out the user
+    """
+    # remove user from session cookies
+    session.pop("user")
+    flash("You have been logged out", category="alert-info")
+    return redirect("/login")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
