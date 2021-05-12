@@ -155,7 +155,6 @@ def profile(username):
         return redirect(url_for('permission', code=403))
 
     categories = mongo.db.recipes.distinct("categoryName")
-    print(categories)
     recipes = mongo.db.recipes.find({"createdBy": username.lower()})
     return render_template("pages/profile.html",
                            username=username,
