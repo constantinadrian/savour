@@ -40,7 +40,6 @@ def recipe(recipe_id):
     """
     # Update the rating if it's an AJAX call
     if request.method == "POST":
-        print("ajax request")
         rating = request.form.get("stars")
         return json.dumps({'status': 'OK', 'rating': rating})
 
@@ -131,7 +130,7 @@ def login():
         if not existing_user or not check_password_hash(
                 existing_user["password"], request.form.get("password")):
             flash("Incorrect Email and/or Password", category="alert-danger")
-            return redirect(url_for("login"))
+            return redirect("/login")
 
         session["user"] = existing_user["username"]
         return redirect(url_for(
@@ -150,8 +149,8 @@ def profile(username):
     """
     Display the profile page
     """
-    # if admin profile page is requested check if admin user is login
-    if username == "admin" and session["user"] != "admin":
+    # Denied user access to other profile pages
+    if username != session["user"]:
         return redirect(url_for('permission', code=403))
 
     categories = mongo.db.recipes.distinct("categoryName")
@@ -167,7 +166,7 @@ def logout():
     """
     Log out the user
     """
-    # remove user from session cookies
+    # Remove user from session cookies
     session.pop("user")
     flash("You have been logged out", category="alert-info")
     return redirect("/login")
@@ -178,13 +177,20 @@ def http_unauthorized(e):
     return redirect(url_for('permission', code=401))
 
 
+@app.errorhandler(403)
+def http_forbidden(e):
+    return redirect(url_for('permission', code=403))
+
+
 @app.route("/permission/<code>")
 def permission(code):
     """
     Show user permission to the page
     """
-    print(code)
-    return render_template("pages/permission.html", code=code)
+    categories = mongo.db.recipes.distinct("categoryName")
+    return render_template("pages/permission.html", 
+                           code=code, 
+                           categories=categories)
 
 
 if __name__ == "__main__":
