@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    <!-- Permission section -->
+    <section class="error-section">
+        <div class="landing error-container">
+            <div class="error-img error-img-1"></div>
+            <div class="error-img error-img-2"></div>
+            <div class="error-img error-img-3"></div>
+            <div class="container">
+                {% if code == "401" %}
+                    <div class="error-401-content">
+                        <h1>Oops!</h1>
+                        <h2>401 Authorization required</h2>
+                        <p>Access is allowed only for registered users.</p>
+                        <a href="{{ url_for('register') }}" class="btn btn--champagne-pink">Create Account</a>
+                    </div>
+                {% elif code == "403" %}
+                    <div class="error-403-content">
+                        <h1>Oops!</h1>
+                        <h2>403 Access Denied / Forbidden</h2>
+                        <p>You don't have permission to access this page.</p>
+                        <a href="{{ url_for('home') }}" class="btn btn--champagne-pink">Go to Homepage</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

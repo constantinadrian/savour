@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from helpers import login_required
 if os.path.exists("env.py"):
     import env
 
@@ -27,7 +28,9 @@ def home():
     """
     categories = mongo.db.recipes.distinct("categoryName")
     recipes = mongo.db.recipes.aggregate([{'$sample': {'size': 3}}])
-    return render_template("pages/index.html", recipes=recipes, categories=categories)
+    return render_template("pages/index.html",
+                           recipes=recipes,
+                           categories=categories)
 
 
 @app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
@@ -44,7 +47,10 @@ def recipe(recipe_id):
     page = "recipe"
     categories = mongo.db.recipes.distinct("categoryName")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("pages/recipe.html", recipe=recipe, page=page, categories=categories)
+    return render_template("pages/recipe.html",
+                           recipe=recipe,
+                           page=page,
+                           categories=categories)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -73,7 +79,7 @@ def register():
             return redirect("/register")
 
         exist_user = mongo.db.users.find_one({"username": username.lower()})
-        exist_email = mongo.db.users.find_one({"email": email})
+        exist_email = mongo.db.users.find_one({"email": email.lower()})
 
         if exist_user and exist_email:
             flash("Username and email already in use", category="alert-danger")
@@ -94,12 +100,16 @@ def register():
         }
 
         mongo.db.users.insert_one(new_user)
+
+        session["user"] = username.lower()
         flash("Registration Successful!", category="alert-success")
-        return redirect("/home")
+        return redirect(url_for("profile", username=session["user"]))
 
     categories = mongo.db.recipes.distinct("categoryName")
     page = "form"
-    return render_template("pages/register.html", page=page, categories=categories)
+    return render_template("pages/register.html",
+                           page=page,
+                           categories=categories)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -129,18 +139,28 @@ def login():
 
     categories = mongo.db.recipes.distinct("categoryName")
     page = "form"
-    return render_template("pages/login.html", page=page, categories=categories)
+    return render_template("pages/login.html",
+                           page=page,
+                           categories=categories)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
+@login_required
 def profile(username):
     """
     Display the profile page
     """
+    # if admin profile page is requested check if admin user is login
+    if username == "admin" and session["user"] != "admin":
+        return redirect(url_for('permission', code=403))
+
     categories = mongo.db.recipes.distinct("categoryName")
     print(categories)
     recipes = mongo.db.recipes.find({"createdBy": username.lower()})
-    return render_template("pages/profile.html", username=username, recipes=recipes, categories=categories)
+    return render_template("pages/profile.html",
+                           username=username,
+                           recipes=recipes,
+                           categories=categories)
 
 
 @app.route("/logout")
@@ -152,6 +172,20 @@ def logout():
     session.pop("user")
     flash("You have been logged out", category="alert-info")
     return redirect("/login")
+
+
+@app.errorhandler(401)
+def http_unauthorized(e):
+    return redirect(url_for('permission', code=401))
+
+
+@app.route("/permission/<code>")
+def permission(code):
+    """
+    Show user permission to the page
+    """
+    print(code)
+    return render_template("pages/permission.html", code=code)
 
 
 if __name__ == "__main__":

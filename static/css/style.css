@@ -490,6 +490,101 @@ main .alert-primary {
 }
 /* ------------------------------- End of Subscribe --------------------------------- */
 
+/* ---------------------------- Permission section ---------------------------------- */
+.error-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.error-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+      justify-content: center;
+    -webkit-box-align: center;   
+        -ms-flex-align: center;   
+            align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.error-401-content,
+.error-403-content {
+    min-height: 290px;
+    padding: 1.5rem 0;
+    font-family: 'Crete Round', serif;
+    word-wrap: break-word;
+}
+
+.error-img {
+    width: 150px;
+    height:150px;
+}
+
+.error-img-1 {
+    background: url("../img/peppers-top-left.png") no-repeat center center scroll;
+    background-size: cover;
+    position: absolute;
+    top: -52px;
+    left:0;
+}
+
+.error-img-2 {
+    background: url("../img/peppers-bottom-right.png") no-repeat center center scroll;
+    background-size: cover;
+    position: absolute;
+    bottom: -60px;
+    right:0;
+    z-index: -1;
+}
+
+.error-img-3 {
+    background: url("../img/peppers-bowl.png") no-repeat center center scroll;
+    background-size: cover;
+    position: absolute;
+    top: -52px;
+    right:-30px;
+    z-index: -1;
+}
+
+@media only screen and (min-width: 992px) {
+    .error-img {
+        width: 250px;
+        height:250px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width: 991px){
+    .error-img {
+        width: 200px;
+        height:200px;
+    }
+} 
+
+@media only screen and (min-width:576px){
+    .error-401-content h1,
+    .error-401-content h2,
+    .error-401-content p,
+    .error-401-content a,
+    .error-403-content h1,
+    .error-403-content h2,
+    .error-403-content p,
+    .error-403-content a { 
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* -------------------------- End Permission section --------------------------------- */
+
 /* ------------------------------------- Footer ------------------------------------ */
 .footer {
     width: 100%;
