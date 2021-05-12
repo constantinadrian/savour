@@ -52,7 +52,7 @@
                     
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
-                            <div class="form-group">
+                            <div class="form-group steps-mb">
                                 <ul class="ingredients-list">
                                     <li class="ingredient">
                                         <input type="text" class="form-control" id="recipe-ingredient" name="recipe-ingredient" required>
@@ -68,7 +68,17 @@
 
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
-                            <div class="form-group">
+                            <div class="ingredients-btn-container">
+                                <div class="input-group-btn">
+                                    <span class="input-group-remove-ingredients"><a class="btn-group-ingredients btn-remove-ingredients" role="button" data-toggle="tooltip" data-placement="top" title="Remove item"><i class="fas fa-minus"></i></a></span><span class="input-group-add-ingredients"><a class="btn-group-ingredients btn-add-ingredients" role="button" data-toggle="tooltip" data-placement="top" title="Add item"><i class="fas fa-plus"></i></a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group steps-mb">
                                 <ul class="methods-list">
                                     <li class="methods">
                                         <textarea class="form-control" id="recipe-methods" name="recipe-methods" rows="2" maxlength="320" required></textarea>
@@ -78,6 +88,16 @@
                                         <textarea class="form-control" name="recipe-methods" rows="2" maxlength="320" required></textarea>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="ingredients-btn-container">
+                                <div class="input-group-btn">
+                                    <span class="input-group-remove-steps"><a class="btn-group-ingredients btn-remove-steps" role="button" data-toggle="tooltip" data-placement="top" title="Remove step"><i class="fas fa-minus"></i></a></span><span class="input-group-add-steps"><a class="btn-group-ingredients btn-add-steps" role="button" data-toggle="tooltip" data-placement="top" title="Add step"><i class="fas fa-plus"></i></a></span>
+                                </div>
                             </div>
                         </div>
                     </div>

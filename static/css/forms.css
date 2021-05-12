@@ -12,6 +12,10 @@
     width: 90%;
 }
 
+.steps-mb {
+    margin-bottom: 0;
+}
+
 .ingredients-list,
 .methods-list {
     display: -webkit-box;
@@ -24,6 +28,44 @@
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+}
+
+.ingredients-btn-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 2.5rem;
+}
+
+.input-group-btn {
+    margin-left: auto;
+}
+
+.input-group-remove-ingredients a,
+.input-group-add-ingredients a {
+    margin: .5rem
+}
+
+.btn-group-ingredients {
+    color: #fff;
+}
+
+.btn-group-ingredients:hover {
+    color: #fff;
+}
+
+.btn-group-ingredients i {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 10px;
+    line-height: 1;
+    background: #c77;
+}
+
+.input-group-remove-steps a,
+.input-group-add-steps a {
+    margin: .5rem
 }
 
 textarea {
