@@ -1,22 +1,45 @@
 /* -------------------------------- Custom form display  ---------------------------------- */
 .login-container,
-.register-container {
+.register-container,
+.create-recipes-container {
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
 
 .form-login,
-.form-register {
+.form-register,
+.form-recipe {
     width: 90%;
 }
 
+.ingredients-list,
+.methods-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+textarea {
+    overflow-y: hidden;
+}
+
 .form-login .form-group,
-.form-register .form-group {
+.form-register .form-group,
+.form-recipe .form-group {
     position: relative;
 }
 
 .form-login .form-control,
-.form-register .form-control {
+.form-register .form-control,
+.form-recipe .form-control,
+.form-recipe .custom-select {
     background-color: #f0efeb;
     border: 0;
     border-radius: 0;
@@ -25,14 +48,17 @@
 }
 
 .form-login .form-control:focus,
-.form-register .form-control:focus {
+.form-register .form-control:focus,
+.form-recipe .form-control:focus,
+.form-recipe .custom-select:focus {
     background-color: #f0efeb;
     box-shadow: none;
     border-color:#b38989;
 }
 
 .form-login .form-group label,
-.form-register .form-group label {
+.form-register .form-group label,
+.form-recipe .form-group label {
     position: absolute;
     top: 10px;
     left: 0;
@@ -41,14 +67,20 @@
 }
 
 .form-login .form-group label span,
-.form-register .form-group label span {
+.form-register .form-group label span,
+.form-recipe .form-group label span {
     display: inline-block;
 }
 
 .form-login .form-group .form-control:focus + label span,
 .form-login .form-group input:valid + label span,
 .form-register .form-group .form-control:focus + label span,
-.form-register .form-group input:valid + label span {
+.form-register .form-group input:valid + label span,
+.form-recipe .form-group .form-control:focus + label span, 
+.form-recipe .form-group .custom-select:focus + label span, 
+.form-recipe .form-group input:valid + label span, 
+.form-recipe .form-group select:valid + label span, 
+.form-recipe .form-group textarea:valid + label span {
     transform: translateY(-25px);
     font-size: 12px;
     color: #b38989;
@@ -61,7 +93,8 @@
 
 @media only screen and (min-width: 992px) {
     .form-login,
-    .form-register {
+    .form-register,
+    .form-recipe {
         width: 70%;
     }
 }

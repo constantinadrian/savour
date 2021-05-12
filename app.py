@@ -161,6 +161,13 @@ def profile(username):
                            categories=categories)
 
 
+@app.route("/add_recipe", methods=["GET", "POST"])
+@login_required
+def add_recipe():
+    categories_recipes = mongo.db.categories.find()
+    return render_template("pages/add_recipe.html", page="form", categories_recipes=categories_recipes)
+
+
 @app.route("/logout")
 def logout():
     """
@@ -188,8 +195,8 @@ def permission(code):
     Show user permission to the page
     """
     categories = mongo.db.recipes.distinct("categoryName")
-    return render_template("pages/permission.html", 
-                           code=code, 
+    return render_template("pages/permission.html",
+                           code=code,
                            categories=categories)
 
 

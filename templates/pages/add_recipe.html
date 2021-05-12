@@ -1,0 +1,144 @@
+{% extends "layout/base.html" %}
+
+{% block content %}    
+    
+    <section class="create-recipes-section">
+        <div class="container create-recipes-container">
+            <div class="recipes-section-row-title">
+                <div class="col">
+                    <hr class="section-hr-left">
+                </div>
+                <div class="col-auto">
+                    <h2 class="section-title">Add recipe</h2>
+                </div>
+                <div class="col">
+                    <hr class="section-hr-right">
+                </div>
+            </div>
+            <div class="recipes-section-row-recipes">
+
+                <form class="form-recipe" id='add-recipe' action="{{ url_for('add_recipe') }}" method="POST" autocomplete="off">
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <select class="custom-select" id="recipe-category" name="recipe-category" required>
+                                    <option selected disabled hidden value="">&nbsp;</option>
+                                    {% for category_recipe in categories_recipes %}
+                                        <option value="{{ category_recipe.categoryName }}">{{ category_recipe.categoryName|title }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="recipe-category"><span>Recipe Category</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="recipe-title" name="recipe-title" required>
+                                <label for="recipe-title"><span>Recipe Title</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <textarea class="form-control" id="recipe-description" name="recipe-description" rows="1" maxlength="150" required></textarea>
+                                <label for="recipe-description"><span>Recipe Description</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <ul class="ingredients-list">
+                                    <li class="ingredient">
+                                        <input type="text" class="form-control" id="recipe-ingredient" name="recipe-ingredient" required>
+                                        <label for="recipe-ingredient"><span>Recipe Ingredients</span></label>
+                                    </li>
+                                    <li class="ingredient">
+                                        <input type="text" class="form-control" name="recipe-ingredient" required>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <ul class="methods-list">
+                                    <li class="methods">
+                                        <textarea class="form-control" id="recipe-methods" name="recipe-methods" rows="2" maxlength="320" required></textarea>
+                                        <label for="recipe-methods"><span>Recipe Methods</span></label>
+                                    </li>
+                                    <li class="methods">
+                                        <textarea class="form-control" name="recipe-methods" rows="2" maxlength="320" required></textarea>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="recipe-image-url" name="recipe-image-url" required>
+                                <label for="recipe-image-url"><span>Recipe Image URL</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <select class="custom-select" id="recipe-cook-time" name="recipe-cook-time" required>
+                                    <option selected disabled hidden value="">&nbsp;</option>
+                                    <option value="5">5 Min</option>
+                                    <option value="10">10 Min</option>
+                                    <option value="15">15 Min</option>
+                                    <option value="20">20 Min</option>
+                                    <option value="25">25 Min</option>
+                                </select>
+                                <label for="recipe-cook-time"><span>Cook Time</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <select class="custom-select" id="recipe-serve" name="recipe-serve" required>
+                                    <option selected disabled hidden value="">&nbsp;</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                                <label for="recipe-serve"><span>Serve</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="recipe-tips" name="recipe-tips" required>
+                                <label for="recipe-tips"><span>Recipe Tips</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
