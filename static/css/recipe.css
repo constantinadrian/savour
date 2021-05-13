@@ -8,6 +8,25 @@
     padding: 2rem 1rem;
 }
 
+.recipe-row-info {
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+}
+
+.recipe-row-info i {
+    font-size: 10px;
+}
+
+.recipe-ancor-tag-info {
+    color: #a50000;
+    text-decoration: none;
+}
+
+.recipe-ancor-tag-info:hover {
+    color: #a50000;
+    text-decoration: none;
+}
+
 .recipe-top-items {
     width: 100%;
     display: -webkit-box;
@@ -120,6 +139,10 @@
     border: 1px solid #E8D1C5;
     padding: 0.8rem;
     flex: 1;
+}
+
+h3.recipe-method-title {
+    font-size: 1.5rem
 }
 
 .recipe-method-title,

@@ -3,14 +3,17 @@
 {% block content %}
     <section class="recipe-description-section">
         <div class="recipe-container">
+            <div class="recipe-row-info">
+                <span class="text-center">Category <i class="fas fa-chevron-right"></i></span> <a href="{{ url_for('home') }}" class="recipe-ancor-tag-info">{{ recipe.category_name|title }}</a>
+            </div>
             <div class="recipe-top-items">
                 <div class="card recipe-box-img">
                     <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
-                    <img src="{{ recipe.recipeImageURL }}" class="recipe-img" alt="Recipe Image">
+                    <img src="{{ recipe.image_url }}" class="recipe-img" alt="Recipe Image">
                 </div>
                 <div class="card recipe-top-description">
-                    <h2 class="about-recipe-title">{{ recipe.recipeName }}</h2>
-                    <div class="recipe-created-by">By <a href="#">{{ recipe.createdBy }}</a></div>
+                    <h2 class="about-recipe-title">{{ recipe.recipe_name }}</h2>
+                    <div class="recipe-created-by">By <a href="#">{{ recipe.created_by }}</a></div>
                     <div class="recipe-rating">
                         <div class="recipe-rating-star js-rating-star-div">
                             <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
@@ -20,7 +23,7 @@
                             <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
                         </div>
 
-                        {% if recipe.ratings.ratingStatus == false %}
+                        {% if recipe.ratings.status == false %}
                             <div class="recipe-total-rating">0 / 5</div>
                         {% endif %}
 
@@ -42,6 +45,7 @@
 
             <div class="recipe-bottom-items">
                 <div class="card recipe-ingredients">
+                    <h3 class="recipe-method-title">Ingredients</h3>
 
                     {% for ingredient in recipe.ingredients %}
                         <p>{{ ingredient }}</p>
@@ -49,6 +53,7 @@
 
                 </div>
                 <div class="card recipe-methods">
+                    <h3 class="recipe-method-title">Methods</h3>
                     {% for step in recipe.methods %}
                         <div class="recipe-method-title">Step {{ loop.index }}</div>
                         <div class="recipe-method-description">{{ step }}</div>

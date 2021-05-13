@@ -13,7 +13,7 @@ function addIngredients() {
         $(".btn-remove-ingredients").css("display", "inline-block");
     }
 
-    if (ingredients.length != 5) {
+    if (ingredients.length != 21) {
         let listItem = document.createElement('li');
         
         inputField = `
@@ -57,7 +57,7 @@ function addMethods() {
         $(".btn-remove-steps").css("display", "inline-block");
     }
 
-    if (methods.length != 5) {
+    if (methods.length != 15) {
         let stepItem = document.createElement('li');
         
         textareaField = `

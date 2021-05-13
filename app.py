@@ -26,11 +26,11 @@ def home():
     """
     Display three random recipes on home page
     """
-    categories = mongo.db.recipes.distinct("categoryName")
+    nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.aggregate([{'$sample': {'size': 3}}])
     return render_template("pages/index.html",
                            recipes=recipes,
-                           categories=categories)
+                           categories=nav_categories)
 
 
 @app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
@@ -44,18 +44,18 @@ def recipe(recipe_id):
         return json.dumps({'status': 'OK', 'rating': rating})
 
     page = "recipe"
-    categories = mongo.db.recipes.distinct("categoryName")
+    nav_categories = mongo.db.recipes.distinct("category_name")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("pages/recipe.html",
                            recipe=recipe,
                            page=page,
-                           categories=categories)
+                           categories=nav_categories)
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
-    Display the login page and check for authentofication
+    Display the login page and check for authentication
     """
     if request.method == "POST":
         # make check on server side before sending data on database
@@ -104,17 +104,17 @@ def register():
         flash("Registration Successful!", category="alert-success")
         return redirect(url_for("profile", username=session["user"]))
 
-    categories = mongo.db.recipes.distinct("categoryName")
+    nav_categories = mongo.db.recipes.distinct("category_name")
     page = "form"
     return render_template("pages/register.html",
                            page=page,
-                           categories=categories)
+                           categories=nav_categories)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """
-    Display the login page and check for authentofication
+    Display the login page and check for authentication
     """
     if request.method == "POST":
         if not request.form.get("email"):
@@ -136,11 +136,11 @@ def login():
         return redirect(url_for(
                     "profile", username=session["user"]))
 
-    categories = mongo.db.recipes.distinct("categoryName")
+    nav_categories = mongo.db.recipes.distinct("category_name")
     page = "form"
     return render_template("pages/login.html",
                            page=page,
-                           categories=categories)
+                           categories=nav_categories)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -153,19 +153,52 @@ def profile(username):
     if username != session["user"]:
         return redirect(url_for('permission', code=403))
 
-    categories = mongo.db.recipes.distinct("categoryName")
-    recipes = mongo.db.recipes.find({"createdBy": username.lower()})
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    recipes = mongo.db.recipes.find({"created_by": username.lower()})
     return render_template("pages/profile.html",
                            username=username,
                            recipes=recipes,
-                           categories=categories)
+                           categories=nav_categories)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 @login_required
 def add_recipe():
+    """
+    Display the form for add recipe
+    """
+    if request.method == "POST":
+        new_recipe = {
+            "category_name": request.form.get("recipe-category"),
+            "recipe_name": request.form.get("recipe-title"),
+            "description": request.form.get("recipe-description"),
+            "image_url": request.form.get("recipe-image-url"),
+            "ingredients": request.form.getlist("recipe-ingredient"),
+            "methods": request.form.getlist("recipe-methods"),
+            "tips": request.form.get("recipe-tips"),
+            "time": request.form.get("recipe-cook-time"),
+            "serve": request.form.get("recipe-serve"),
+            "ratings": {
+                "status": False,
+                "number_of_rating": 0,
+                "weighted_average": 0.0,
+                "rated_stars": {
+                    "1": 0,
+                    "2": 0,
+                    "3": 0,
+                    "4": 0,
+                    "5": 0}},
+            "created_by": session["user"]
+        }
+        recipe_id = mongo.db.recipes.insert_one(new_recipe).inserted_id
+        return redirect(url_for('recipe', recipe_id=recipe_id))
+
+    nav_categories = mongo.db.recipes.distinct("category_name")
     categories_recipes = mongo.db.categories.find()
-    return render_template("pages/add_recipe.html", page="form", categories_recipes=categories_recipes)
+    return render_template("pages/add_recipe.html",
+                           page="form",
+                           categories_recipes=categories_recipes,
+                           categories=nav_categories)
 
 
 @app.route("/logout")
@@ -194,7 +227,7 @@ def permission(code):
     """
     Show user permission to the page
     """
-    categories = mongo.db.recipes.distinct("categoryName")
+    categories = mongo.db.recipes.distinct("category_name")
     return render_template("pages/permission.html",
                            code=code,
                            categories=categories)

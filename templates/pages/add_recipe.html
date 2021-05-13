@@ -24,7 +24,7 @@
                                 <select class="custom-select" id="recipe-category" name="recipe-category" required>
                                     <option selected disabled hidden value="">&nbsp;</option>
                                     {% for category_recipe in categories_recipes %}
-                                        <option value="{{ category_recipe.categoryName }}">{{ category_recipe.categoryName|title }}</option>
+                                        <option value="{{ category_recipe.category_name }}">{{ category_recipe.category_name|title }}</option>
                                     {% endfor %}
                                 </select>
                                 <label for="recipe-category"><span>Recipe Category</span></label>
@@ -59,7 +59,7 @@
                                         <label for="recipe-ingredient"><span>Recipe Ingredients</span></label>
                                     </li>
                                 </ul>
-                                <span class="max-fields"><small><em>Maximum fields for steps is 15</em></small></span>
+                                <span class="max-fields"><small><em>Maximum fields for steps is 21</em></small></span>
                             </div>
                         </div>
                     </div>
@@ -110,15 +110,8 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
-                                <select class="custom-select" id="recipe-cook-time" name="recipe-cook-time" required>
-                                    <option selected disabled hidden value="">&nbsp;</option>
-                                    <option value="5">5 Min</option>
-                                    <option value="10">10 Min</option>
-                                    <option value="15">15 Min</option>
-                                    <option value="20">20 Min</option>
-                                    <option value="25">25 Min</option>
-                                </select>
-                                <label for="recipe-cook-time"><span>Cook Time</span></label>
+                                <input type="number" class="form-control" id="recipe-cook-time" name="recipe-cook-time" min="1" max="1440" required>
+                                <label for="recipe-cook-time"><span>Cook Time in Minutes</span></label>
                             </div>
                         </div>
                     </div>
@@ -126,12 +119,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
-                                <select class="custom-select" id="recipe-serve" name="recipe-serve" required>
-                                    <option selected disabled hidden value="">&nbsp;</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
+                                <input type="number" class="form-control" id="recipe-serve" name="recipe-serve" min="1" max="18" required>
                                 <label for="recipe-serve"><span>Serve</span></label>
                             </div>
                         </div>
