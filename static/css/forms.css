@@ -68,6 +68,10 @@
     margin: .5rem
 }
 
+.btn-remove-ingredients {
+    display: none;
+}
+
 textarea {
     overflow-y: hidden;
 }
