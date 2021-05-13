@@ -30,6 +30,11 @@
     list-style: none;
 }
 
+.max-fields {
+    color: #724242;
+    position: absolute;
+}
+
 .ingredients-btn-container {
     display: flex;
     width: 100%;
@@ -68,11 +73,13 @@
     margin: .5rem
 }
 
-.btn-remove-ingredients {
+.btn-remove-ingredients,
+.btn-remove-steps {
     display: none;
 }
 
 textarea {
+    height: auto;
     overflow-y: hidden;
 }
 
