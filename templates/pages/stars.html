@@ -1,0 +1,28 @@
+
+{# Display the recipe star rating #}
+{# https://jinja.palletsprojects.com/en/3.0.x/templates/#import #}
+
+{# Check which class has to be apply for each star #}
+{%- macro check_i_class(rated) -%}
+    {% if (rated >= 1) %}
+        fas fa-star
+    {% elif (rated > 0) and (rated < 1) %}
+        fas fa-star-half-alt
+    {% else %}
+        far fa-star
+    {% endif %}
+{%- endmacro -%}
+
+{# Display the star rating for each recipe #}
+{%- macro display_star_ratings(recipe) -%}
+    {% if recipe.ratings.status == false %}
+        {% for star in range(0, 5) %}
+            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+        {% endfor %}
+
+    {% else %}
+        {% for rated in [recipe.ratings.weighted_average, recipe.ratings.weighted_average - 1, recipe.ratings.weighted_average - 2, recipe.ratings.weighted_average - 3, recipe.ratings.weighted_average - 4 ] %}
+            <span class="rated-star"><i class="{{- check_i_class(rated) -}}" aria-hidden="true"></i></span>
+        {% endfor %}
+    {% endif %}
+{%- endmacro -%}

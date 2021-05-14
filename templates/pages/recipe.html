@@ -1,4 +1,5 @@
 {% extends "layout/base.html" %}
+{% from "pages/stars.html" import display_star_ratings %}
 
 {% block content %}
     <section class="recipe-description-section">
@@ -16,11 +17,7 @@
                     <div class="recipe-created-by">By <a href="#">{{ recipe.created_by }}</a></div>
                     <div class="recipe-rating">
                         <div class="recipe-rating-star js-rating-star-div">
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
-                            <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
+                            {{ display_star_ratings(recipe) }}
                         </div>
 
                         <div class="recipe-total-rating">

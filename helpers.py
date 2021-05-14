@@ -23,7 +23,8 @@ def user_ratings(mongo, rating, recipe):
     Function that updates the user rating for each recipe
     """
     # check if user already rated this recipe
-    user_rating = mongo.db.userRatings.find_one({"user": (session["user"]), "recipe_id": ObjectId(recipe["_id"])})
+    user_rating = mongo.db.userRatings.find_one(
+        {"user": (session["user"]), "recipe_id": ObjectId(recipe["_id"])})
 
     # if user didn't vote insert new rating in userRatings collection
     if not user_rating:
@@ -37,7 +38,10 @@ def user_ratings(mongo, rating, recipe):
 
     # get the user old rating before updating with new rating
     old_user_rating = user_rating["rating"]
-    mongo.db.userRatings.update_one({"_id": ObjectId(user_rating["_id"])}, {"$set": {"rating": int(rating)}})
+    mongo.db.userRatings.update_one(
+        {"_id": ObjectId(user_rating["_id"])},
+        {"$set": {"rating": int(rating)}})
+
     return old_user_rating
 
 
@@ -66,21 +70,72 @@ def update_recipe_rating(mongo, rating, recipe):
 
     # update recipe rating if it's first time rating
     if not recipe["ratings"]["status"]:
-        mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe["_id"])}, {"$set": {"ratings.status": True, "ratings.number_of_ratings": 1, "ratings.weighted_average": float(rating), new_rated_field: 1}})
-        return rating
+        mongo.db.recipes.find_one_and_update(
+            {"_id": ObjectId(recipe["_id"])},
+            {
+                "$set": {
+                    "ratings.status": True,
+                    "ratings.number_of_ratings": 1,
+                    "ratings.weighted_average": round(float(rating), 1),
+                    new_rated_field: 1
+                }
+            }
+        )
+        return round(float(rating), 1)
     # if user rated for first time update the recipe rating with new rate
     elif not old_user_rating:
-        new_recipe_ratings = mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe["_id"])}, {"$inc": {new_rated_field: 1}}, return_document=ReturnDocument.AFTER)
-        weighted_average = calculate_weighted_average(new_recipe_ratings["ratings"]["rated_stars"])
-        mongo.db.recipes.update_one({"_id": ObjectId(new_recipe_ratings["_id"])}, {"$set": {"ratings.weighted_average": float(weighted_average)}})
+        new_recipe_ratings = mongo.db.recipes.find_one_and_update(
+            {"_id": ObjectId(recipe["_id"])},
+            {
+                "$inc": {
+                    new_rated_field: 1
+                }
+            },
+            return_document=ReturnDocument.AFTER
+        )
+
+        weighted_average = calculate_weighted_average(
+            new_recipe_ratings["ratings"]["rated_stars"])
+
+        mongo.db.recipes.update_one(
+            {"_id": ObjectId(new_recipe_ratings["_id"])},
+            {
+                "$set": {
+                    "ratings.weighted_average": round(
+                        float(weighted_average), 1
+                    )
+                }
+            }
+        )
+
         return round(weighted_average, 1)
-    
-    # if user vote for second time updated the old rate and new rate 
+
+    # if user vote for second time updated the old rate and new rate
     # define path for old rating path
     old_rated_field = "ratings.rated_stars." + str(old_user_rating)
-    new_recipe_ratings = mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe["_id"])}, {"$inc": {old_rated_field: -1, new_rated_field: 1}}, return_document=ReturnDocument.AFTER)
+    new_recipe_ratings = mongo.db.recipes.find_one_and_update(
+        {"_id": ObjectId(recipe["_id"])},
+        {
+            "$inc": {
+                old_rated_field: -1,
+                new_rated_field: 1
+            }
+        },
+        return_document=ReturnDocument.AFTER
+    )
     # calculate the new weighted average
-    new_weighted_average = calculate_weighted_average(new_recipe_ratings["ratings"]["rated_stars"])
+    new_weighted_average = calculate_weighted_average(
+        new_recipe_ratings["ratings"]["rated_stars"])
+
     # set the new weighted average to mongo for future display
-    mongo.db.recipes.update_one({"_id": ObjectId(new_recipe_ratings["_id"])}, {"$set": {"ratings.weighted_average": float(new_weighted_average)}})
-    return new_weighted_average
+    mongo.db.recipes.update_one(
+        {"_id": ObjectId(new_recipe_ratings["_id"])},
+        {
+            "$set": {
+                "ratings.weighted_average": round(
+                    float(new_weighted_average), 1
+                )
+            }
+        }
+    )
+    return round(new_weighted_average, 1)

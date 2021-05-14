@@ -52,6 +52,7 @@ function updateRecipeRating(response) {
     while (recipeRatingStar.lastElementChild) {
         recipeRatingStar.removeChild(recipeRatingStar.lastElementChild);
     }
+    // display recipe new rating after user rated
     $(".recipe-total-rating").html(response.toFixed(1))
     
     // get the updated rating 
@@ -99,7 +100,6 @@ function updateRecipeRating(response) {
  */
 function displayDeniedMessage() {
     $(".ratings:checked").prop("checked", false)
-    let displayDiv = document.querySelector(".rating-ajax-response")
     displayResponse = `
                         <p>Sorry, the owner cannot rate it's own recipe.</p>
                       `;
@@ -111,7 +111,6 @@ function displayDeniedMessage() {
  */
 function displayRejectMessage() {
     $(".ratings:checked").prop("checked", false)
-    let displayDiv = document.querySelector(".rating-ajax-response")
     displayResponse = `
                         <p>Savour does not accept guest ratings.</p>
                         <p>Please <a class="login-ancor-tag" href="/login">Login</a> or <a class="register-ancor-tag" href="/register">Register</a></p>
@@ -124,7 +123,6 @@ function displayRejectMessage() {
  */
 function displayErrorMessage() {
     $(".ratings:checked").prop("checked", false)
-    let displayDiv = document.querySelector(".rating-ajax-response")
     displayResponse = `
                         <p>Sorry, we could not process your request.</p>
                         <p>If the problem persists please <a class="contact-ancor-tag" href="/login">contact us</a></p>

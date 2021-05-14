@@ -58,7 +58,7 @@ def recipe(recipe_id):
         if int(new_rating) > 0 and int(new_rating) <= 5:
             rating = update_recipe_rating(mongo, new_rating, recipe)
             return json.dumps({'status': 'success', 'rating': rating})
-        
+
         return json.dumps({'status': 'error'})
 
     page = "recipe"
