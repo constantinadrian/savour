@@ -1,7 +1,7 @@
-import os
-
-from flask import redirect, render_template, request, session, url_for, abort
+from flask import redirect, session, url_for
 from functools import wraps
+from pymongo.collection import ReturnDocument
+from bson.objectid import ObjectId
 
 
 def login_required(f):
@@ -16,3 +16,71 @@ def login_required(f):
             return redirect(url_for('permission', code=401))
         return f(*args, **kwargs)
     return decorated_function
+
+
+def user_ratings(mongo, rating, recipe):
+    """
+    Function that updates the user rating for each recipe
+    """
+    # check if user already rated this recipe
+    user_rating = mongo.db.userRatings.find_one({"user": (session["user"]), "recipe_id": ObjectId(recipe["_id"])})
+
+    # if user didn't vote insert new rating in userRatings collection
+    if not user_rating:
+        user_rated_recipe = {
+            "user": session["user"],
+            "recipe_id": recipe["_id"],
+            "rating": int(rating)
+        }
+        mongo.db.userRatings.insert_one(user_rated_recipe)
+        return None
+
+    # get the user old rating before updating with new rating
+    old_user_rating = user_rating["rating"]
+    mongo.db.userRatings.update_one({"_id": ObjectId(user_rating["_id"])}, {"$set": {"rating": int(rating)}})
+    return old_user_rating
+
+
+def calculate_weighted_average(rated_stars):
+    """
+    Function that calculates the recipe weighted average rating
+    """
+    numerator = 0
+    denominator = 0
+    for key, value in rated_stars.items():
+        numerator += int(key) * value
+        denominator += value
+
+    return numerator/denominator
+
+
+def update_recipe_rating(mongo, rating, recipe):
+    """
+    Function that updates the recipe rating
+    """
+    # update user rating and return old rating if any
+    old_user_rating = user_ratings(mongo, rating, recipe)
+
+    # define path for new rating field
+    new_rated_field = "ratings.rated_stars." + rating
+
+    # update recipe rating if it's first time rating
+    if not recipe["ratings"]["status"]:
+        mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe["_id"])}, {"$set": {"ratings.status": True, "ratings.number_of_ratings": 1, "ratings.weighted_average": float(rating), new_rated_field: 1}})
+        return rating
+    # if user rated for first time update the recipe rating with new rate
+    elif not old_user_rating:
+        new_recipe_ratings = mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe["_id"])}, {"$inc": {new_rated_field: 1}}, return_document=ReturnDocument.AFTER)
+        weighted_average = calculate_weighted_average(new_recipe_ratings["ratings"]["rated_stars"])
+        mongo.db.recipes.update_one({"_id": ObjectId(new_recipe_ratings["_id"])}, {"$set": {"ratings.weighted_average": float(weighted_average)}})
+        return round(weighted_average, 1)
+    
+    # if user vote for second time updated the old rate and new rate 
+    # define path for old rating path
+    old_rated_field = "ratings.rated_stars." + str(old_user_rating)
+    new_recipe_ratings = mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe["_id"])}, {"$inc": {old_rated_field: -1, new_rated_field: 1}}, return_document=ReturnDocument.AFTER)
+    # calculate the new weighted average
+    new_weighted_average = calculate_weighted_average(new_recipe_ratings["ratings"]["rated_stars"])
+    # set the new weighted average to mongo for future display
+    mongo.db.recipes.update_one({"_id": ObjectId(new_recipe_ratings["_id"])}, {"$set": {"ratings.weighted_average": float(new_weighted_average)}})
+    return new_weighted_average

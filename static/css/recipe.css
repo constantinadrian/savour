@@ -232,6 +232,11 @@ h3.recipe-method-title {
     color: #afa0a0;
 }
 
+.rating-ajax-response {
+    text-align: center;
+    word-wrap: break-word;
+}
+
 @media only screen and (min-width: 992px) {
     .recipe-container {
         padding: 2rem 6rem;

@@ -21,16 +21,29 @@ $("#rating-form").submit(function(event) {
         data: $('form').serialize(),
         type: 'POST',
         success: function(response) {
-            updateRecipeRating(response)
+            responseObj = JSON.parse(response)
+
+            if (responseObj.status == "success"){
+                updateRecipeRating(responseObj.rating)
+            }
+            else if (responseObj.status == "denied") {
+                displayDeniedMessage()
+            }
+            else if (responseObj.status == "not logged in") {
+                displayRejectMessage()
+            }
+            else {
+                displayErrorMessage();
+            }
         },
-        error: function(error){
-            console.log("ajax error", error);
+        error: function(){
+            displayErrorMessage();
         }
     });
 })
 
 /**
- * Function to handle the response from AJAX call
+ * Function to handle the success response from AJAX call
  * @param {Object} Response - Object with updated ratings for recipe
  */
 function updateRecipeRating(response) {
@@ -39,10 +52,10 @@ function updateRecipeRating(response) {
     while (recipeRatingStar.lastElementChild) {
         recipeRatingStar.removeChild(recipeRatingStar.lastElementChild);
     }
-    responseObj = JSON.parse(response)
-
+    $(".recipe-total-rating").html(response.toFixed(1))
+    
     // get the updated rating 
-    let ratedStar = responseObj['rating']
+    let ratedStar = response
 
     // use a for loop to display new rating 5 stars from response
     for (let i = 0; i < 5; i++) {
@@ -75,9 +88,46 @@ function updateRecipeRating(response) {
         recipeRatingStar.insertBefore(span, recipeRatingStar.lastChild.nextSibling);
         }
         // decrement the actual rating value to check the next display for the star
-        --ratedStar;
+        ratedStar -= 1;
     }
-
     // Display message to the user after successful rating
     $(".rating-ajax-response").html("Thank you for rating!")
+}
+
+/**
+ * Function to handle the denied response from AJAX call
+ */
+function displayDeniedMessage() {
+    $(".ratings:checked").prop("checked", false)
+    let displayDiv = document.querySelector(".rating-ajax-response")
+    displayResponse = `
+                        <p>Sorry, the owner cannot rate it's own recipe.</p>
+                      `;
+    $(".rating-ajax-response").append(displayResponse);
+}
+
+/**
+ * Function to handle the reject response from AJAX call
+ */
+function displayRejectMessage() {
+    $(".ratings:checked").prop("checked", false)
+    let displayDiv = document.querySelector(".rating-ajax-response")
+    displayResponse = `
+                        <p>Savour does not accept guest ratings.</p>
+                        <p>Please <a class="login-ancor-tag" href="/login">Login</a> or <a class="register-ancor-tag" href="/register">Register</a></p>
+                      `;
+    $(".rating-ajax-response").append(displayResponse);
+}
+
+/**
+ * Function to handle the error response from AJAX call
+ */
+function displayErrorMessage() {
+    $(".ratings:checked").prop("checked", false)
+    let displayDiv = document.querySelector(".rating-ajax-response")
+    displayResponse = `
+                        <p>Sorry, we could not process your request.</p>
+                        <p>If the problem persists please <a class="contact-ancor-tag" href="/login">contact us</a></p>
+                      `;
+    $(".rating-ajax-response").append(displayResponse);
 }

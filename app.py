@@ -5,7 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from helpers import login_required
+from helpers import login_required, update_recipe_rating
 if os.path.exists("env.py"):
     import env
 
@@ -40,8 +40,26 @@ def recipe(recipe_id):
     """
     # Update the rating if it's an AJAX call
     if request.method == "POST":
-        rating = request.form.get("stars")
-        return json.dumps({'status': 'OK', 'rating': rating})
+        # check if user is login in order to proceed with rating
+        if not session:
+            return json.dumps({'status': 'not logged in'})
+
+        # check if the recipe id hasn't been change
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        if not recipe:
+            return json.dumps({'status': 'error'})
+
+        # if user want to rate it's own recipe return denied
+        if recipe["created_by"] == session["user"]:
+            return json.dumps({'status': 'denied'})
+
+        # check if user didn't altered the form value
+        new_rating = request.form.get("stars")
+        if int(new_rating) > 0 and int(new_rating) <= 5:
+            rating = update_recipe_rating(mongo, new_rating, recipe)
+            return json.dumps({'status': 'success', 'rating': rating})
+        
+        return json.dumps({'status': 'error'})
 
     page = "recipe"
     nav_categories = mongo.db.recipes.distinct("category_name")

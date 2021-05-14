@@ -23,10 +23,11 @@
                             <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
                         </div>
 
-                        {% if recipe.ratings.status == false %}
-                            <div class="recipe-total-rating">0 / 5</div>
-                        {% endif %}
-
+                        <div class="recipe-total-rating">
+                            {% if recipe.ratings.status == true %}
+                                {{ recipe.ratings.weighted_average }}
+                            {% endif %}
+                        </div>
                         <div class="recipe-rating-link"><a href="#rate-recipe">Rate</a></div>
                     </div>
                     <div class="recipe-information">

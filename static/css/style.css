@@ -360,13 +360,15 @@ main .alert-primary {
 }
 
 .login-ancor-tag,
-.register-ancor-tag {
+.register-ancor-tag,
+.contact-ancor-tag {
     color: #0031e5;
     text-decoration: none;
 }
 
 .login-ancor-tag:hover,
-.register-ancor-tag:hover {
+.register-ancor-tag:hover,
+.contact-ancor-tag:hover {
     color: #0031e5;
     text-decoration: none;
 }
