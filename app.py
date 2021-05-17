@@ -38,6 +38,10 @@ def category(category):
     """
     Display recipes from requested category
     """
+    check_category = mongo.db.recipes.count_documents({"category_name": category})
+    if not check_category:
+        return redirect(url_for('error', code=404))
+
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"category_name": category})
     return render_template("pages/category.html",
@@ -71,7 +75,7 @@ def users(username):
     """
     user_found = mongo.db.users.find_one({"username": username.lower()})
     if not user_found:
-        return redirect(url_for('permission', code=404))
+        return redirect(url_for('error', code=404))
 
     recipe_found = mongo.db.recipes.count_documents(
         {"created_by": username.lower()})
@@ -219,7 +223,7 @@ def profile(username):
     """
     # Denied user access to other profile pages
     if username != session["user"]:
-        return redirect(url_for('permission', code=403))
+        return redirect(url_for('error', code=403))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"created_by": username.lower()})
@@ -283,26 +287,26 @@ def logout():
 
 @app.errorhandler(401)
 def http_unauthorized(e):
-    return redirect(url_for('permission', code=401))
+    return redirect(url_for('error', code=401))
 
 
 @app.errorhandler(403)
 def http_forbidden(e):
-    return redirect(url_for('permission', code=403))
+    return redirect(url_for('error', code=403))
 
 
 @app.errorhandler(404)
 def http_not_found(e):
-    return redirect(url_for('permission', code=404))
+    return redirect(url_for('error', code=404))
 
 
-@app.route("/permission/<code>")
-def permission(code):
+@app.route("/error/<code>")
+def error(code):
     """
-    Show user permission to the page
+    Show user error to the page
     """
     categories = mongo.db.recipes.distinct("category_name")
-    return render_template("pages/permission.html",
+    return render_template("pages/error.html",
                            code=code,
                            categories=categories)
 

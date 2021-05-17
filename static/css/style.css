@@ -591,7 +591,7 @@ main .alert-primary {
 
 /* ------------------------------- End of Subscribe --------------------------------- */
 
-/* ---------------------------- Permission section ---------------------------------- */
+/* ---------------------------- Error page section ---------------------------------- */
 .error-section {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -621,7 +621,6 @@ main .alert-primary {
 .bg-404-not-found {
     background: url("../img/pexels-olenka-sergienko-3323687.png") no-repeat center center scroll;
     background-size: cover;
-    z-index: -1;
 }
 
 .error-content {
@@ -717,6 +716,7 @@ main .alert-primary {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-top: -15px;
+    z-index: 1;
 }
 
 .footer-social-links-item {

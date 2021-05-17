@@ -13,7 +13,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get("user") is None:
-            return redirect(url_for('permission', code=401))
+            return redirect(url_for('error', code=401))
         return f(*args, **kwargs)
     return decorated_function
 
