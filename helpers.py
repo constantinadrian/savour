@@ -114,11 +114,20 @@ def update_recipe_rating(mongo, rating, recipe):
     # if user vote for second time updated the old rate and new rate
     # define path for old rating path
     old_rated_field = "ratings.rated_stars." + str(old_user_rating)
+
+    mongo.db.recipes.update_one(
+        {"_id": ObjectId(recipe["_id"])},
+        {
+            "$inc": {
+                old_rated_field: -1
+            }
+        }
+    )
+
     new_recipe_ratings = mongo.db.recipes.find_one_and_update(
         {"_id": ObjectId(recipe["_id"])},
         {
             "$inc": {
-                old_rated_field: -1,
                 new_rated_field: 1
             }
         },
