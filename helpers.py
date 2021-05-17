@@ -88,6 +88,7 @@ def update_recipe_rating(mongo, rating, recipe):
             {"_id": ObjectId(recipe["_id"])},
             {
                 "$inc": {
+                    "ratings.number_of_ratings": 1,
                     new_rated_field: 1
                 }
             },
