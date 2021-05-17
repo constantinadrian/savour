@@ -618,8 +618,13 @@ main .alert-primary {
     overflow: hidden;
 }
 
-.error-401-content,
-.error-403-content {
+.bg-404-not-found {
+    background: url("../img/pexels-olenka-sergienko-3323687.png") no-repeat center center scroll;
+    background-size: cover;
+    z-index: -1;
+}
+
+.error-content {
     min-height: 290px;
     padding: 1.5rem 0;
     font-family: 'Crete Round', serif;
@@ -672,14 +677,10 @@ main .alert-primary {
 } 
 
 @media only screen and (min-width:576px){
-    .error-401-content h1,
-    .error-401-content h2,
-    .error-401-content p,
-    .error-401-content a,
-    .error-403-content h1,
-    .error-403-content h2,
-    .error-403-content p,
-    .error-403-content a { 
+    .error-content h1,
+    .error-content h2,
+    .error-content p,
+    .error-content a { 
         margin-bottom: 1.5rem;
     }
 }
