@@ -1,4 +1,5 @@
 {% extends "layout/base.html" %}
+{% from "pages/macros.html" import display_star_ratings %}
 
 {% block content %}
     <!-- Landing section -->
@@ -41,12 +42,7 @@
                                 <p class="recipe-card-title js-card-title">{{ recipe.recipe_name|title }}</p>
                                 <span class=""><i class="far fa-clock"></i> {{ recipe.time }} Min</span>
                                 <hr>
-                                {% if recipe.ratings.status == false %}
-                                    {% for star in range(0, 5) %}
-                                        <span class="rated-star"><i class="far fa-star" aria-hidden="true"></i></span>
-                                    {% endfor %}
-                                {% endif %}
-
+                                {{ display_star_ratings(recipe) }}
                             </div>
                         </div>
                     </a>

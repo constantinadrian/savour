@@ -71,7 +71,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% for category in categories %}
-                                <a class="dropdown-item" href="#" aria-label="{{category|title}} Page">{{category|title}}</a>
+                                <a class="dropdown-item" href="/category/{{category}}" aria-label="{{category|title}} Page">{{category|title}}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -95,8 +95,8 @@
                     </li>
                 </ul>
 
-                <form class="form-inline my-2 my-lg-0 w-auto">
-                    <input class="form-control mr-sm-2 bg-form-control--transparent" type="text" placeholder="Search Recipe" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 w-auto" method="POST" action="{{ url_for('search') }}">
+                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Recipe" aria-label="Search">
                     <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {% endif %}

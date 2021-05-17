@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %}
+{% from "pages/macros.html" import display_recipes %}
+
+{% block content %}
+
+    <!-- Recipes section -->
+    <section class="recipes-section pt-search-section">
+        <div class="container">
+            <div class="recipes-section-row-title">
+                <div class="col"><hr class="section-hr-left"></div>
+                <div class="col-auto">
+                    <h2 class="section-title">Recipes</h2>
+                </div>
+                <div class="col"><hr class="section-hr-right"></div>
+            </div>
+            
+            <div class="recipes-section-row-recipes">
+                {% for recipe in recipes %}
+                    {{ display_recipes(recipe) }}
+                {% endfor %}
+                {% if not recipe_found %}
+                    <p>Recipes Not Found</p>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+    <!-- /.Recipe section -->
+{% endblock %}

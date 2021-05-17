@@ -1,11 +1,11 @@
 {% extends "layout/base.html" %}
-{% from "pages/stars.html" import display_star_ratings %}
+{% from "pages/macros.html" import display_star_ratings %}
 
 {% block content %}
     <section class="recipe-description-section">
         <div class="recipe-container">
             <div class="recipe-row-info">
-                <span class="text-center">Category <i class="fas fa-chevron-right"></i></span> <a href="{{ url_for('home') }}" class="recipe-ancor-tag-info">{{ recipe.category_name|title }}</a>
+                <span class="text-center">Category <i class="fas fa-chevron-right"></i></span> <a href="{{ url_for('category', category=recipe.category_name) }}" class="recipe-ancor-tag-info">{{ recipe.category_name|title }}</a>
             </div>
             <div class="recipe-top-items">
                 <div class="card recipe-box-img">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="card recipe-top-description">
                     <h2 class="about-recipe-title">{{ recipe.recipe_name }}</h2>
-                    <div class="recipe-created-by">By <a href="#">{{ recipe.created_by }}</a></div>
+                    <div class="recipe-created-by">By <a href="{{ url_for('users', username=recipe.created_by) }}">{{ recipe.created_by }}</a></div>
                     <div class="recipe-rating">
                         <div class="recipe-rating-star js-rating-star-div">
                             {{ display_star_ratings(recipe) }}

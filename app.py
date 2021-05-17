@@ -33,6 +33,56 @@ def home():
                            categories=nav_categories)
 
 
+@app.route("/category/<category>", methods=["GET", "POST"])
+def category(category):
+    """
+    Display recipes from requested category
+    """
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    recipes = mongo.db.recipes.find({"category_name": category})
+    return render_template("pages/category.html",
+                           recipes=recipes,
+                           categories=nav_categories,
+                           category=category)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    """
+    Display the search query that was requested
+    """
+    if request.method == "POST":
+        query = request.form.get("query")
+        nav_categories = mongo.db.recipes.distinct("category_name")
+        recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+        recipe_found = mongo.db.recipes.count_documents(
+            {"$text": {"$search": query, "$caseSensitive": False}})
+        return render_template("pages/search.html",
+                               recipe_found=recipe_found,
+                               recipes=recipes,
+                               categories=nav_categories)
+    return redirect(url_for("home"))
+
+
+@app.route("/users/<username>", methods=["GET", "POST"])
+def users(username):
+    """
+    Display the search query that was requested
+    """
+    user_found = mongo.db.users.find_one({"username": username.lower()})
+    if not user_found:
+        return redirect(url_for('permission', code=404))
+
+    recipe_found = mongo.db.recipes.count_documents(
+        {"created_by": username.lower()})
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    recipes = mongo.db.recipes.find({"created_by": username.lower()})
+    return render_template("pages/search.html",
+                           recipe_found=recipe_found,
+                           recipes=recipes,
+                           categories=nav_categories)
+
+
 @app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
 def recipe(recipe_id):
     """
@@ -212,7 +262,7 @@ def add_recipe():
         return redirect(url_for('recipe', recipe_id=recipe_id))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
-    categories_recipes = mongo.db.categories.find()
+    categories_recipes = mongo.db.categories.find().sort("category_name", 1)
     return render_template("pages/add_recipe.html",
                            page="form",
                            categories_recipes=categories_recipes,
@@ -220,6 +270,7 @@ def add_recipe():
 
 
 @app.route("/logout")
+@login_required
 def logout():
     """
     Log out the user
@@ -238,6 +289,11 @@ def http_unauthorized(e):
 @app.errorhandler(403)
 def http_forbidden(e):
     return redirect(url_for('permission', code=403))
+
+
+@app.errorhandler(404)
+def http_not_found(e):
+    return redirect(url_for('permission', code=404))
 
 
 @app.route("/permission/<code>")

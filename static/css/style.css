@@ -59,17 +59,15 @@ body {
     outline: 0 !important; 
 }
 
-.navbar .form-control {
+.form-search {
+    background: transparent;
     border: 4px solid #E8D1C5;
 }
 
-.navbar .form-control:focus {
+.form-search:focus {
+    border: 4px solid #E8D1C5;
     background: transparent;
     box-shadow: none;
-}
-
-.bg-form-control--transparent {
-    background: transparent;
 }
 
 .btn--champagne-pink {
@@ -171,6 +169,90 @@ main .alert-primary {
     }
 } 
 /* --------------------------- End of Landing section ------------------------------- */
+
+/* --------------------------- Categories section ------------------------------- */
+.catogory-banner-section {
+    width: 100%;
+    min-height: calc(60vh - 109.8px);
+    position: relative;
+}
+
+.category-textbox {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    padding: 1rem 1rem;
+    background: rgba(250, 250, 250, .8);
+}
+
+.search-container {
+    padding: 1rem 1rem;
+}
+/* ----------------------- End of Categories section ---------------------------- */
+
+/* ----------------------- Categories Banner Backgrounds --------------------------- */
+.bg-appetizer-section {
+    background: url("../img/canape-2802_1920.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-breakfast-section {
+    background: url("../img/breakfast-1804457_1920.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-snack-section {
+    background: url("../img/fig-3640553_1920.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-lunch-section {
+    background: url("../img/salmon-1485014_1920.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-soup-section {
+    background: url("../img/pexels-votsis-panagiotis-3493579.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-mains-section {
+    background: url("../img/pexels-pixabay-361184.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-salad-section {
+    background: url("../img/salad-1603608_1920.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-drink-section {
+    background: url("../img/pexels-ahmad-syahrir-605408.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-desert-section {
+    background: url("../img/pexels-pixabay-45202.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-smoothie-section {
+    background: url("../img/smoothies-2253423_1920.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+
+.bg-shop-section {
+    background: url("../img/pexels-nicole-michalou-6061391.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
+/* --------------------- End of Categories Banner Backgrounds ----------------------- */
+
+/* -------------------------------- Search section ---------------------------------- */
+.pt-search-section {
+    padding-top: 3rem;
+    min-height: 60vh;
+}
+/* ---------------------------- End of Search section ------------------------------- */
 
 /* -------------------------------- Recipe section ---------------------------------- */
 .recipes-section,
@@ -448,10 +530,8 @@ main .alert-primary {
 /* ----------------------------- End of Recipe section ------------------------------- */
 
 /* ------------------------------- Subscribe section --------------------------------- */
-.subscribe {
-    padding: 5rem 1rem;
+.flex-container { 
     width: 100%;
-    min-height: 300px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -460,10 +540,16 @@ main .alert-primary {
             justify-content: center;
     -ms-flex-line-pack: center;
         align-content: center;
+}
+
+.subscribe {
+    padding: 5rem 1rem;
+    min-height: 300px;
     background-color: #EFE5DC;
 }
 
-.subscribe .form-inline {
+.subscribe .form-inline,
+.search-container .form-inline {
     width: 100%;
     justify-content: center;
 }
@@ -477,11 +563,19 @@ main .alert-primary {
     .subscribe .form-inline .form-control {
         width: 30%;
     }
+
+    .search-container .form-inline .form-control {
+        width: 40%;
+    }
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px){
     .subscribe .form-inline .form-control {
         width: 40%;
+    }
+
+    .search-container .form-inline .form-control {
+        width: 60%;
     }
 }
 
@@ -489,7 +583,12 @@ main .alert-primary {
     .subscribe .form-inline .form-control {
         width: 50%;
     }
+
+    .search-container .form-inline .form-control {
+        width: 70%;
+    }
 }
+
 /* ------------------------------- End of Subscribe --------------------------------- */
 
 /* ---------------------------- Permission section ---------------------------------- */

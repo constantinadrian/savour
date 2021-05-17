@@ -1,5 +1,5 @@
 {% extends "layout/base.html" %}
-{% from "pages/stars.html" import display_star_ratings %}
+{% from "pages/macros.html" import display_recipes %}
 
 {% block content %}
     <!-- Landing section -->
@@ -22,18 +22,7 @@
             </div>
             <div class="recipes-section-row-recipes">
                 {% for recipe in recipes %}
-                    <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">
-                        <div class="card">
-                            <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
-                            <img src="{{ recipe.image_url }}" class="recipe-card-img" alt="Recipe Image">
-                            <div class="card-body">
-                                <p class="recipe-card-title js-card-title">{{ recipe.recipe_name|title }}</p>
-                                <span class=""><i class="far fa-clock"></i> {{ recipe.time }} Min</span>
-                                <hr>
-                                {{ display_star_ratings(recipe) }}
-                            </div>
-                        </div>
-                    </a>
+                    {{ display_recipes(recipe) }}
                 {% endfor %}
             </div>
             
@@ -103,7 +92,7 @@
 
     <!-- Subscribe section -->
     <section>
-        <div class="subscribe">
+        <div class="flex-container subscribe">
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Your Email" aria-label="Subscribe">
                 <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Subscribe Now</button>

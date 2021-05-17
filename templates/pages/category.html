@@ -1,0 +1,54 @@
+{% extends "layout/base.html" %}
+{% from "pages/macros.html" import display_recipes %}
+
+{% block content %}
+    <!-- Landing section -->
+    <section class="catogory-banner-section bg-{{category}}-section">
+        <div class="category-textbox">
+            <h1 class='section-title'>{{category|title}}</h1>
+            <h1 class='section-title'>Recipes</h1>
+        </div>
+    </section>
+    <!-- /.Landing section -->
+
+    <!-- Recipes section -->
+    <section class="recipes-section">
+        <div class="container">
+            <div class="recipes-section-row-title">
+                <div class="col"><hr class="section-hr-left"></div>
+                <div class="col-auto">
+                    <h2 class="section-title">{{category|capitalize}}</h2>
+                </div>
+                <div class="col"><hr class="section-hr-right"></div>
+            </div>
+
+            {% if session %}
+            <div class="flex-container search-container">
+                <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('search') }}">
+                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Recipe" aria-label="Search Recipe" required>
+                    <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <div class="recipes-section-row-recipes">
+                {% for recipe in recipes %}
+                    {{ display_recipes(recipe) }}
+                {% endfor %}
+            </div>
+            
+        </div>
+
+    </section>
+    <!-- /.Recipe section -->
+
+    <!-- Subscribe section -->
+    <section>
+        <div class="flex-container subscribe">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" name="subscribe" placeholder="Your Email" aria-label="Subscribe">
+                <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Subscribe Now</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
