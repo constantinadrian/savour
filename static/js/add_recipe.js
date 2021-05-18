@@ -147,3 +147,19 @@ $(".btn-remove-steps").click(function(){
 $(window).resize(function() {
     windowResize(textarea)
 });
+
+// If edit recipe was requested check if we need to show the remove ingredients and steps button
+$(document).ready(function(){
+    let ingredients = document.querySelectorAll(".ingredient");
+
+    // show remove btn if more than one igredient in edit recipe
+    if (ingredients.length > 1) {
+        $(".btn-remove-ingredients").css("display", "inline-block");
+    }
+
+    let methods = document.querySelectorAll(".methods");
+    // show remove btn if more than one step in edit recipe
+    if ( methods.length > 1 ) {
+        $(".btn-remove-steps").css("display", "inline-block");
+    }
+});

@@ -38,15 +38,21 @@ def category(category):
     """
     Display recipes from requested category
     """
-    check_category = mongo.db.recipes.count_documents({"category_name": category})
+    check_category = mongo.db.recipes.count_documents(
+        {"category_name": category})
     if not check_category:
         return redirect(url_for('error', code=404))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"category_name": category})
+
+    page_set = {
+        "title": category.title()
+    }
     return render_template("pages/category.html",
                            recipes=recipes,
                            categories=nav_categories,
+                           page_set=page_set,
                            category=category)
 
 
@@ -61,9 +67,14 @@ def search():
         recipes = mongo.db.recipes.find({"$text": {"$search": query}})
         recipe_found = mongo.db.recipes.count_documents(
             {"$text": {"$search": query, "$caseSensitive": False}})
+
+        page_set = {
+            "title": "Search"
+        }
         return render_template("pages/search.html",
                                recipe_found=recipe_found,
                                recipes=recipes,
+                               page_set=page_set,
                                categories=nav_categories)
     return redirect(url_for("home"))
 
@@ -81,9 +92,14 @@ def users(username):
         {"created_by": username.lower()})
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"created_by": username.lower()})
+
+    page_set = {
+        "title": username.title()
+    }
     return render_template("pages/search.html",
                            recipe_found=recipe_found,
                            recipes=recipes,
+                           page_set=page_set,
                            categories=nav_categories)
 
 
@@ -115,12 +131,21 @@ def recipe(recipe_id):
 
         return json.dumps({'status': 'error'})
 
-    page = "recipe"
+    # check if the recipe id hasn't been change
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    if not recipe:
+        return redirect(url_for('error', code=404))
+
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    page_set = {
+        "title": recipe["recipe_name"].title(),
+        "type": "recipe"
+    }
     return render_template("pages/recipe.html",
                            recipe=recipe,
-                           page=page,
+                           page_set=page_set,
                            categories=nav_categories)
 
 
@@ -166,7 +191,7 @@ def register():
 
         new_user = {
             "username": username.lower(),
-            "email": email,
+            "email": email.lower(),
             "password": generate_password_hash(password)
         }
 
@@ -177,9 +202,12 @@ def register():
         return redirect(url_for("profile", username=session["user"]))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
-    page = "form"
+    page_set = {
+        "title": "Register",
+        "type": "form"
+    }
     return render_template("pages/register.html",
-                           page=page,
+                           page_set=page_set,
                            categories=nav_categories)
 
 
@@ -209,9 +237,12 @@ def login():
                     "profile", username=session["user"]))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
-    page = "form"
+    page_set = {
+        "title": "Login",
+        "type": "form"
+    }
     return render_template("pages/login.html",
-                           page=page,
+                           page_set=page_set,
                            categories=nav_categories)
 
 
@@ -227,8 +258,13 @@ def profile(username):
 
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"created_by": username.lower()})
+
+    page_set = {
+        "title": "Profile"
+    }
     return render_template("pages/profile.html",
                            username=username,
+                           page_set=page_set,
                            recipes=recipes,
                            categories=nav_categories)
 
@@ -241,13 +277,13 @@ def add_recipe():
     """
     if request.method == "POST":
         new_recipe = {
-            "category_name": request.form.get("recipe-category"),
-            "recipe_name": request.form.get("recipe-title"),
-            "description": request.form.get("recipe-description"),
-            "image_url": request.form.get("recipe-image-url"),
+            "category_name": request.form.get("recipe-category").strip(),
+            "recipe_name": request.form.get("recipe-title").strip(),
+            "description": request.form.get("recipe-description").strip(),
+            "image_url": request.form.get("recipe-image-url").strip(),
             "ingredients": request.form.getlist("recipe-ingredient"),
             "methods": request.form.getlist("recipe-methods"),
-            "tips": request.form.get("recipe-tips"),
+            "tips": request.form.get("recipe-tips").strip(),
             "time": request.form.get("recipe-cook-time"),
             "serve": request.form.get("recipe-serve"),
             "ratings": {
@@ -265,10 +301,60 @@ def add_recipe():
         recipe_id = mongo.db.recipes.insert_one(new_recipe).inserted_id
         return redirect(url_for('recipe', recipe_id=recipe_id))
 
+    page_set = {
+        "title": "Add Recipe",
+        "type": "form",
+        "route": "add_recipe"
+    }
     nav_categories = mongo.db.recipes.distinct("category_name")
     categories_recipes = mongo.db.categories.find().sort("category_name", 1)
     return render_template("pages/add_recipe.html",
-                           page="form",
+                           page_set=page_set,
+                           categories_recipes=categories_recipes,
+                           categories=nav_categories)
+
+
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+@login_required
+def edit_recipe(recipe_id):
+    """
+    Display the form for edit recipe
+    """
+    if request.method == "POST":
+        mongo.db.recipes.update_one(
+            {"_id": ObjectId(recipe_id)},
+            {
+                "$set": {
+                    "category_name": request.form.get("recipe-category").strip(),
+                    "recipe_name": request.form.get("recipe-title").strip(),
+                    "description": request.form.get("recipe-description").strip(),
+                    "image_url": request.form.get("recipe-image-url").strip(),
+                    "ingredients": request.form.getlist("recipe-ingredient"),
+                    "methods": request.form.getlist("recipe-methods"),
+                    "tips": request.form.get("recipe-tips").strip(),
+                    "time": request.form.get("recipe-cook-time"),
+                    "serve": request.form.get("recipe-serve")
+                }
+            }
+        )
+        return redirect(url_for('recipe', recipe_id=recipe_id))
+
+    # check if the recipe id hasn't been change
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    if not recipe:
+        return redirect(url_for('error', code=404))
+
+    page_set = {
+        "title": "Edit Recipe",
+        "type": "form",
+        "route": "edit_recipe"
+    }
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    categories_recipes = mongo.db.categories.find().sort("category_name", 1)
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template("pages/add_recipe.html",
+                           page_set=page_set,
+                           recipe=recipe,
                            categories_recipes=categories_recipes,
                            categories=nav_categories)
 
@@ -305,9 +391,20 @@ def error(code):
     """
     Show user error to the page
     """
+    if code == "401":
+        title = "Authorization Required"
+    elif code == "403":
+        title = "Access Forbidden"
+    elif code == "404":
+        title = "Page Not Found"
+
+    page_set = {
+        "title": title,
+        "code": code
+    }
     categories = mongo.db.recipes.distinct("category_name")
     return render_template("pages/error.html",
-                           code=code,
+                           page_set=page_set,
                            categories=categories)
 
 

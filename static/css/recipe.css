@@ -11,9 +11,15 @@
 .recipe-row-info {
     margin-bottom: 1rem;
     word-wrap: break-word;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
-.recipe-row-info i {
+.recipe-row-info .fa-chevron-right {
     font-size: 10px;
 }
 
