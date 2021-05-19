@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for, json)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from bson.errors import InvalidId
 from werkzeug.security import generate_password_hash, check_password_hash
 from helpers import login_required, update_recipe_rating, is_valid
 if os.path.exists("env.py"):
@@ -118,6 +119,8 @@ def recipe(recipe_id):
         if not is_valid(recipe_id):
             return json.dumps({'status': 'error'})
 
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
         # if user want to rate it's own recipe return denied
         if recipe["created_by"] == session["user"]:
             return json.dumps({'status': 'denied'})
@@ -125,7 +128,6 @@ def recipe(recipe_id):
         # check if user didn't altered the form value
         new_rating = request.form.get("stars")
         if int(new_rating) > 0 and int(new_rating) <= 5:
-            recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
             rating = update_recipe_rating(mongo, new_rating, recipe)
             return json.dumps({'status': 'success', 'rating': rating})
 
@@ -136,7 +138,15 @@ def recipe(recipe_id):
         return redirect(url_for('error', code=404))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
+
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    # added in case the owner decide to delete the recipe while
+    # other users might by on this recipe page and cause an error
+    # when we access the recipe["recipe_name"] on page_set
+    # due to access None["recipe_name"]
+    if not recipe:
+        return redirect(url_for('error', code=404))
 
     page_set = {
         "title": recipe["recipe_name"].title(),
@@ -287,7 +297,7 @@ def add_recipe():
             "serve": request.form.get("recipe-serve"),
             "ratings": {
                 "status": False,
-                "number_of_rating": 0,
+                "number_of_ratings": 0,
                 "weighted_average": 0.0,
                 "rated_stars": {
                     "1": 0,
