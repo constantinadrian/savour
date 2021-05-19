@@ -2,6 +2,7 @@ from flask import redirect, session, url_for
 from functools import wraps
 from pymongo.collection import ReturnDocument
 from bson.objectid import ObjectId
+from bson.errors import InvalidId
 
 
 def login_required(f):
@@ -16,6 +17,26 @@ def login_required(f):
             return redirect(url_for('error', code=401))
         return f(*args, **kwargs)
     return decorated_function
+
+
+# Credit Function https://www.programcreek.com/python/example/87925/bson.errors.InvalidId
+# Project: vnpy_crypto   Author: birforce   File: objectid.py    License: MIT License
+def is_valid(oid):
+    """Checks if a `oid` string is valid or not.
+
+    :Parameters:
+        - `oid`: the object id to validate
+
+    .. versionadded:: 2.3
+    """
+    if not oid:
+        return False
+
+    try:
+        ObjectId(oid)
+        return True
+    except (InvalidId, TypeError):
+        return False
 
 
 def user_ratings(mongo, rating, recipe):

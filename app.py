@@ -5,7 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from helpers import login_required, update_recipe_rating
+from helpers import login_required, update_recipe_rating, is_valid
 if os.path.exists("env.py"):
     import env
 
@@ -115,8 +115,7 @@ def recipe(recipe_id):
             return json.dumps({'status': 'not logged in'})
 
         # check if the recipe id hasn't been change
-        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-        if not recipe:
+        if not is_valid(recipe_id):
             return json.dumps({'status': 'error'})
 
         # if user want to rate it's own recipe return denied
@@ -126,14 +125,14 @@ def recipe(recipe_id):
         # check if user didn't altered the form value
         new_rating = request.form.get("stars")
         if int(new_rating) > 0 and int(new_rating) <= 5:
+            recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
             rating = update_recipe_rating(mongo, new_rating, recipe)
             return json.dumps({'status': 'success', 'rating': rating})
 
         return json.dumps({'status': 'error'})
 
     # check if the recipe id hasn't been change
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    if not recipe:
+    if not is_valid(recipe_id):
         return redirect(url_for('error', code=404))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
@@ -322,6 +321,10 @@ def edit_recipe(recipe_id):
     Display the form for edit recipe
     """
     if request.method == "POST":
+        # check if the recipe id hasn't been change
+        if not is_valid(recipe_id):
+            return redirect(url_for('error', code=404))
+
         mongo.db.recipes.update_one(
             {"_id": ObjectId(recipe_id)},
             {
@@ -342,8 +345,7 @@ def edit_recipe(recipe_id):
         return redirect(url_for('recipe', recipe_id=recipe_id))
 
     # check if the recipe id hasn't been change
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    if not recipe:
+    if not is_valid(recipe_id):
         return redirect(url_for('error', code=404))
 
     page_set = {
@@ -368,6 +370,11 @@ def delete():
     Display the form for edit recipe
     """
     delete_item_id = request.form.get("delete-item-id")
+
+    # check if the recipe id hasn't been change
+    if not is_valid(delete_item_id):
+        return redirect(url_for('error', code=404))
+
     mongo.db.recipes.delete_one({"_id": ObjectId(delete_item_id)})
     mongo.db.userRatings.delete_many({"recipe_id": ObjectId(delete_item_id)})
     flash("Recipe Deleted Successfully", category="alert-success")
