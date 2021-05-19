@@ -3,6 +3,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for, json)
 from flask_pymongo import PyMongo
+from pymongo.collection import ReturnDocument
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from helpers import login_required, update_recipe_rating, is_valid
@@ -480,8 +481,19 @@ def add_categories():
         if not is_valid(category_id):
             return redirect(url_for('error', code=404))
 
-        mongo.db.categories.update_one(
+        # update category name in category collection
+        old_category = mongo.db.categories.find_one_and_update(
             {"_id": ObjectId(category_id)},
+            {
+                "$set": {
+                    "category_name": category_name.lower()
+                }
+            },
+            return_document=ReturnDocument.BEFORE
+        )
+        # update category name in recipe collection
+        mongo.db.recipes.update_many(
+            {"category_name": old_category["category_name"]},
             {
                 "$set": {
                     "category_name": category_name.lower()
