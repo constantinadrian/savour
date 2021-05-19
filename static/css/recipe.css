@@ -52,6 +52,8 @@
     object-fit: cover;
     border-top-right-radius: 1.2rem;
     border-bottom-left-radius: 1.2rem;
+    border-top-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
     border: 1px solid #E8D1C5;
 }
 
@@ -279,6 +281,16 @@ h3.recipe-method-title {
 
     .recipe-serve i {
         font-size: 25px;
+    }
+
+    .recipe-img {
+        border-top-left-radius: initial;
+        border-bottom-right-radius: initial;
+    }
+
+    .recipe-top-description {
+        border-top-right-radius: initial;
+        border-bottom-left-radius: initial;
     }
 
     .recipe-ingredients {

@@ -60,7 +60,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('home') }}" aria-label="Home Page">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
@@ -70,12 +70,12 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% for category in nav_categories %}
-                                <a class="dropdown-item" href="/category/{{category}}" aria-label="{{category|title}} Page">{{category|title}}</a>
+                                <a class="dropdown-item" href="{{ url_for('category', category=category) }}" aria-label="{{category|title}} Page">{{category|title}}</a>
                             {% endfor %}
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" aria-label="Shop Page">Shop</a>
+                        <a class="nav-link" href="{{ url_for('shop') }}" aria-label="Shop Page">Shop</a>
                     </li>
                 </ul>
                 {% if session["user"] %}

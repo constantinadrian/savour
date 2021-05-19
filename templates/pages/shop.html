@@ -1,0 +1,62 @@
+{% extends "layout/base.html" %}
+{% from "pages/macros.html" import display_products %}
+
+{% block content %}
+    <!-- Landing section -->
+    <section class="catogory-banner-section bg-shop-section">
+        <div class="category-textbox">
+            <h1 class='section-title'>Kitchen</h1>
+            <h1 class='section-title'>Tools</h1>
+        </div>
+    </section>
+    <!-- /.Landing section -->
+
+    <!-- Shop section -->
+    <section class="shop-section">
+        <div class="container">
+            <div class="shop-section-row-title">
+                <div class="col"><hr class="section-hr-left"></div>
+                <div class="col-auto">
+                    <h2 class="section-title">Kitchen Tools</h2>
+                </div>
+                <div class="col"><hr class="section-hr-right"></div>
+            </div>
+
+            {% if session %}
+            <div class="flex-container search-container">
+                <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('search') }}">
+                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Product" aria-label="Search Recipe" required>
+                    <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <div class="shop-section-row-products">
+                {% for product in products %}
+                    {{ display_products(product) }}
+                {% endfor %}
+            </div>
+            
+        </div>
+
+    </section>
+    <!-- /.Recipe section -->
+
+    <!-- Recommended Products section -->
+    <section class="recommended_products-section">
+        <div class="container">
+            <div class="recommended_products-row-title">
+                <h2 class="section-title">Recommended Products</h2>
+            </div>
+
+            <div class="shop-section-row-products">
+                {% for product in recommended_products %}
+                    {{ display_products(product) }}
+                {% endfor %}
+            </div>
+            
+        </div>
+
+    </section>
+    <!-- /.Recipe section -->
+{% endblock %}

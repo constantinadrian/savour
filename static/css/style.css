@@ -270,6 +270,13 @@ main .alert-primary {
     margin: 7rem 0;
 }
 
+.recommended_products-section {
+    width: 100%;
+    background-color: #e5d6d6;
+    padding: 5rem 0;
+    margin: 5rem 0 0 0;
+}
+
 .profile-section,
 .manage-category-section {
     width: 100%;
@@ -298,6 +305,22 @@ main .alert-primary {
     display: flex;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+}
+
+.recommended_products-row-title {
+    margin-bottom: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;   
+       -ms-flex-align: center;   
+          align-items: center;
+    text-align: center;
 }
 
 .section-hr-left {

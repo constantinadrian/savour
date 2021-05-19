@@ -29,8 +29,10 @@ def home():
     """
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.aggregate([{'$sample': {'size': 3}}])
+    products = mongo.db.shop.aggregate([{'$sample': {'size': 3}}])
     return render_template("pages/index.html",
                            recipes=recipes,
+                           products=products,
                            nav_categories=nav_categories)
 
 
@@ -517,6 +519,33 @@ def logout():
     session.pop("user")
     flash("You have been logged out", category="alert-info")
     return redirect("/login")
+
+
+@app.route("/shop", methods=["GET", "POST"])
+def shop():
+    """
+    Display the shop page
+    """
+    products = mongo.db.shop.find()
+
+    page_set = {
+        "title": "Kitchen Tools"
+    }
+
+    nav_categories = mongo.db.recipes.distinct("category_name")
+
+    recommended_products = mongo.db.shop.find({
+        "$or": [
+            {"_id": ObjectId("60a51442da1161837d99ef35")},
+            {"_id": ObjectId("60a514f3da1161837d99ef36")},
+            {"_id": ObjectId("60a51a00da1161837d99ef3c")}
+        ]
+    })
+    return render_template("pages/shop.html",
+                           page_set=page_set,
+                           nav_categories=nav_categories,
+                           products=products,
+                           recommended_products=recommended_products)
 
 
 @app.errorhandler(401)

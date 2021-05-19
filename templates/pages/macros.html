@@ -26,7 +26,7 @@
     {% endif %}
 {%- endmacro -%}
 
-{# Display the star rating for each recipe #}
+{# Display the recipes #}
 {%- macro display_recipes(recipe) -%}
 <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">
     <div class="card">
@@ -40,4 +40,18 @@
         </div>
     </div>
 </a>
+{%- endmacro -%}
+
+{# Display the products #}
+{%- macro display_products(product) -%}
+    <a href="#" class="shop-ancor-tag">
+        <div class="card">
+            <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
+            <img src="{{- product.image_url -}}" class="shop-card-img" alt="Product Image">
+            <div class="card-body">
+                <p class="shop-card-title js-card-title">{{- product.product_title -}}</p>
+                <span class=""><i class="fas fa-euro-sign" aria-hidden="true"></i> {{- product.price -}}</span>
+            </div>
+        </div>
+    </a>
 {%- endmacro -%}
