@@ -4,7 +4,6 @@ from flask import (
     redirect, request, session, url_for, json)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from bson.errors import InvalidId
 from werkzeug.security import generate_password_hash, check_password_hash
 from helpers import login_required, update_recipe_rating, is_valid
 if os.path.exists("env.py"):
@@ -339,9 +338,11 @@ def edit_recipe(recipe_id):
             {"_id": ObjectId(recipe_id)},
             {
                 "$set": {
-                    "category_name": request.form.get("recipe-category").strip(),
+                    "category_name": request.form.get(
+                        "recipe-category").strip(),
                     "recipe_name": request.form.get("recipe-title").strip(),
-                    "description": request.form.get("recipe-description").strip(),
+                    "description": request.form.get(
+                        "recipe-description").strip(),
                     "image_url": request.form.get("recipe-image-url").strip(),
                     "ingredients": request.form.getlist("recipe-ingredient"),
                     "methods": request.form.getlist("recipe-methods"),
@@ -391,7 +392,8 @@ def delete():
 
     if delete_item == "recipe":
         mongo.db.recipes.delete_one({"_id": ObjectId(delete_item_id)})
-        mongo.db.userRatings.delete_many({"recipe_id": ObjectId(delete_item_id)})
+        mongo.db.userRatings.delete_many(
+            {"recipe_id": ObjectId(delete_item_id)})
         flash("Recipe Deleted Successfully", category="alert-success")
         return redirect(url_for(
                 "profile", username=session["user"]))
@@ -400,6 +402,17 @@ def delete():
         # Denied user access from delete categories
         if session["user"] != "admin":
             return redirect(url_for('error', code=403))
+
+        # revoke delete category if category already has one or more recipes
+        category = mongo.db.categories.find_one(
+            {"_id": ObjectId(delete_item_id)})
+        check_category = mongo.db.recipes.count_documents(
+            {"category_name": category["category_name"]})
+        if check_category:
+            flash("Cannot Delete Category", category="alert-danger")
+            flash("Category Already in Use", category="alert-danger")
+            return redirect(url_for(
+                "profile", username=session["user"]))
 
         mongo.db.categories.delete_one({"_id": ObjectId(delete_item_id)})
         flash("Category Deleted Successfully", category="alert-success")
