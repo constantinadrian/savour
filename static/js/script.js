@@ -66,3 +66,18 @@ $(document).ready(function(){
     });
     // End Credit code
 });
+
+// Get all the images tag from the page
+let img = $('img');
+
+/**
+ * Change the brocken image links from the page
+ * @param {Object} img - All images fields from the page 
+ */
+function changeImage(img) {
+    img.each(function (){}).one('error', function() {
+        this.src = '../static/img/pexels-chimene-gaspar-1464880.jpg';
+    }); 
+}
+
+changeImage(img)
