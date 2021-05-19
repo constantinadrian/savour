@@ -31,7 +31,7 @@ def home():
     recipes = mongo.db.recipes.aggregate([{'$sample': {'size': 3}}])
     return render_template("pages/index.html",
                            recipes=recipes,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/category/<category>", methods=["GET", "POST"])
@@ -52,7 +52,7 @@ def category(category):
     }
     return render_template("pages/category.html",
                            recipes=recipes,
-                           categories=nav_categories,
+                           nav_categories=nav_categories,
                            page_set=page_set,
                            category=category)
 
@@ -76,7 +76,7 @@ def search():
                                recipe_found=recipe_found,
                                recipes=recipes,
                                page_set=page_set,
-                               categories=nav_categories)
+                               nav_categories=nav_categories)
     return redirect(url_for("home"))
 
 
@@ -101,7 +101,7 @@ def users(username):
                            recipe_found=recipe_found,
                            recipes=recipes,
                            page_set=page_set,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
@@ -143,7 +143,7 @@ def recipe(recipe_id):
 
     # added in case the owner decide to delete the recipe while
     # other users might by on this recipe page and cause an error
-    # when we access the recipe["recipe_name"] on page_set
+    # after refresh the page as we access the recipe["recipe_name"] on page_set
     # due to access None["recipe_name"]
     if not recipe:
         return redirect(url_for('error', code=404))
@@ -155,7 +155,7 @@ def recipe(recipe_id):
     return render_template("pages/recipe.html",
                            recipe=recipe,
                            page_set=page_set,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -217,7 +217,7 @@ def register():
     }
     return render_template("pages/register.html",
                            page_set=page_set,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -252,7 +252,7 @@ def login():
     }
     return render_template("pages/login.html",
                            page_set=page_set,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -275,7 +275,7 @@ def profile(username):
                            username=username,
                            page_set=page_set,
                            recipes=recipes,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
@@ -321,7 +321,7 @@ def add_recipe():
     return render_template("pages/add_recipe.html",
                            page_set=page_set,
                            categories_recipes=categories_recipes,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
@@ -370,7 +370,7 @@ def edit_recipe(recipe_id):
                            page_set=page_set,
                            recipe=recipe,
                            categories_recipes=categories_recipes,
-                           categories=nav_categories)
+                           nav_categories=nav_categories)
 
 
 @app.route("/delete", methods=["POST"])
@@ -380,16 +380,106 @@ def delete():
     Display the form for edit recipe
     """
     delete_item_id = request.form.get("delete-item-id")
+    delete_item = request.form.get("delete-item")
 
     # check if the recipe id hasn't been change
     if not is_valid(delete_item_id):
         return redirect(url_for('error', code=404))
 
-    mongo.db.recipes.delete_one({"_id": ObjectId(delete_item_id)})
-    mongo.db.userRatings.delete_many({"recipe_id": ObjectId(delete_item_id)})
-    flash("Recipe Deleted Successfully", category="alert-success")
-    return redirect(url_for(
-            "profile", username=session["user"]))
+    if not delete_item:
+        return redirect(url_for('error', code=404))
+
+    if delete_item == "recipe":
+        mongo.db.recipes.delete_one({"_id": ObjectId(delete_item_id)})
+        mongo.db.userRatings.delete_many({"recipe_id": ObjectId(delete_item_id)})
+        flash("Recipe Deleted Successfully", category="alert-success")
+        return redirect(url_for(
+                "profile", username=session["user"]))
+
+    elif delete_item == "category":
+        # Denied user access from delete categories
+        if session["user"] != "admin":
+            return redirect(url_for('error', code=403))
+
+        mongo.db.categories.delete_one({"_id": ObjectId(delete_item_id)})
+        flash("Category Deleted Successfully", category="alert-success")
+        return redirect(url_for(
+                "profile", username=session["user"]))
+
+    return redirect(url_for('error', code=404))
+
+
+@app.route("/manage_categories", methods=["GET", "POST"])
+@login_required
+def manage_categories():
+    """
+    Display the all categories
+    """
+
+    # Denied user access to manage_categories page
+    if session["user"] != "admin":
+        return redirect(url_for('error', code=403))
+
+    page_set = {
+        "title": "Manage Categories",
+        "type": "form"
+    }
+    manage_categories = mongo.db.categories.find()
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    return render_template("pages/manage_categories.html",
+                           page_set=page_set,
+                           nav_categories=nav_categories,
+                           manage_categories=manage_categories)
+
+
+@app.route("/add_categories", methods=["POST"])
+@login_required
+def add_categories():
+    """
+    Add categories or edit categories
+    """
+
+    # Denied user access to manage_categories page
+    if session["user"] != "admin":
+        return redirect(url_for('error', code=403))
+
+    category_id = request.form.get("category-id")
+    category_type = request.form.get("category-type")
+    category_name = request.form.get("category-name").strip()
+
+    # if no category name provided return error
+    if not category_name:
+        return redirect(url_for('error', code=404))
+
+    # check if user wants to add or edit category
+    if category_type == "Add Category":
+
+        new_category = {
+            "category_name": category_name.lower()
+        }
+        mongo.db.categories.insert_one(new_category)
+
+        flash("Category Added Successfully", category="alert-success")
+        return redirect(url_for('manage_categories'))
+
+    elif category_type == "Edit Category":
+        # check if the category id hasn't been change
+        if not is_valid(category_id):
+            return redirect(url_for('error', code=404))
+
+        mongo.db.categories.update_one(
+            {"_id": ObjectId(category_id)},
+            {
+                "$set": {
+                    "category_name": category_name.lower()
+                }
+            }
+        )
+
+        flash("Category Edited Successfully", category="alert-success")
+        return redirect(url_for('manage_categories'))
+
+    return redirect(url_for('error', code=404))
 
 
 @app.route("/logout")

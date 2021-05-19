@@ -85,7 +85,8 @@ textarea {
 
 .form-login .form-group,
 .form-register .form-group,
-.form-recipe .form-group {
+.form-recipe .form-group,
+#editModal .form-group {
     position: relative;
 }
 
@@ -94,6 +95,14 @@ textarea {
 .form-recipe .form-control,
 .form-recipe .custom-select {
     background-color: #f0efeb;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid #000;
+    padding: 10px 0 5px 0;
+}
+
+#editModal .form-control {
+    background-color: transparent;
     border: 0;
     border-radius: 0;
     border-bottom: 2px solid #000;
@@ -109,9 +118,16 @@ textarea {
     border-color:#b38989;
 }
 
+#editModal .form-control:focus {
+    background-color: transparent;
+    box-shadow: none;
+    border-color:#b38989;
+}
+
 .form-login .form-group label,
 .form-register .form-group label,
-.form-recipe .form-group label {
+.form-recipe .form-group label,
+#editModal .form-group label {
     position: absolute;
     top: 10px;
     left: 0;
@@ -121,7 +137,8 @@ textarea {
 
 .form-login .form-group label span,
 .form-register .form-group label span,
-.form-recipe .form-group label span {
+.form-recipe .form-group label span,
+#editModal .form-group label span {
     display: inline-block;
 }
 
@@ -133,7 +150,9 @@ textarea {
 .form-recipe .form-group .custom-select:focus + label span, 
 .form-recipe .form-group input:valid + label span, 
 .form-recipe .form-group select:valid + label span, 
-.form-recipe .form-group textarea:valid + label span {
+.form-recipe .form-group textarea:valid + label span,
+#editModal .form-group .form-control:focus + label span, 
+#editModal .form-group input:valid + label span {
     transform: translateY(-25px);
     font-size: 12px;
     color: #b38989;

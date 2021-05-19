@@ -12,7 +12,7 @@
             <div class="profile-section-row-links">
                 <div class="profile-section-row-links-item">
                     {% if session["user"] == "admin" %}
-                    <a href="{{ url_for('home') }}" class="btn btn--champagne-pink my-2 my-sm-0">Manage Category</a>
+                    <a href="{{ url_for('manage_categories') }}" class="btn btn--champagne-pink my-2 my-sm-0">Manage Category</a>
                     {% endif %}
                     <a href="{{ url_for('add_recipe') }}" class="btn btn--champagne-pink my-2 my-sm-0">Add Recipe</a>
                 </div>           

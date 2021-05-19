@@ -183,7 +183,7 @@
                     <div class="form-row form-row-recipe">
                         {% if recipe %}
                             <div class="form-row-recipe-buttons">
-                                <button class="btn btn--spanish-pink my-2 my-sm-0" type="button" data-toggle="modal" data-target="#editModal" data-item="recipe" data-id="{{- recipe._id -}}">Delete</button>
+                                <button class="btn btn--spanish-pink my-2 my-sm-0" type="button" data-toggle="modal" data-target="#deleteModal" data-item="recipe" data-id="{{- recipe._id -}}">Delete</button>
                             </div>
                         {% endif %}
                         <div class="form-row-recipe-buttons">
@@ -195,24 +195,5 @@
             </div>
         </div>
     </section>
-
-    <!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h5 class="modal-title" id="editModalLabel">Are you sure you want to delete this <span class="modal-title-item"></span>?</h5>
-                <p class="modal-paragraph"><i class="fas fa-exclamation-triangle fa-3x"></i>Warning! Your action cannot be undone.</p>
-            </div>
-            <form id='delete-form' action="{{ url_for('delete') }}" method="POST">
-                <div class="modal-footer">
-                    <input type="text" class="form-control" id="delete-item-id" name="delete-item-id" form="delete-form" value="" required readonly hidden>
-                    <button type="button" class="btn btn--slate-grey" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn--candy-pink">Confirm Delete</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 {% endblock %}
