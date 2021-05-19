@@ -299,6 +299,7 @@ def add_recipe():
             "created_by": session["user"]
         }
         recipe_id = mongo.db.recipes.insert_one(new_recipe).inserted_id
+        flash("Recipe Added Successfully", category="alert-success")
         return redirect(url_for('recipe', recipe_id=recipe_id))
 
     page_set = {
@@ -337,6 +338,7 @@ def edit_recipe(recipe_id):
                 }
             }
         )
+        flash("Recipe Edited Successfully", category="alert-success")
         return redirect(url_for('recipe', recipe_id=recipe_id))
 
     # check if the recipe id hasn't been change
@@ -357,6 +359,20 @@ def edit_recipe(recipe_id):
                            recipe=recipe,
                            categories_recipes=categories_recipes,
                            categories=nav_categories)
+
+
+@app.route("/delete", methods=["POST"])
+@login_required
+def delete():
+    """
+    Display the form for edit recipe
+    """
+    delete_item_id = request.form.get("delete-item-id")
+    mongo.db.recipes.delete_one({"_id": ObjectId(delete_item_id)})
+    mongo.db.userRatings.delete_many({"recipe_id": ObjectId(delete_item_id)})
+    flash("Recipe Deleted Successfully", category="alert-success")
+    return redirect(url_for(
+            "profile", username=session["user"]))
 
 
 @app.route("/logout")
