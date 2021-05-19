@@ -180,6 +180,10 @@ main .alert-primary {
     width: 100%;
     min-height: calc(60vh - 109.8px);
     position: relative;
+
+    /* background for new categories that hasn't been set up */
+    background: url("../img/pexels-klaus-nielsen-6294327.jpg") no-repeat center center scroll;
+    background-size: cover;
 }
 
 .category-textbox {
