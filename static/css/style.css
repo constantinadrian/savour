@@ -525,6 +525,9 @@ main .alert-primary {
     padding: 0.8rem;
 }
 
+.recommended_products-section .card-body {
+    border: 1px solid #b57e62;
+}
 .recipe-card-title,
 .shop-card-title {
     font-family: 'Crete Round', serif;
