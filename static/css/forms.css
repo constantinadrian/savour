@@ -10,6 +10,7 @@
 .form-register,
 .form-recipe {
     width: 90%;
+    word-break: break-word;
 }
 
 .steps-mb {
@@ -151,6 +152,7 @@ textarea {
 .form-recipe .form-group input:valid + label span, 
 .form-recipe .form-group select:valid + label span, 
 .form-recipe .form-group textarea:valid + label span,
+.form-recipe .form-group .has-error:invalid + label span,
 #editModal .form-group .form-control:focus + label span, 
 #editModal .form-group input:valid + label span {
     transform: translateY(-25px);

@@ -95,7 +95,12 @@
                         <div class="col-md-12 mb-3">
                             <div class="ingredients-btn-container">
                                 <div class="input-group-btn">
-                                    <span class="input-group-remove-ingredients"><a class="btn-group-ingredients btn-remove-ingredients" role="button" data-toggle="tooltip" data-placement="top" title="Remove item"><i class="fas fa-minus"></i></a></span><span class="input-group-add-ingredients"><a class="btn-group-ingredients btn-add-ingredients" role="button" data-toggle="tooltip" data-placement="top" title="Add item"><i class="fas fa-plus"></i></a></span>
+                                    <span class="input-group-remove-ingredients">
+                                        <a class="btn-group-ingredients btn-remove-ingredients" role="button" data-toggle="tooltip" data-placement="top" title="Remove item"><i class="fas fa-minus"></i></a>
+                                    </span>
+                                    <span class="input-group-add-ingredients">
+                                        <a class="btn-group-ingredients btn-add-ingredients" role="button" data-toggle="tooltip" data-placement="top" title="Add item"><i class="fas fa-plus"></i></a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +143,12 @@
                         <div class="col-md-12 mb-3">
                             <div class="ingredients-btn-container">
                                 <div class="input-group-btn">
-                                    <span class="input-group-remove-steps"><a class="btn-group-ingredients btn-remove-steps" role="button" data-toggle="tooltip" data-placement="top" title="Remove step"><i class="fas fa-minus"></i></a></span><span class="input-group-add-steps"><a class="btn-group-ingredients btn-add-steps" role="button" data-toggle="tooltip" data-placement="top" title="Add step"><i class="fas fa-plus"></i></a></span>
+                                    <span class="input-group-remove-steps">
+                                        <a class="btn-group-ingredients btn-remove-steps" role="button" data-toggle="tooltip" data-placement="top" title="Remove step"><i class="fas fa-minus"></i></a>
+                                    </span>
+                                    <span class="input-group-add-steps">
+                                        <a class="btn-group-ingredients btn-add-steps" role="button" data-toggle="tooltip" data-placement="top" title="Add step"><i class="fas fa-plus"></i></a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +158,7 @@
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="recipe-image-url" name="recipe-image-url" value="{%- if recipe %} {{- recipe.image_url -}} {% endif -%}" required>
-                                <label for="recipe-image-url"><span>Recipe Image URL</span></label>
+                                <label for="recipe-image-url"><span class="span-label">Recipe Image URL</span></label>
                             </div>
                         </div>
                     </div>
@@ -187,7 +197,7 @@
                             </div>
                         {% endif %}
                         <div class="form-row-recipe-buttons">
-                            <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Submit</button>
+                            <button class="btn btn--champagne-pink my-2 my-sm-0" id="btn-submit-add-recipe" type="submit">Submit</button>
                         </div>
                     </div>
                 </form>

@@ -17,7 +17,7 @@ function addIngredients() {
         let listItem = document.createElement('li');
         
         inputField = `
-                        <input type="text" class="form-control" name="recipe-ingredient" required>
+                        <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-${ingredients.length}" required>
                      `;   
 
         listItem.setAttribute("class", "ingredient");
@@ -61,7 +61,7 @@ function addMethods() {
         let stepItem = document.createElement('li');
         
         textareaField = `
-                            <textarea class="form-control" name="recipe-methods" rows="1" maxlength="320" required></textarea>
+                            <textarea class="form-control js-recipe-methods" name="recipe-methods-${methods.length}" rows="1" maxlength="320" required></textarea>
                         `;   
 
         stepItem.setAttribute("class", "methods");
