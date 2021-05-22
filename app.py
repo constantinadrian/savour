@@ -287,6 +287,8 @@ def profile(username):
 
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"created_by": username.lower()})
+    recipe_found = mongo.db.recipes.count_documents(
+            {"created_by": username.lower()})
 
     page_set = {
         "title": "Profile"
@@ -295,6 +297,7 @@ def profile(username):
                            username=username,
                            page_set=page_set,
                            recipes=recipes,
+                           recipe_found=recipe_found,
                            nav_categories=nav_categories)
 
 
@@ -593,6 +596,24 @@ def shop():
                            nav_categories=nav_categories,
                            products=products,
                            recommended_products=recommended_products)
+
+
+@app.route("/contact", methods=["GET"])
+def contact():
+    """
+    Display the contact page
+    """
+
+    page_set = {
+        "title": "Contact",
+        "type": "form"
+    }
+
+    nav_categories = mongo.db.recipes.distinct("category_name")
+
+    return render_template("pages/contact.html",
+                           page_set=page_set,
+                           nav_categories=nav_categories)
 
 
 @app.errorhandler(401)

@@ -308,4 +308,56 @@ $(document).ready(function () {
             e.preventDefault();
         }
     });
+
+    // Use jQuery validate for Contact form and return form to emailjs for submit
+    // https://jqueryvalidation.org/documentation/
+    $("#contact-form").validate({
+        rules: {
+            name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true 
+            },
+            query: {
+                required: true
+            },
+            message: {
+                required: true
+            }
+        },
+        messages: {
+            name: {required: "Please fill out this field"},
+            email: {required: "Please fill out this field", email: "Please enter a valid email address" },
+            query: {required: "Please fill out this field"},
+            message: {required: "Please fill out this field"}
+        },
+        errorElement: 'span',
+        highlight: function(element) {
+            $(element).addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('has-error');
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element.next());
+        },
+        submitHandler: function(form) {
+            // form is submited with emailjs
+            return sendMail(form);
+        }   
+    });
+
+    // Click event  call jQuery validate
+    $('#btn-submit-contact-form').click(function(e) {
+        // get input field for validate 
+        // the hidden fields are ignored by default
+        let checkField = $('#contact-form').find(":input");
+
+        // if fields are invalid prevent submit form
+        if (!checkField.valid()){
+            e.preventDefault();
+        }
+    });
 });

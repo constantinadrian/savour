@@ -31,7 +31,7 @@
                 </div>
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
-            {% if recipes %}
+            
             <div class="recipes-section-row-recipes">
                 {% for recipe in recipes %}
                     <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">
@@ -47,8 +47,10 @@
                         </div>
                     </a>
                 {% endfor %}
+                {% if not recipe_found %}
+                    <p>You don't have any recipes.</p>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </section>
     <!-- /.Recipe section -->

@@ -1,14 +1,16 @@
 /* -------------------------------- Custom form display  ---------------------------------- */
 .login-container,
 .register-container,
-.create-recipes-container {
+.create-recipes-container,
+.contact-container {
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
 
 .form-login,
 .form-register,
-.form-recipe {
+.form-recipe,
+.form-contact {
     width: 90%;
     word-break: break-word;
 }
@@ -87,6 +89,7 @@ textarea {
 .form-login .form-group,
 .form-register .form-group,
 .form-recipe .form-group,
+.form-contact .form-group,
 #editModal .form-group {
     position: relative;
 }
@@ -94,7 +97,9 @@ textarea {
 .form-login .form-control,
 .form-register .form-control,
 .form-recipe .form-control,
-.form-recipe .custom-select {
+.form-recipe .custom-select,
+.form-contact .form-control,
+.form-contact .custom-select {
     background-color: #f0efeb;
     border: 0;
     border-radius: 0;
@@ -113,7 +118,9 @@ textarea {
 .form-login .form-control:focus,
 .form-register .form-control:focus,
 .form-recipe .form-control:focus,
-.form-recipe .custom-select:focus {
+.form-recipe .custom-select:focus,
+.form-contact .form-control:focus,
+.form-contact .custom-select:focus {
     background-color: #f0efeb;
     box-shadow: none;
     border-color:#b38989;
@@ -128,6 +135,7 @@ textarea {
 .form-login .form-group label,
 .form-register .form-group label,
 .form-recipe .form-group label,
+.form-contact .form-group label,
 #editModal .form-group label {
     position: absolute;
     top: 10px;
@@ -139,6 +147,7 @@ textarea {
 .form-login .form-group label span,
 .form-register .form-group label span,
 .form-recipe .form-group label span,
+.form-contact .form-group label span,
 #editModal .form-group label span {
     display: inline-block;
 }
@@ -153,6 +162,11 @@ textarea {
 .form-recipe .form-group select:valid + label span, 
 .form-recipe .form-group textarea:valid + label span,
 .form-recipe .form-group .has-error:invalid + label span,
+.form-contact .form-group .form-control:focus + label span, 
+.form-contact .form-group .custom-select:focus + label span, 
+.form-contact .form-group input:valid + label span,
+.form-contact .form-group select:valid + label span, 
+.form-contact .form-group textarea:valid + label span,
 #editModal .form-group .form-control:focus + label span, 
 #editModal .form-group input:valid + label span {
     transform: translateY(-25px);
@@ -174,10 +188,37 @@ textarea {
             align-items: center;
 }
 
+/* -------------------------------- For Contact form Custom display  ---------------------------------- */
+.form-contact .fa-paper-plane {
+    margin-right: 1rem;
+}
+
+.form-field {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.form-icon {
+    position: relative;
+}
+
+.form-icon i {
+    position: absolute;
+    top: 1rem;
+}
+
+.form-field .form-group {
+    margin-left: 1.7rem;
+    width: calc(100% - 1.7rem);
+}
+/* -------------------------------- End Contact form  ---------------------------------- */
+
 @media only screen and (min-width: 992px) {
     .form-login,
     .form-register,
-    .form-recipe {
+    .form-recipe,
+    .form-contact {
         width: 70%;
     }
 }

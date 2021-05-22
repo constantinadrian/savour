@@ -1,0 +1,95 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    <!-- Contact section -->  
+    <section class="contact-section">
+        <div class="container contact-container">
+
+            <div class="contact-section-row-title">
+                <div class="col">
+                    <hr class="section-hr-left">
+                </div>
+                <div class="col-auto">
+                    <h2 class="section-title">Contact</h2>
+                </div>
+                <div class="col">
+                    <hr class="section-hr-right">
+                </div>
+            </div>
+
+            <div class="contact-section-row-form">
+                <form class="form-contact" id='contact-form' autocomplete="off">
+                   
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-field">
+                                <div class="form-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <label for="name"><span>Your Name</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-field">
+                                <div class="form-icon">
+                                    <i class="fas fa-at"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="email" name="email" required>
+                                    <label for="email"><span>Email</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-field">
+                                <div class="form-icon">
+                                    <i class="fas fa-user-edit"></i>
+                                </div>
+                                <div class="form-group">
+                                    <select class="custom-select" id="query" name="query" required>
+                                        <option selected disabled hidden value="">&nbsp;</option>
+                                        <option value="Comments and Feedback">Comments and Feedback</option>
+                                        <option value="Subscriptions">Subscriptions</option>
+                                        <option value="Rights and Permissions">Rights and Permissions</option>
+                                        <option value="Advertising">Advertising</option>
+                                    </select>
+                                    <label for="query"><span>Query</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-field">
+                                <div class="form-icon">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" name="message" rows="1" maxlength="460" required></textarea>
+                                    <label for="message"><span>Message</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 text-center mt-5">
+                            <button class="btn btn--champagne-pink my-2 my-sm-0" id="btn-submit-contact-form" type="submit"><i class="fas fa-paper-plane"></i>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- /.Login section -->
+{% endblock %}

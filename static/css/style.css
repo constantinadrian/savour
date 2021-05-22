@@ -281,6 +281,13 @@ main .alert-primary {
 .shop-section {
     width: 100%;
     margin: 7rem 0;
+    min-height: 60vh;
+}
+
+.login-section,
+.register-section,
+.contact-section {
+    min-height: 60vh;
 }
 
 .recommended_products-section {
@@ -311,7 +318,8 @@ main .alert-primary {
 .recipes-section-row-title,
 .shop-section-row-title,
 .login-section-row-title,
-.register-section-row-title {
+.register-section-row-title,
+.contact-section-row-title {
     margin-bottom: 2rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -380,7 +388,8 @@ main .alert-primary {
 .recipes-section-row-recipes,
 .shop-section-row-products,
 .login-section-row-form,
-.register-section-row-form {
+.register-section-row-form,
+.contact-section-row-form {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
