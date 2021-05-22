@@ -160,7 +160,7 @@
                     <a href="#" aria-label="Contact Page">
                         Contact Us
                     </a>
-                    <a href="#" aria-label="Contact Page">
+                    <a href="{{ url_for('shop') }}" aria-label="Shop Page">
                         Shop
                     </a>
                 </div>
@@ -190,20 +190,20 @@
                 <div class="modal-body">
                     <h5 class="modal-title" id="editModalLabel"></h5>
                 </div>
-                <form id='edit-form' action="{{ url_for('add_categories') }}" method="POST" autocomplete="off">
-                    <input type="text" class="form-control" id="category-id" name="category-id" form="edit-form" value="" required readonly hidden>
-                    <input type="text" class="form-control" id="category-type" name="category-type" form="edit-form" value="" required readonly hidden>
+                <form id='add_categories' action="{{ url_for('add_categories') }}" method="POST" autocomplete="off">
+                    <input type="text" class="form-control" id="category-id" name="category-id" form="add_categories" value="" required readonly hidden>
+                    <input type="text" class="form-control" id="category-type" name="category-type" form="add_categories" value="" required readonly hidden>
                     <div class="form-row edit-modal-form-row">
                         <div class="col-md-12 mb-3">
                             <div class="form-group edit-modal-form-group">
-                                <input type="text" class="form-control" id="category-name" name="category-name" form="edit-form" value="" required>
+                                <input type="text" class="form-control" id="category-name" name="category-name" form="add_categories" value="" required>
                                 <label for="category-name"><span>Category Name</span></label>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn--slate-grey" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn--champagne-pink">Submit</button>
+                        <button type="submit" class="btn btn--champagne-pink" id="btn-submit-add_categories">Submit</button>
                     </div>
                 </form>
             </div>

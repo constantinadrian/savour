@@ -39,6 +39,14 @@ def is_valid(oid):
         return False
 
 
+def check_form(form_data):
+    # check if there are any empty fields
+    for key, value in form_data:
+        if value == "":
+            return None
+    return form_data
+
+
 def user_ratings(mongo, rating, recipe):
     """
     Function that updates the user rating for each recipe

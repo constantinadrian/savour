@@ -178,13 +178,21 @@ main .alert-primary {
 /* --------------------------- Categories section ------------------------------- */
 .catogory-banner-section {
     width: 100%;
-    min-height: calc(60vh - 109.8px);
+    height: calc(60vh - 109.8px);
     position: relative;
-
-    /* background for new categories that hasn't been set up */
-    background: url("../img/pexels-klaus-nielsen-6294327.jpg") no-repeat center center scroll;
-    background-size: cover;
 }
+
+.sugestion-recipe-link,
+.sugestion-recipe-link:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+.recipes-img-baner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}    
 
 .category-textbox {
     position: absolute;
@@ -200,6 +208,11 @@ main .alert-primary {
 /* ----------------------- End of Categories section ---------------------------- */
 
 /* ----------------------- Categories Banner Backgrounds --------------------------- */
+.bg-banner-default {
+    /* background for new categories that hasn't been set up */
+    background: url("../img/pexels-klaus-nielsen-6294327.jpg") no-repeat center center scroll;
+    background-size: cover;
+}
 .bg-appetizer-section {
     background: url("../img/canape-2802_1920.jpg") no-repeat center center scroll;
     background-size: cover;
@@ -307,7 +320,8 @@ main .alert-primary {
         flex-wrap: wrap;
 }
 
-.recommended_products-row-title {
+.recommended_products-row-title,
+.subscribe-row-title {
     margin-bottom: 2rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -549,7 +563,7 @@ main .alert-primary {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-        -ms-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
@@ -564,6 +578,9 @@ main .alert-primary {
 }
 
 @media only screen and (min-width: 992px) {
+    .subscribe-row-title {
+        margin-bottom: 3rem;
+    }
     .section-title {
         font-size: 2.5rem;
         line-height: 0.6;
@@ -605,6 +622,10 @@ main .alert-primary {
             justify-content: center;
     -ms-flex-line-pack: center;
         align-content: center;
+    -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
 }
 
 .subscribe {
@@ -616,7 +637,9 @@ main .alert-primary {
 .subscribe .form-inline,
 .search-container .form-inline {
     width: 100%;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .subscribe .form-control:focus {
@@ -670,9 +693,9 @@ main .alert-primary {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-        -ms-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-        -webkit-box-pack: center;
+    -webkit-box-pack: center;
         -ms-flex-pack: center;
       justify-content: center;
     -webkit-box-align: center;   

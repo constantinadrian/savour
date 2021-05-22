@@ -1,5 +1,5 @@
 {% extends "layout/base.html" %}
-{% from "pages/macros.html" import display_recipes %}
+{% from "pages/macros.html" import display_recipes, subscribe_section %}
 
 {% block content %}
 
@@ -22,8 +22,11 @@
                     <p>Recipes Not Found</p>
                 {% endif %}
             </div>
-
         </div>
     </section>
     <!-- /.Recipe section -->
+
+    <!-- Subscribe section -->
+        {{ subscribe_section() }}
+    <!-- /.End Subscribe section -->
 {% endblock %}

@@ -6,7 +6,7 @@ from flask_pymongo import PyMongo
 from pymongo.collection import ReturnDocument
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from helpers import login_required, update_recipe_rating, is_valid
+from helpers import login_required, update_recipe_rating, is_valid, check_form
 if os.path.exists("env.py"):
     import env
 
@@ -34,6 +34,24 @@ def home():
                            recipes=recipes,
                            products=products,
                            nav_categories=nav_categories)
+
+
+@app.route("/all_recipes", methods=["GET", "POST"])
+def all_recipes():
+    """
+    Display all recipes
+    """
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    sugestion_recipe = mongo.db.recipes.aggregate([{'$sample': {'size': 1}}])
+    recipes = mongo.db.recipes.find()
+    page_set = {
+        "title": "Recipes"
+    }
+    return render_template("pages/all_recipes.html",
+                           nav_categories=nav_categories,
+                           sugestion_recipe=sugestion_recipe,
+                           recipes=recipes,
+                           page_set=page_set)
 
 
 @app.route("/category/<category>", methods=["GET", "POST"])
@@ -287,6 +305,17 @@ def add_recipe():
     Display the form for add recipe
     """
     if request.method == "POST":
+        # check if all fields has been completed
+        # for the ingredient and methods we can only check for the first item
+        # as request.form.items() does not take the
+        # array of same key but only the first value
+        form_data = check_form(list(request.form.items()))
+
+        if not form_data:
+            flash("All Recipe Fields Must be Completed",
+                  category="alert-warning")
+            return redirect('/add_recipe')
+
         new_recipe = {
             "category_name": request.form.get("recipe-category").strip(),
             "recipe_name": request.form.get("recipe-title").strip(),
@@ -336,6 +365,17 @@ def edit_recipe(recipe_id):
         # check if the recipe id hasn't been change
         if not is_valid(recipe_id):
             return redirect(url_for('error', code=404))
+
+        # check if all fields has been completed
+        # for the ingredient and methods we can only check for the first item
+        # as request.form.items() does not take the
+        # array of same key but only the first value
+        form_data = check_form(list(request.form.items()))
+
+        if not form_data:
+            flash("All Recipe Fields Must be Completed",
+                  category="alert-warning")
+            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
 
         mongo.db.recipes.update_one(
             {"_id": ObjectId(recipe_id)},
@@ -440,7 +480,7 @@ def manage_categories():
         "title": "Manage Categories",
         "type": "form"
     }
-    manage_categories = mongo.db.categories.find()
+    manage_categories = mongo.db.categories.find().sort("category_name", 1)
     nav_categories = mongo.db.recipes.distinct("category_name")
     return render_template("pages/manage_categories.html",
                            page_set=page_set,
@@ -469,6 +509,13 @@ def add_categories():
 
     # check if user wants to add or edit category
     if category_type == "Add Category":
+
+        check_category = mongo.db.categories.count_documents(
+            {"category_name": category_name.lower()})
+
+        if check_category:
+            flash("Category Already Exists", category="alert-warning")
+            return redirect(url_for('manage_categories'))
 
         new_category = {
             "category_name": category_name.lower()

@@ -146,9 +146,27 @@ $(document).ready(function () {
             }  
         },
         submitHandler: function(form) {
+            removeIngredientsNumbers()
+            removeMethodsNumbers()
             form.submit();
         }   
     });
+
+    // After validation rename the ingredients fields with same name 
+    // as we use request.form.getlist to get the array on ingredients
+    function removeIngredientsNumbers() {
+        $(".js-recipe-ingredient").each(function(){
+            $(this).attr("name", "recipe-ingredient")
+        });
+    }
+
+    function removeMethodsNumbers() {
+        console.log("function")
+        $(".js-recipe-methods").each(function(){
+            console.log("change name")
+            $(this).attr("name", "recipe-methods")
+        });
+    }
 
     // Click event to call jQuery validate
     $('#btn-submit-add-recipe').click(function(e) {
@@ -252,4 +270,42 @@ $(document).ready(function () {
         }
         return positionScrollError
     }
+
+    // Use jQuery validate for add/edit categories form
+    // https://jqueryvalidation.org/documentation/
+    $("#add_categories").validate({
+        rules: {
+            ["category-name"]: {
+                required: true
+            }
+        },
+        messages: {
+            ["category-name"]: {required: "Please fill out this field"} 
+        },
+        errorElement: 'span',
+        highlight: function(element) {
+            $(element).addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('has-error');
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element.next());
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }   
+    });
+
+    // Click event  call jQuery validate
+    $('#btn-submit-add_categories').click(function(e) {
+        // get input field for validate 
+        // the hidden fields are ignored by default
+        let checkField = $('#add_categories').find(":input");
+
+        // if fields are invalid prevent submit form
+        if (!checkField.valid()){
+            e.preventDefault();
+        }
+    });
 });

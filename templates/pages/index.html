@@ -1,5 +1,5 @@
 {% extends "layout/base.html" %}
-{% from "pages/macros.html" import display_recipes, display_products %}
+{% from "pages/macros.html" import display_recipes, display_products, subscribe_section %}
 
 {% block content %}
     <!-- Landing section -->
@@ -16,7 +16,7 @@
             <div class="recipes-section-row-title">
                 <div class="col"><hr class="section-hr-left"></div>
                 <div class="col-auto">
-                    <h2><a href="#" class="section-title">Recipes</a></h2>
+                    <h2><a href="{{ url_for('all_recipes') }}" aria-label="Recipes Page" class="section-title">Recipes</a></h2>
                 </div>
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
@@ -27,7 +27,7 @@
             </div>
             
             <div class="recipes-section-item-row-more-recipes">
-                <a href="#" class="recipe-ancor-tag">
+                <a href="{{ url_for('all_recipes') }}" aria-label="Recipes Page" class="recipe-ancor-tag">
                     MORE RECIPES&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                 </a>
             </div>
@@ -42,7 +42,7 @@
             <div class="shop-section-row-title">
                 <div class="col"><hr class="section-hr-left"></div>
                 <div class="col-auto">
-                    <h2><a href="{{ url_for('shop') }}" class="section-title">Shop</a></h2>
+                    <h2><a href="{{ url_for('shop') }}"  aria-label="Shop Page" class="section-title">Shop</a></h2>
                 </div>
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
@@ -52,7 +52,7 @@
                 {% endfor %}
             </div>
             <div class="shop-section-item-row-more-products">
-                <a href="{{ url_for('shop') }}" class="shop-ancor-tag">
+                <a href="{{ url_for('shop') }}" aria-label="Shop Page" class="shop-ancor-tag">
                     MORE PRODUCTS&nbsp;&nbsp;<i class="fas fa-chevron-right"></i>
                 </a>
             </div>
@@ -62,12 +62,6 @@
     <!-- /.End Shop section -->
 
     <!-- Subscribe section -->
-    <section>
-        <div class="flex-container subscribe">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Your Email" aria-label="Subscribe">
-                <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Subscribe Now</button>
-            </form>
-        </div>
-    </section>
+        {{ subscribe_section() }}
+    <!-- /.End Subscribe section -->
 {% endblock %}

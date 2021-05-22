@@ -3,11 +3,18 @@
 
 {% block content %}
     <!-- Landing section -->
-    <section class="catogory-banner-section bg-banner-default bg-{{category}}-section">
-        <div class="category-textbox">
-            <h1 class='section-title'>{{category|title}}</h1>
-            <h1 class='section-title'>Recipes</h1>
-        </div>
+    <section>
+        {% for recipe in sugestion_recipe %}
+            <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="sugestion-recipe-link">
+                <figure class="catogory-banner-section">
+                    <img src="{{ recipe.image_url }}" class="recipes-img-baner" alt="Recipe Image">
+                    <div class="category-textbox">
+                        <h1 class='section-title'>Our</h1>
+                        <h1 class='section-title'>Suggestion</h1>
+                    </div>
+                </figure>
+            </a>
+        {% endfor %}
     </section>
     <!-- /.Landing section -->
 
@@ -17,7 +24,7 @@
             <div class="recipes-section-row-title">
                 <div class="col"><hr class="section-hr-left"></div>
                 <div class="col-auto">
-                    <h2 class="section-title">{{category|capitalize}}</h2>
+                    <h2 class="section-title">Recipes</h2>
                 </div>
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
