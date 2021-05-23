@@ -640,6 +640,20 @@ def subscribe_ajax():
     return json.dumps({'status': 'error'})
 
 
+@app.route("/terms_and_conditions", methods=["GET"])
+def terms_and_conditions():
+    """
+    Display the terms and conditions page
+    """
+    page_set = {
+        "title": "Terms and Conditions"
+    }
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    return render_template("pages/terms_conditions.html",
+                           page_set=page_set,
+                           nav_categories=nav_categories)
+
+
 @app.errorhandler(401)
 def http_unauthorized(e):
     return redirect(url_for('error', code=401))
