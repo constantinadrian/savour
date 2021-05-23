@@ -81,3 +81,72 @@ function changeImage(img) {
 }
 
 changeImage(img)
+
+/**
+ * Function to make the AJAX call to server
+ * @param {Object} event - Submit event for subscribe form
+ */
+$("#subscribe-form").submit(function(event) {
+    // prevent from submitting a form
+    event.preventDefault()
+
+    // clear the previous message is the user it trying to submit again
+    $(".subscribe-ajax-response").html("")
+
+    // make an AJAX call to server side
+    $.ajax({
+        url: $(event.target).prop("action"),
+        data: $("#subscribe-form").serialize(),
+        type: 'POST',
+        success: function(response) {
+            // reset the form
+            $("#subscribe-form").trigger("reset");
+
+            responseObj = JSON.parse(response)
+
+            if (responseObj.status == "success"){
+                subscribedSuccessMessage();
+            }
+            else if (responseObj.status == "already subscribed") {
+                subscribedDeniedMessage();
+            }
+            else {
+                subscribedErrorMessage();
+            }
+        },
+        error: function(){
+            subscribedErrorMessage();
+        }
+    });
+})
+
+/**
+ * Function to handle the success response from AJAX call
+ */
+function subscribedSuccessMessage() {
+    displayResponse = `
+                        <p class="mt-3">Thank you for subscribing!</p>
+                      `;
+    $(".subscribe-ajax-response").append(displayResponse);
+}
+
+/**
+ * Function to handle the reject response from AJAX call
+ */
+function subscribedDeniedMessage() {
+    displayResponse = `
+                        <p class="mt-3">This email address is already subscribed.</p>
+                      `;
+    $(".subscribe-ajax-response").append(displayResponse);
+}
+
+/**
+ * Function to handle the error response from AJAX call
+ */
+function subscribedErrorMessage() {
+    displayResponse = `
+                        <p class="mt-3">Sorry, we could not process your request.</p>
+                        <p>If the problem persists please <a class="contact-ancor-tag" href="/contact">contact us</a></p>
+                      `;
+    $(".subscribe-ajax-response").append(displayResponse);
+}

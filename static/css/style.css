@@ -656,6 +656,11 @@ main .alert-primary {
     box-shadow: none;
 }
 
+.subscribe-ajax-response {
+    text-align: center;
+    word-wrap: break-word;
+}
+
 @media only screen and (min-width: 992px) {
     .subscribe .form-inline .form-control {
         width: 30%;
@@ -791,6 +796,13 @@ main .alert-primary {
 .modal-content {
     word-break: break-word;
     background-color: #e7e7e7;
+}
+
+.modal-header {
+    background-color: #d5d1c9;
+}
+.modal-header .modal-title {
+    margin-bottom: 0;
 }
 
 .modal-body {

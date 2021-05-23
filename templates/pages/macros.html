@@ -44,7 +44,7 @@
 
 {# Display the products #}
 {%- macro display_products(product) -%}
-    <a href="#" class="shop-ancor-tag">
+    <a a href="#" data-toggle="modal" data-target="#shopModal" class="shop-ancor-tag">
         <div class="card">
             <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
             <img src="{{- product.image_url -}}" class="shop-card-img" alt="Product Image">
@@ -64,10 +64,12 @@
                 <h2 class="section-title">SIGN UP TO OUR NEWSLETTER</h2>
             </div>
 
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Your Email" aria-label="Subscribe">
-                <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Subscribe Now</button>
+            <form class="form-inline my-2 my-lg-0" id="subscribe-form" method="POST" action="{{ url_for('subscribe_ajax') }}">
+                <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="Your Email" aria-label="Subscribe" required>
+                <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit" id="btn-submit-subscribe">Subscribe Now</button>
             </form>
+
+            <div class="subscribe-ajax-response"></div>
         </div>
     </section>
 {%- endmacro -%}

@@ -603,17 +603,41 @@ def contact():
     """
     Display the contact page
     """
-
     page_set = {
         "title": "Contact",
         "type": "form"
     }
-
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     return render_template("pages/contact.html",
                            page_set=page_set,
                            nav_categories=nav_categories)
+
+
+@app.route("/subscribe_ajax", methods=["POST"])
+def subscribe_ajax():
+    """
+    Display the message after the user subscribe to out newsletter
+    """
+    # check if user sent the 'email address' and not an empty form
+    if not request.form.get("email"):
+        return json.dumps({'status': 'error'})
+
+    # check if the email is already in our subscriptions
+    email_exists = mongo.db.subscriptions.count_documents(
+        {"email": request.form.get("email").strip().lower()})
+
+    # if user want to rate it's own recipe return denied
+    if email_exists:
+        return json.dumps({'status': 'already subscribed'})
+
+    # insert new email in out database
+    subscribed_email = mongo.db.subscriptions.insert_one(
+        {"email": request.form.get("email").strip().lower()}).inserted_id
+    if subscribed_email:
+        return json.dumps({'status': 'success'})
+
+    return json.dumps({'status': 'error'})
 
 
 @app.errorhandler(401)

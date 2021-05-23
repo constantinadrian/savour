@@ -125,7 +125,7 @@ function displayErrorMessage() {
     $(".ratings:checked").prop("checked", false)
     displayResponse = `
                         <p>Sorry, we could not process your request.</p>
-                        <p>If the problem persists please <a class="contact-ancor-tag" href="/login">contact us</a></p>
+                        <p>If the problem persists please <a class="contact-ancor-tag" href="/contact">contact us</a></p>
                       `;
     $(".rating-ajax-response").append(displayResponse);
 }
