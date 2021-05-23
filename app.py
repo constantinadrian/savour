@@ -671,10 +671,10 @@ def error(code):
         "title": title,
         "code": code
     }
-    categories = mongo.db.recipes.distinct("category_name")
+    nav_categories = mongo.db.recipes.distinct("category_name")
     return render_template("pages/error.html",
                            page_set=page_set,
-                           categories=categories)
+                           nav_categories=nav_categories)
 
 
 if __name__ == "__main__":
