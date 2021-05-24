@@ -148,3 +148,11 @@ function subscribedErrorMessage() {
                       `;
     $(".subscribe-ajax-response").append(displayResponse);
 }
+
+// Make the Dropdown Parrent element a link after dropdown menu is displayed
+// To take the users on Recipes page were they can see all recipes from each category
+$('.js-dropdown-recipes').click(function () {
+    if ($(".js-dropdown-recipes-menu").css('display') !== 'none') {
+        location.href = this.href;
+    }
+});
