@@ -22,18 +22,18 @@
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
 
-            {% if session %}
             <div class="flex-container search-container">
-                <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('search') }}">
-                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Product" aria-label="Search Recipe" required>
+                <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('shop') }}">
+                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Product" aria-label="Search Products" required>
                     <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            {% endif %}
 
             <div class="shop-section-row-products">
                 {% for product in products %}
                     {{ display_products(product) }}
+                {% else %}
+                    <p>Product Not Found</p>
                 {% endfor %}
             </div>
         </div>

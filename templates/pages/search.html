@@ -13,14 +13,22 @@
                 </div>
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
+
+            {% if session %}
+            <div class="flex-container search-container">
+                <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('search') }}">
+                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Recipe" aria-label="Search Recipe" required>
+                    <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            {% endif %}
             
             <div class="recipes-section-row-recipes">
                 {% for recipe in recipes %}
                     {{ display_recipes(recipe) }}
-                {% endfor %}
-                {% if not recipe_found %}
+                {% else %}
                     <p>Recipes Not Found</p>
-                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </section>

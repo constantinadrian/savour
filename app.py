@@ -86,14 +86,11 @@ def search():
         query = request.form.get("query")
         nav_categories = mongo.db.recipes.distinct("category_name")
         recipes = mongo.db.recipes.find({"$text": {"$search": query}})
-        recipe_found = mongo.db.recipes.count_documents(
-            {"$text": {"$search": query, "$caseSensitive": False}})
 
         page_set = {
             "title": "Search"
         }
         return render_template("pages/search.html",
-                               recipe_found=recipe_found,
                                recipes=recipes,
                                page_set=page_set,
                                nav_categories=nav_categories)
@@ -109,8 +106,6 @@ def users(username):
     if not user_found:
         return redirect(url_for('error', code=404))
 
-    recipe_found = mongo.db.recipes.count_documents(
-        {"created_by": username.lower()})
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"created_by": username.lower()})
 
@@ -118,7 +113,6 @@ def users(username):
         "title": username.title()
     }
     return render_template("pages/search.html",
-                           recipe_found=recipe_found,
                            recipes=recipes,
                            page_set=page_set,
                            nav_categories=nav_categories)
@@ -287,8 +281,6 @@ def profile(username):
 
     nav_categories = mongo.db.recipes.distinct("category_name")
     recipes = mongo.db.recipes.find({"created_by": username.lower()})
-    recipe_found = mongo.db.recipes.count_documents(
-            {"created_by": username.lower()})
 
     page_set = {
         "title": "Profile"
@@ -297,7 +289,6 @@ def profile(username):
                            username=username,
                            page_set=page_set,
                            recipes=recipes,
-                           recipe_found=recipe_found,
                            nav_categories=nav_categories)
 
 
@@ -576,6 +567,34 @@ def shop():
     """
     Display the shop page
     """
+    if request.method == "POST":
+        # get the query search
+        query = request.form.get("query")
+
+        # get the requested product(s)
+        products = mongo.db.shop.find({"$text": {"$search": query}})
+
+        page_set = {
+            "title": "Kitchen Tools"
+        }
+
+        # get the nav categories
+        nav_categories = mongo.db.recipes.distinct("category_name")
+
+        # get the recomanded products
+        recommended_products = mongo.db.shop.find({
+            "$or": [
+                {"_id": ObjectId("60a51442da1161837d99ef35")},
+                {"_id": ObjectId("60a514f3da1161837d99ef36")},
+                {"_id": ObjectId("60a51a00da1161837d99ef3c")}
+            ]
+        })
+        return render_template("pages/shop.html",
+                               page_set=page_set,
+                               nav_categories=nav_categories,
+                               products=products,
+                               recommended_products=recommended_products)
+
     products = mongo.db.shop.find()
 
     page_set = {
