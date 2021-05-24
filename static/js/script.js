@@ -163,3 +163,15 @@ $(document).on("click touchstart", function(event){
         $("button.navbar-toggler").click()
     }
 });
+
+/**
+ * Function that set up the copyright year on footer on each page
+ */
+function copyrightYear() {
+    let date = new Date();
+    let year = date.getFullYear();
+    $(".footer-copyright-item-year").html(year);
+}
+
+// Call function
+copyrightYear();
