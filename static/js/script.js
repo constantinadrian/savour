@@ -158,7 +158,7 @@ $('.js-dropdown-recipes').click(function () {
 });
 
 // Close the colapse navbar menu when click outside the navbar
-$(document).on("click", function(event){
+$(document).on("click touchstart", function(event){
     if ($("button.navbar-toggler").attr("aria-expanded") == "true" && $(event.target).closest(".navbar").length == 0) {
         $("button.navbar-toggler").click()
     }
