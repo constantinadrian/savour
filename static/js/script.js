@@ -67,20 +67,18 @@ $(document).ready(function(){
     // End Credit code
 });
 
-// Get all the images tag from the page
-let img = $('img');
-
-/**
- * Change the brocken image links from the page
- * @param {Object} img - All images fields from the page 
- */
-function changeImage(img) {
-    img.each(function (){}).one('error', function() {
-        this.src = '../static/img/pexels-chimene-gaspar-1464880.jpg';
-    }); 
-}
-
-changeImage(img)
+// Change the brocken image links from the page
+// Credit code https://stackoverflow.com/questions/39326500/why-does-onerror-event-not-work-for-img-tag-when-jquery-is-put-in-footer
+$("img").each(function(i,image){
+    $("<img/>").attr("src",$(image).attr("src")).one('error', function() {             
+        $(image).attr( "src", "/static/img/pexels-chimene-gaspar-1464880.jpg" );
+    })
+});
+ 
+$("img").one("error", function(){      
+  $(this).attr( "src", "/static/img/pexels-chimene-gaspar-1464880.jpg" );  
+});
+// End Credit Code
 
 /**
  * Function to make the AJAX call to server
@@ -121,7 +119,7 @@ $("#subscribe-form").submit(function(event) {
 })
 
 /**
- * Function to handle the success response from AJAX call
+ * Function to handle the success response from AJAX call on Subscribe form
  */
 function subscribedSuccessMessage() {
     displayResponse = `
@@ -131,7 +129,7 @@ function subscribedSuccessMessage() {
 }
 
 /**
- * Function to handle the reject response from AJAX call
+ * Function to handle the reject response from AJAX call on Subscribe form
  */
 function subscribedDeniedMessage() {
     displayResponse = `
@@ -141,7 +139,7 @@ function subscribedDeniedMessage() {
 }
 
 /**
- * Function to handle the error response from AJAX call
+ * Function to handle the error response from AJAX call on Subscribe form
  */
 function subscribedErrorMessage() {
     displayResponse = `
