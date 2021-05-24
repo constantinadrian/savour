@@ -6,7 +6,7 @@
     <section>
         {% for recipe in sugestion_recipe %}
             <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="sugestion-recipe-link">
-                <figure class="catogory-banner-section">
+                <figure class="category-banner-section">
                     <img src="{{ recipe.image_url }}" class="recipes-img-baner" alt="Recipe Image">
                     <div class="category-textbox">
                         <h1 class='section-title'>Our</h1>
