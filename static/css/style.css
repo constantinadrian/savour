@@ -459,6 +459,10 @@ main .alert-primary {
     width: 18rem;
 }
 
+.shop-section-row-products a:focus {
+    outline: 0 !important;
+}
+
 .recipes-section-item-row-more-recipes,
 .shop-section-item-row-more-products {
     width: 100%;

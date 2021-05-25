@@ -44,7 +44,7 @@
 
 {# Display the products #}
 {%- macro display_products(product) -%}
-    <a a href="#" data-toggle="modal" data-target="#shopModal" class="shop-ancor-tag">
+    <a href="#" data-toggle="modal" data-target="#shopModal" class="shop-ancor-tag">
         <div class="card">
             <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
             <img src="{{- product.image_url -}}" class="shop-card-img" alt="Product Image">
