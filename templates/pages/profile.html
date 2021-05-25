@@ -1,5 +1,5 @@
 {% extends "layout/base.html" %}
-{% from "pages/macros.html" import display_star_ratings %}
+{% from "pages/macros.html" import display_recipes %}
 
 {% block content %}
     <!-- Landing section -->
@@ -33,23 +33,18 @@
             </div>
             
             <div class="recipes-section-row-recipes">
-                {% for recipe in recipes %}
-                    <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">
-                        <div class="card">
-                            <img class="savour-section-logo" src="{{ url_for('static', filename='img/logo-savour-100x113.png') }}" alt="Logo">
-                            <img src="{{ recipe.image_url }}" class="recipe-card-img" alt="Recipe Image">
-                            <div class="card-body">
-                                <p class="recipe-card-title js-card-title">{{ recipe.recipe_name|title }}</p>
-                                <span class=""><i class="far fa-clock"></i> {{ recipe.time }} Min</span>
-                                <hr>
-                                {{ display_star_ratings(recipe) }}
-                            </div>
-                        </div>
-                    </a>
-                {% else %}
-                    <p>You don't have any recipes.</p>
-                {% endfor %}
+                {% if recipes %}
+                        {% for recipe in recipes %}
+                            {{ display_recipes(recipe) }}
+                        {% endfor %}
             </div>
+                    {% if total > 1 %}
+                        {{ pagination.info }}
+                    {% endif %}   
+                    {{ pagination.links }}
+                {% else %}
+                    <p>Recipes Not Found</p>
+                {% endif %}
         </div>
     </section>
     <!-- /.Recipe section -->

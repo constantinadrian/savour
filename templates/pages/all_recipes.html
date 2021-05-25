@@ -39,11 +39,18 @@
             {% endif %}
 
             <div class="recipes-section-row-recipes">
-                {% for recipe in recipes %}
-                    {{ display_recipes(recipe) }}
-                {% endfor %}
+                {% if recipes %}
+                        {% for recipe in recipes %}
+                            {{ display_recipes(recipe) }}
+                        {% endfor %}
             </div>
-            
+                    {% if total > 1 %}
+                        {{ pagination.info }}
+                    {% endif %}   
+                    {{ pagination.links }}
+                {% else %}
+                    <p>Recipes Not Found</p>
+                {% endif %}
         </div>
 
     </section>

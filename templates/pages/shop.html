@@ -30,12 +30,18 @@
             </div>
 
             <div class="shop-section-row-products">
-                {% for product in products %}
-                    {{ display_products(product) }}
+                {% if products %}
+                    {% for product in products %}
+                        {{ display_products(product) }}
+                    {% endfor %}
+            </div>
+                    {% if total > 1 %}
+                        {{ pagination.info }}
+                    {% endif %} 
+                    {{ pagination.links }}
                 {% else %}
                     <p>Product Not Found</p>
-                {% endfor %}
-            </div>
+                {% endif %}
         </div>
     </section>
     <!-- /.Recipe section -->

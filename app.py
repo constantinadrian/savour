@@ -1,12 +1,13 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for, json)
+    redirect, request, session, url_for, json, abort)
 from flask_pymongo import PyMongo
 from pymongo.collection import ReturnDocument
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from helpers import login_required, update_recipe_rating, is_valid, check_form
+from flask_paginate import Pagination, get_page_args
 if os.path.exists("env.py"):
     import env
 
@@ -19,6 +20,64 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 
 mongo = PyMongo(app)
+
+
+# Pagination for recipes was inspired from this two website
+# and modified and adapted to my understanding on my project
+# Credit code https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+# Credit code https://harishvc.com/2015/04/15/pagination-flask-mongodb/
+PER_PAGE = 6
+
+
+def get_page_items():
+    # get the page number
+    try:
+        page = int(request.args.get('page', 1))
+    except ValueError:
+        # page = 1
+        abort(404)
+
+    # get the per_page items
+    per_page = request.args.get('per_page')
+    if not per_page:
+        per_page = PER_PAGE
+    else:
+        try:
+            per_page = int(per_page)
+        except ValueError:
+            # per_page = PER_PAGE
+            abort(404)
+
+    # calculate the offset
+    offset = (page - 1) * per_page
+
+    return page, per_page, offset
+
+
+def get_css_framework():
+    return 'bootstrap4'
+
+
+def get_link_size():
+    return 'sm'
+
+
+def paginated(recipes):
+    page, per_page, offset = get_page_items()
+    return recipes[offset: offset + per_page]
+
+
+def get_pagination(recipes):
+    page, per_page, offset = get_page_items()
+    total = len(recipes)
+    return Pagination(css_framework=get_css_framework(),
+                      link_size=get_link_size(),
+                      page=page,
+                      per_page=per_page,
+                      offset=offset,
+                      total=total
+                      )
+# End Credit code
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -43,14 +102,19 @@ def all_recipes():
     """
     nav_categories = mongo.db.recipes.distinct("category_name")
     sugestion_recipe = mongo.db.recipes.aggregate([{'$sample': {'size': 1}}])
-    recipes = mongo.db.recipes.find()
+    recipes = list(mongo.db.recipes.find())
+    paginated_recipes = paginated(recipes)
+    pagination = get_pagination(recipes)
+    total = len(recipes)
     page_set = {
         "title": "Recipes"
     }
     return render_template("pages/all_recipes.html",
                            nav_categories=nav_categories,
                            sugestion_recipe=sugestion_recipe,
-                           recipes=recipes,
+                           recipes=paginated_recipes,
+                           pagination=pagination,
+                           total=total,
                            page_set=page_set)
 
 
@@ -65,13 +129,19 @@ def category(category):
         return redirect(url_for('error', code=404))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
-    recipes = mongo.db.recipes.find({"category_name": category})
+    recipes = list(mongo.db.recipes.find({"category_name": category}))
+
+    paginated_recipes = paginated(recipes)
+    pagination = get_pagination(recipes)
+    total = len(recipes)
 
     page_set = {
         "title": category.title()
     }
     return render_template("pages/category.html",
-                           recipes=recipes,
+                           recipes=paginated_recipes,
+                           pagination=pagination,
+                           total=total,
                            nav_categories=nav_categories,
                            page_set=page_set,
                            category=category)
@@ -85,13 +155,19 @@ def search():
     if request.method == "POST":
         query = request.form.get("query")
         nav_categories = mongo.db.recipes.distinct("category_name")
-        recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+        recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+
+        paginated_recipes = paginated(recipes)
+        pagination = get_pagination(recipes)
+        total = len(recipes)
 
         page_set = {
             "title": "Search"
         }
         return render_template("pages/search.html",
-                               recipes=recipes,
+                               recipes=paginated_recipes,
+                               pagination=pagination,
+                               total=total,
                                page_set=page_set,
                                nav_categories=nav_categories)
     return redirect(url_for("home"))
@@ -107,13 +183,19 @@ def users(username):
         return redirect(url_for('error', code=404))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
-    recipes = mongo.db.recipes.find({"created_by": username.lower()})
+    recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
+
+    paginated_recipes = paginated(recipes)
+    pagination = get_pagination(recipes)
+    total = len(recipes)
 
     page_set = {
         "title": username.title()
     }
     return render_template("pages/search.html",
-                           recipes=recipes,
+                           recipes=paginated_recipes,
+                           pagination=pagination,
+                           total=total,
                            page_set=page_set,
                            nav_categories=nav_categories)
 
@@ -280,7 +362,11 @@ def profile(username):
         return redirect(url_for('error', code=403))
 
     nav_categories = mongo.db.recipes.distinct("category_name")
-    recipes = mongo.db.recipes.find({"created_by": username.lower()})
+    recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
+
+    paginated_recipes = paginated(recipes)
+    pagination = get_pagination(recipes)
+    total = len(recipes)
 
     page_set = {
         "title": "Profile"
@@ -288,7 +374,9 @@ def profile(username):
     return render_template("pages/profile.html",
                            username=username,
                            page_set=page_set,
-                           recipes=recipes,
+                           recipes=paginated_recipes,
+                           pagination=pagination,
+                           total=total,
                            nav_categories=nav_categories)
 
 
@@ -572,7 +660,11 @@ def shop():
         query = request.form.get("query")
 
         # get the requested product(s)
-        products = mongo.db.shop.find({"$text": {"$search": query}})
+        products = list(mongo.db.shop.find({"$text": {"$search": query}}))
+
+        paginated_products = paginated(products)
+        pagination = get_pagination(products)
+        total = len(products)
 
         page_set = {
             "title": "Kitchen Tools"
@@ -592,10 +684,16 @@ def shop():
         return render_template("pages/shop.html",
                                page_set=page_set,
                                nav_categories=nav_categories,
-                               products=products,
+                               products=paginated_products,
+                               pagination=pagination,
+                               total=total,
                                recommended_products=recommended_products)
 
-    products = mongo.db.shop.find()
+    products = list(mongo.db.shop.find())
+
+    paginated_products = paginated(products)
+    pagination = get_pagination(products)
+    total = len(products)
 
     page_set = {
         "title": "Kitchen Tools"
@@ -613,7 +711,9 @@ def shop():
     return render_template("pages/shop.html",
                            page_set=page_set,
                            nav_categories=nav_categories,
-                           products=products,
+                           products=paginated_products,
+                           pagination=pagination,
+                           total=total,
                            recommended_products=recommended_products)
 
 

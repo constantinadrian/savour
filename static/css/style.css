@@ -693,6 +693,46 @@ main .alert-primary {
 
 /* ------------------------------- End of Subscribe --------------------------------- */
 
+/* -------------------------------- For Pagination ---------------------------------- */
+.pagination-page-info {
+    margin: 1rem 0;
+    padding: 0;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    word-break: break-word;
+}
+.pagination-page-info b {
+    color: black;
+    background: #a0b4cc;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 130%;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #3e6da0;
+    border-color: #3e6da0;
+}
+
+.pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;   
+        -ms-flex-align: center;   
+            align-items: center;
+}
+
+/* ----------------------------- End For Pagination ---------------------------------- */
+
 /* ------------------------ Terms and Conditions section ---------------------------- */
 .terms-section {
     min-height: 60vh;
