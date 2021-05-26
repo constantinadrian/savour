@@ -26,6 +26,18 @@
     {% endif %}
 {%- endmacro -%}
 
+{# Display the form search recipe #}
+{%- macro display_form_search_recipe() -%}
+    {% if session %}
+    <div class="flex-container search-container">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="{{ url_for('search') }}">
+            <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Recipe" aria-label="Search Recipe" required>
+            <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    {% endif %}
+{%- endmacro -%}
+
 {# Display the recipes #}
 {%- macro display_recipes(recipe) -%}
 <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag">

@@ -26,7 +26,7 @@ mongo = PyMongo(app)
 # and modified and adapted to my understanding on my project
 # Credit code https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 # Credit code https://harishvc.com/2015/04/15/pagination-flask-mongodb/
-PER_PAGE = 6
+PER_PAGE = 1
 
 
 def get_page_items():
@@ -152,25 +152,29 @@ def search():
     """
     Display the search query that was requested
     """
-    if request.method == "POST":
-        query = request.form.get("query")
-        nav_categories = mongo.db.recipes.distinct("category_name")
-        recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    # get the search query
+    query = request.args.get('query')
 
-        paginated_recipes = paginated(recipes)
-        pagination = get_pagination(recipes)
-        total = len(recipes)
+    # if no query return page not found
+    if not query:
+        return redirect(url_for('error', code=404))
 
-        page_set = {
-            "title": "Search"
-        }
-        return render_template("pages/search.html",
-                               recipes=paginated_recipes,
-                               pagination=pagination,
-                               total=total,
-                               page_set=page_set,
-                               nav_categories=nav_categories)
-    return redirect(url_for("home"))
+    nav_categories = mongo.db.recipes.distinct("category_name")
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+
+    paginated_recipes = paginated(recipes)
+    pagination = get_pagination(recipes)
+    total = len(recipes)
+
+    page_set = {
+        "title": "Search"
+    }
+    return render_template("pages/search.html",
+                           recipes=paginated_recipes,
+                           pagination=pagination,
+                           total=total,
+                           page_set=page_set,
+                           nav_categories=nav_categories)
 
 
 @app.route("/users/<username>", methods=["GET", "POST"])
@@ -655,40 +659,6 @@ def shop():
     """
     Display the shop page
     """
-    if request.method == "POST":
-        # get the query search
-        query = request.form.get("query")
-
-        # get the requested product(s)
-        products = list(mongo.db.shop.find({"$text": {"$search": query}}))
-
-        paginated_products = paginated(products)
-        pagination = get_pagination(products)
-        total = len(products)
-
-        page_set = {
-            "title": "Kitchen Tools"
-        }
-
-        # get the nav categories
-        nav_categories = mongo.db.recipes.distinct("category_name")
-
-        # get the recomanded products
-        recommended_products = mongo.db.shop.find({
-            "$or": [
-                {"_id": ObjectId("60a51442da1161837d99ef35")},
-                {"_id": ObjectId("60a514f3da1161837d99ef36")},
-                {"_id": ObjectId("60a51a00da1161837d99ef3c")}
-            ]
-        })
-        return render_template("pages/shop.html",
-                               page_set=page_set,
-                               nav_categories=nav_categories,
-                               products=paginated_products,
-                               pagination=pagination,
-                               total=total,
-                               recommended_products=recommended_products)
-
     products = list(mongo.db.shop.find())
 
     paginated_products = paginated(products)
@@ -701,6 +671,49 @@ def shop():
 
     nav_categories = mongo.db.recipes.distinct("category_name")
 
+    recommended_products = mongo.db.shop.find({
+        "$or": [
+            {"_id": ObjectId("60a51442da1161837d99ef35")},
+            {"_id": ObjectId("60a514f3da1161837d99ef36")},
+            {"_id": ObjectId("60a51a00da1161837d99ef3c")}
+        ]
+    })
+    return render_template("pages/shop.html",
+                           page_set=page_set,
+                           nav_categories=nav_categories,
+                           products=paginated_products,
+                           pagination=pagination,
+                           total=total,
+                           recommended_products=recommended_products)
+
+
+@app.route("/shop/search", methods=["GET", "POST"])
+def shop_search():
+    """
+    Display the search items from shop page
+    """
+    # get the query search
+    query = request.args.get('query')
+
+    # if no query return page not found
+    if not query:
+        return redirect(url_for('error', code=404))
+
+    # get the requested product(s)
+    products = list(mongo.db.shop.find({"$text": {"$search": query}}))
+
+    paginated_products = paginated(products)
+    pagination = get_pagination(products)
+    total = len(products)
+
+    page_set = {
+        "title": "Kitchen Tools"
+    }
+
+    # get the nav categories
+    nav_categories = mongo.db.recipes.distinct("category_name")
+
+    # get the recomanded products
     recommended_products = mongo.db.shop.find({
         "$or": [
             {"_id": ObjectId("60a51442da1161837d99ef35")},

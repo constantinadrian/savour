@@ -94,7 +94,7 @@
                     </li>
                 </ul>
 
-                <form class="form-inline my-2 my-lg-0 w-auto" method="POST" action="{{ url_for('search') }}">
+                <form class="form-inline my-2 my-lg-0 w-auto" method="GET" action="{{ url_for('search') }}">
                     <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Recipe" aria-label="Search" required>
                     <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
                 </form>

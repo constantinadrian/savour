@@ -721,6 +721,10 @@ main .alert-primary {
     border-color: #3e6da0;
 }
 
+.page-link:focus {
+    box-shadow: none;
+}
+
 .pagination {
     display: -webkit-box;
     display: -ms-flexbox;
