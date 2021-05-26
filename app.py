@@ -596,13 +596,15 @@ def add_categories():
     # check if user wants to add or edit category
     if category_type == "Add Category":
 
-        check_category = mongo.db.categories.count_documents(
+        # check if the category exists in our database
+        category_exists = mongo.db.categories.count_documents(
             {"category_name": category_name.lower()})
 
-        if check_category:
+        if category_exists:
             flash("Category Already Exists", category="alert-warning")
             return redirect(url_for('manage_categories'))
 
+        # add new category in database
         new_category = {
             "category_name": category_name.lower()
         }
@@ -615,6 +617,15 @@ def add_categories():
         # check if the category id hasn't been change
         if not is_valid(category_id):
             return redirect(url_for('error', code=404))
+
+        # check if the user edits the category is not submitting the same one
+        check_category = mongo.db.categories.count_documents(
+            {"category_name": category_name.lower()})
+
+        if check_category:
+            flash("You have submited the same category",
+                  category="alert-warning")
+            return redirect(url_for('manage_categories'))
 
         # update category name in category collection
         old_category = mongo.db.categories.find_one_and_update(
