@@ -616,10 +616,14 @@ main .alert-primary {
 } 
 
 @media only screen and (max-width: 479px) {
+    .recipes-section-row-recipes a,
+    .shop-section-row-products a {
+        width: 80%;
+    }
+        
     .recipes-section-row-recipes .card,
     .shop-section-row-products .card {
-        width: 80%;
-        margin: auto;
+        width: 100%;
     }
 }
 /* ----------------------------- End of Recipe section ------------------------------- */
