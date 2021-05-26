@@ -714,6 +714,10 @@ main .alert-primary {
     font-size: 130%;
 }
 
+.page-item.active {
+    border-bottom: none;
+}
+
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
