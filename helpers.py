@@ -19,8 +19,10 @@ def login_required(f):
     return decorated_function
 
 
-# Credit Function https://www.programcreek.com/python/example/87925/bson.errors.InvalidId
-# Project: vnpy_crypto   Author: birforce   File: objectid.py    License: MIT License
+# Credit Function
+#   https://www.programcreek.com/python/example/87925/bson.errors.InvalidId
+# Project: vnpy_crypto   Author: birforce
+# File: objectid.py    License: MIT License
 def is_valid(oid):
     """Checks if a `oid` string is valid or not.
 

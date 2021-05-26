@@ -24,7 +24,8 @@ mongo = PyMongo(app)
 
 # Pagination for recipes was inspired from this two website
 # and modified and adapted to my understanding on my project
-# Credit code https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+# Credit code
+#    https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 # Credit code https://harishvc.com/2015/04/15/pagination-flask-mongodb/
 PER_PAGE = 6
 
