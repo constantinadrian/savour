@@ -146,8 +146,8 @@ $(document).ready(function () {
             }  
         },
         submitHandler: function(form) {
-            removeIngredientsNumbers()
-            removeMethodsNumbers()
+            removeIngredientsNumbers();
+            removeMethodsNumbers();
             form.submit();
         }   
     });
@@ -156,15 +156,13 @@ $(document).ready(function () {
     // as we use request.form.getlist to get the array on ingredients
     function removeIngredientsNumbers() {
         $(".js-recipe-ingredient").each(function(){
-            $(this).attr("name", "recipe-ingredient")
+            $(this).attr("name", "recipe-ingredient");
         });
     }
 
     function removeMethodsNumbers() {
-        console.log("function")
         $(".js-recipe-methods").each(function(){
-            console.log("change name")
-            $(this).attr("name", "recipe-methods")
+            $(this).attr("name", "recipe-methods");
         });
     }
 
@@ -181,7 +179,7 @@ $(document).ready(function () {
                 messages: {
                     required: "Please fill out ingredient field"
                 }
-            })
+            });
         });
 
         // add rules for methods created dynamically
@@ -192,7 +190,7 @@ $(document).ready(function () {
                 messages: {
                     required: "Please fill out step field"
                 }
-            })
+            });
         });
 
         // if fields are invalid prevent submit form
@@ -208,29 +206,27 @@ $(document).ready(function () {
                 // if only one ingredients call the function to get the right position for the scroll
                 // this is because the first ingredient has the label
                 if ($(".ingredient").length == 1) {
-                    scrollNewPosition = scrollPosition()
+                    scrollNewPosition = scrollPosition();
                 }
                 // if the error is on any ingredients were created dynamically
                 // calculate the scroll position without the label position 
                 // (as this fields don't have labels) 
                 else {
-                    scrollNewPosition = $('.has-error:visible:first').offset().top 
-                                        - $('.create-recipes-section').offset().top; 
+                    scrollNewPosition = $('.has-error:visible:first').offset().top- $('.create-recipes-section').offset().top; 
                 }
             }
             // check if the error is on methods fields
             else if ($('.has-error:visible:first').parent().prop('className') == "methods") {
                 if ($(".methods").length == 1) {
-                    scrollNewPosition = scrollPosition()
+                    scrollNewPosition = scrollPosition();
                 }
                 else {
-                    scrollNewPosition = $('.has-error:visible:first').offset().top 
-                                        - $('.create-recipes-section').offset().top; 
+                    scrollNewPosition = $('.has-error:visible:first').offset().top - $('.create-recipes-section').offset().top; 
                 }
             }
             // for all other fileds with error call the function to get the exact position for the scroll
             else {
-                scrollNewPosition = scrollPosition()
+                scrollNewPosition = scrollPosition();
             }
             
             // scroll to first element on top that has the error
@@ -258,17 +254,13 @@ $(document).ready(function () {
         // check if position of label didn't change 
         // this happens when the .has-error class is being added
         if (scrollToError.offset().top < labelError.offset().top) {
-            positionScrollError = scrollToError.offset().top 
-                - formContainer.offset().top 
-                - (labelError.offset().top - scrollToError.offset().top);
+            positionScrollError = scrollToError.offset().top - formContainer.offset().top - (labelError.offset().top - scrollToError.offset().top);
         }
         // by default the label position is not change
         else {
-            positionScrollError = scrollToError.offset().top 
-                - formContainer.offset().top 
-                + (labelError.offset().top - scrollToError.offset().top);
+            positionScrollError = scrollToError.offset().top - formContainer.offset().top + (labelError.offset().top - scrollToError.offset().top);
         }
-        return positionScrollError
+        return positionScrollError;
     }
 
     // Use jQuery validate for add/edit categories form

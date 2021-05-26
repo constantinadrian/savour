@@ -16,9 +16,9 @@ function addIngredients() {
     if (ingredients.length != 21) {
         let listItem = document.createElement('li');
         
-        inputField = `
-                        <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-${ingredients.length}" required>
-                     `;   
+        let inputField = `
+                            <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-${ingredients.length}" required>
+                         `;   
 
         listItem.setAttribute("class", "ingredient");
         listItem.innerHTML = inputField;
@@ -41,7 +41,7 @@ function removeIngredients() {
 
     // check if is more than one otherwise hide the remove btn
     if (ingredients.length == 1) {
-        $(".btn-remove-ingredients").css("display", "none")
+        $(".btn-remove-ingredients").css("display", "none");
     }
 }
 
@@ -60,18 +60,15 @@ function addMethods() {
     if (methods.length != 15) {
         let stepItem = document.createElement('li');
         
-        textareaField = `
-                            <textarea class="form-control js-recipe-methods" name="recipe-methods-${methods.length}" rows="1" maxlength="320" required></textarea>
-                        `;   
+        let textareaField = `
+                                <textarea class="form-control js-recipe-methods" name="recipe-methods-${methods.length}" rows="1" maxlength="320" required></textarea>
+                            `;   
 
         stepItem.setAttribute("class", "methods");
         stepItem.innerHTML = textareaField;
 
         methodsList.insertBefore(stepItem, methodsList.lastChild.nextSibling);
 
-    }
-    else {
-        console.log("You reach maximum of steps fields");
     }
 
     // reasign the new numbers of fields
@@ -94,7 +91,7 @@ function removeMethods() {
 
     // check if is more than one otherwise hide the remove btn
     if (methods.length == 1) {
-        $(".btn-remove-steps").css("display", "none")
+        $(".btn-remove-steps").css("display", "none");
     }
 }
 
@@ -125,27 +122,27 @@ resizeTextarea(textarea);
 
 // Add more ingredients fields
 $(".btn-add-ingredients").click(function(){
-    addIngredients()
+    addIngredients();
 });
 
 // Remove ingredients fields
 $(".btn-remove-ingredients").click(function(){
-    removeIngredients()
+    removeIngredients();
 });
 
 // Add more methods fields
 $(".btn-add-steps").click(function(){
-    addMethods()
+    addMethods();
 });
 
 // Remove methods fields
 $(".btn-remove-steps").click(function(){
-    removeMethods()
+    removeMethods();
 });
 
 // Resize textarea on window resize
 $(window).resize(function() {
-    windowResize(textarea)
+    windowResize(textarea);
 });
 
 // If edit recipe was requested check if we need to show the remove ingredients and steps button

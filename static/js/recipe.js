@@ -1,12 +1,12 @@
 // Check if the value of an element has been changed
 $(".rating-form input").on('change', function() {
     // disable the rating form once user has rated
-    $(".rating-stars").addClass("rating--not-allowed")
+    $(".rating-stars").addClass("rating--not-allowed");
     $(".star").addClass("disabled");
 
     // Trigger the submit event manually
     $('#rating-form').submit();
-})
+});
 
 /**
  * Function to make the AJAX call to server
@@ -14,23 +14,23 @@ $(".rating-form input").on('change', function() {
  */
 $("#rating-form").submit(function(event) {
     // prevent from submitting a form
-    event.preventDefault()
+    event.preventDefault();
     // make an AJAX call to server side
     $.ajax({
         url: $(event.target).prop("action"),
         data: $('form').serialize(),
         type: 'POST',
         success: function(response) {
-            responseObj = JSON.parse(response)
+            let responseObj = JSON.parse(response);
 
             if (responseObj.status == "success"){
-                updateRecipeRating(responseObj.rating)
+                updateRecipeRating(responseObj.rating);
             }
             else if (responseObj.status == "denied") {
-                displayDeniedMessage()
+                displayDeniedMessage();
             }
             else if (responseObj.status == "not logged in") {
-                displayRejectMessage()
+                displayRejectMessage();
             }
             else {
                 displayErrorMessage();
@@ -40,7 +40,7 @@ $("#rating-form").submit(function(event) {
             displayErrorMessage();
         }
     });
-})
+});
 
 /**
  * Function to handle the success response from AJAX call
@@ -53,10 +53,10 @@ function updateRecipeRating(response) {
         recipeRatingStar.removeChild(recipeRatingStar.lastElementChild);
     }
     // display recipe new rating after user rated
-    $(".recipe-total-rating").html(response.toFixed(1))
+    $(".recipe-total-rating").html(response.toFixed(1));
     
     // get the updated rating 
-    let ratedStar = response
+    let ratedStar = response;
 
     // use a for loop to display new rating 5 stars from response
     for (let i = 0; i < 5; i++) {
@@ -86,23 +86,23 @@ function updateRecipeRating(response) {
             recipeRatingStar.appendChild(span);
         }
         else {
-        recipeRatingStar.insertBefore(span, recipeRatingStar.lastChild.nextSibling);
+            recipeRatingStar.insertBefore(span, recipeRatingStar.lastChild.nextSibling);
         }
         // decrement the actual rating value to check the next display for the star
         ratedStar -= 1;
     }
     // Display message to the user after successful rating
-    $(".rating-ajax-response").html("Thank you for rating!")
+    $(".rating-ajax-response").html("Thank you for rating!");
 }
 
 /**
  * Function to handle the denied response from AJAX call
  */
 function displayDeniedMessage() {
-    $(".ratings:checked").prop("checked", false)
-    displayResponse = `
-                        <p>Sorry, the owner cannot rate it's own recipe.</p>
-                      `;
+    $(".ratings:checked").prop("checked", false);
+    let displayResponse = `
+                            <p>Sorry, the owner cannot rate it's own recipe.</p>
+                          `;
     $(".rating-ajax-response").append(displayResponse);
 }
 
@@ -110,11 +110,11 @@ function displayDeniedMessage() {
  * Function to handle the reject response from AJAX call
  */
 function displayRejectMessage() {
-    $(".ratings:checked").prop("checked", false)
-    displayResponse = `
-                        <p>Savour does not accept guest ratings.</p>
-                        <p>Please <a class="login-ancor-tag" href="/login">Login</a> or <a class="register-ancor-tag" href="/register">Register</a></p>
-                      `;
+    $(".ratings:checked").prop("checked", false);
+    let displayResponse = `
+                            <p>Savour does not accept guest ratings.</p>
+                            <p>Please <a class="login-ancor-tag" href="/login">Login</a> or <a class="register-ancor-tag" href="/register">Register</a></p>
+                          `;
     $(".rating-ajax-response").append(displayResponse);
 }
 
@@ -122,10 +122,10 @@ function displayRejectMessage() {
  * Function to handle the error response from AJAX call
  */
 function displayErrorMessage() {
-    $(".ratings:checked").prop("checked", false)
-    displayResponse = `
-                        <p>Sorry, we could not process your request.</p>
-                        <p>If the problem persists please <a class="contact-ancor-tag" href="/contact">contact us</a></p>
-                      `;
+    $(".ratings:checked").prop("checked", false);
+    let displayResponse = `
+                            <p>Sorry, we could not process your request.</p>
+                            <p>If the problem persists please <a class="contact-ancor-tag" href="/contact">contact us</a></p>
+                          `;
     $(".rating-ajax-response").append(displayResponse);
 }
