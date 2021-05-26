@@ -540,13 +540,11 @@ def delete():
         if check_category:
             flash("Cannot Delete Category", category="alert-danger")
             flash("Category Already in Use", category="alert-danger")
-            return redirect(url_for(
-                "profile", username=session["user"]))
+            return redirect("/manage_categories")
 
         mongo.db.categories.delete_one({"_id": ObjectId(delete_item_id)})
         flash("Category Deleted Successfully", category="alert-success")
-        return redirect(url_for(
-                "profile", username=session["user"]))
+        return redirect("/manage_categories")
 
     return redirect(url_for('error', code=404))
 
@@ -594,7 +592,7 @@ def add_categories():
         return redirect(url_for('error', code=404))
 
     # check if user wants to add or edit category
-    if category_type == "Add Category":
+    if category_type == "Add":
 
         # check if the category exists in our database
         category_exists = mongo.db.categories.count_documents(
@@ -613,7 +611,7 @@ def add_categories():
         flash("Category Added Successfully", category="alert-success")
         return redirect(url_for('manage_categories'))
 
-    elif category_type == "Edit Category":
+    elif category_type == "Edit":
         # check if the category id hasn't been change
         if not is_valid(category_id):
             return redirect(url_for('error', code=404))

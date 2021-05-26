@@ -188,7 +188,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h5 class="modal-title" id="editModalLabel"></h5>
+                    <h5 class="modal-title" id="editModalLabel"><span class="edit-modal-title-item"></span> Category</h5>
                 </div>
                 <form id='add_categories' action="{{ url_for('add_categories') }}" method="POST" autocomplete="off">
                     <input type="text" class="form-control" id="category-id" name="category-id" form="add_categories" value="" required readonly hidden>
@@ -216,7 +216,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this <span class="modal-title-item"></span>?</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this <span class="delete-modal-title-item"></span>?</h5>
                     <p class="modal-paragraph"><i class="fas fa-exclamation-triangle fa-3x"></i>Warning! Your action cannot be undone.</p>
                 </div>
                 <form id='delete-form' action="{{ url_for('delete') }}" method="POST">

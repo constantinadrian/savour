@@ -23,7 +23,7 @@ $(document).ready(function(){
 
         // Update the modal's content
         let modal = $(this)
-        modal.find('.modal-title-item').text(item);
+        modal.find('.delete-modal-title-item').text(item);
         modal.find('#delete-item-id').val(item_id);
         modal.find('#delete-item').val(item);
     })
@@ -31,13 +31,13 @@ $(document).ready(function(){
     // Clear the fields from the modal when the modal is hidden / close
     $('#deleteModal').on('hidden.bs.modal', function () {
         var modal = $(this);
-        modal.find('.modal-title-item').text('');
+        modal.find('.delete-modal-title-item').text('');
         modal.find('#delete-item-id').val('');
         modal.find('#delete-item').val('');
     });
     // End Credit code
 
-       // Update the modal content with information that has to be deleted
+    // Update the modal content with information that has to be deleted
     // Credit code https://getbootstrap.com/docs/4.6/components/modal/
     $('#editModal').on('show.bs.modal', function (event) {
         // Button that triggered the modal
@@ -50,7 +50,7 @@ $(document).ready(function(){
 
         // Update the modal's content
         let modal = $(this)
-        modal.find('.modal-title').text(type);
+        modal.find('.edit-modal-title-item').text(type);
         modal.find('#category-id').val(item_id);
         modal.find('#category-name').val(item);
         modal.find('#category-type').val(type);
@@ -59,7 +59,7 @@ $(document).ready(function(){
     // Clear the fields from the modal when the modal is hidden / close
     $('#editModal').on('hidden.bs.modal', function () {
         var modal = $(this);
-        modal.find('.modal-title').text('');
+        modal.find('.edit-modal-title-item').text('');
         modal.find('#category-id').val('');
         modal.find('#category-name').val('');
         modal.find('#category-type').val('');
