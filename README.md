@@ -365,7 +365,7 @@ Savour is a web app build to attract all categories of users that are interested
 
     - [https://jqueryvalidation.org/documentation/](https://jqueryvalidation.org/documentation/) - used for validation on Frontend
 
-    - [Change the broken image URL](https://stackoverflow.com/questions/39326500/why-does-onerror-event-not-work-for-img-tag-when-jquery-is-put-in-footer) - used to change the broken image URL on recipe cards, as my function did not work properly
+    - [w3schools](https://www.w3schools.com/jsref/event_onerror.asp) - used if an error occurs when loading an image
 
     - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events) - for touch events on IOS as the navbar didn't close on click event on IOS when the click was on document. Also used MDN Web Docs for general info
 
