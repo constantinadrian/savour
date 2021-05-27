@@ -835,13 +835,7 @@ def shop():
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # get the recomanded products
-    recommended_products = mongo.db.shop.find({
-        "$or": [
-            {"_id": ObjectId("60a51442da1161837d99ef35")},
-            {"_id": ObjectId("60a514f3da1161837d99ef36")},
-            {"_id": ObjectId("60a51a00da1161837d99ef3c")}
-        ]
-    })
+    recommended_products = mongo.db.shop.aggregate([{'$sample': {'size': 3}}])
     return render_template("pages/shop.html",
                            page_set=page_set,
                            nav_categories=nav_categories,
