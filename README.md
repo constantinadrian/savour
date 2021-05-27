@@ -373,7 +373,11 @@ Savour is a web app build to attract all categories of users that are interested
 
   - #### Content
 
-    - 
+    - [Taste Life](https://www.tasteshow.com/) - used as general inspiration
+
+    - [Great British Chefs](https://www.greatbritishchefs.com/) - used as general inspiration
+
+    - All Recipes uploaded on this project by admin were taken from [Great British Chefs](https://www.greatbritishchefs.com/) and they own the copyright
 
   - #### Media
 
