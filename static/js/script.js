@@ -67,19 +67,6 @@ $(document).ready(function(){
     // End Credit code
 });
 
-// Change the brocken image links from the page
-// Credit code https://stackoverflow.com/questions/39326500/why-does-onerror-event-not-work-for-img-tag-when-jquery-is-put-in-footer
-$("img").each(function(i,image){
-    $("<img/>").attr("src",$(image).attr("src")).one('error', function() {             
-        $(image).attr( "src", "/static/img/pexels-chimene-gaspar-1464880.jpg" );
-    });
-});
- 
-$("img").one("error", function(){      
-  $(this).attr( "src", "/static/img/pexels-chimene-gaspar-1464880.jpg" );  
-});
-// End Credit Code
-
 /**
  * Function to make the AJAX call to server
  * @param {Object} event - Submit event for subscribe form

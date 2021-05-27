@@ -7,7 +7,7 @@
         {% for recipe in sugestion_recipe %}
             <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="sugestion-recipe-link">
                 <figure class="category-banner-section">
-                    <img src="{{ recipe.image_url }}" class="recipes-img-baner" alt="Recipe Image">
+                    <img src="{{ recipe.image_url }}" class="recipes-img-baner" alt="Recipe Image" onerror="this.onerror=null;this.src='/static/img/pexels-chimene-gaspar-1464880.jpg';">
                     <div class="category-textbox">
                         <h1 class='section-title'>Our</h1>
                         <h1 class='section-title'>Suggestion</h1>
