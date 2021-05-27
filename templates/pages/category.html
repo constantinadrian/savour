@@ -22,7 +22,12 @@
                 <div class="col"><hr class="section-hr-right"></div>
             </div>
 
-            {{ display_form_search_recipe() }}
+            <div class="flex-container search-container">
+                <form class="form-inline my-2 my-lg-0" method="GET" action="{{ url_for('category_search', category=category) }}">
+                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Recipe in this category" aria-label="Search Recipe" required>
+                    <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
 
             <div class="recipes-section-row-recipes">
                 {% if recipes %}

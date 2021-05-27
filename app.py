@@ -180,6 +180,47 @@ def category(category):
                            category=category)
 
 
+@app.route("/category/<category>/search", methods=["GET", "POST"])
+def category_search(category):
+    """
+    Display the search recipes from requested category only
+    """
+    # get the search query
+    query = request.args.get('query')
+
+    # if no query return page not found
+    if not query:
+        return redirect(url_for('error', code=404))
+
+    # get the categories that are in use for navigation menu
+    nav_categories = mongo.db.recipes.distinct("category_name")
+
+    # the query for existing recipes on the database for specific search query
+    recipes = list(mongo.db.recipes.find({"category_name": category, "$text": {"$search": query}}))
+
+    # call the paginated function to display only the
+    # specific number of recipes per page
+    paginated_recipes = paginated(recipes)
+
+    # get the page pagination
+    pagination = get_pagination(recipes)
+
+    # total number of recipes found
+    total = len(recipes)
+
+    # set up the page_set object
+    page_set = {
+        "title": "Search"
+    }
+    return render_template("pages/category.html",
+                        recipes=paginated_recipes,
+                        pagination=pagination,
+                        total=total,
+                        nav_categories=nav_categories,
+                        page_set=page_set,
+                        category=category)
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """
@@ -879,13 +920,8 @@ def shop_search():
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # get the recomanded products
-    recommended_products = mongo.db.shop.find({
-        "$or": [
-            {"_id": ObjectId("60a51442da1161837d99ef35")},
-            {"_id": ObjectId("60a514f3da1161837d99ef36")},
-            {"_id": ObjectId("60a51a00da1161837d99ef3c")}
-        ]
-    })
+    # get the recomanded products
+    recommended_products = mongo.db.shop.aggregate([{'$sample': {'size': 3}}])
     return render_template("pages/shop.html",
                            page_set=page_set,
                            nav_categories=nav_categories,
