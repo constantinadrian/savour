@@ -343,9 +343,33 @@ Savour is a web app build to attract all categories of users that are interested
 
   - #### Code
 
-    - [Bootstrap](https://getbootstrap.com/) - 
+    - Code for function sendMail was adapted from Full Stack Development Course - Interactive Frontend Development - Resume Project at [Code Institute](https://codeinstitute.net/)
+
+    - [SweetAlert2](https://sweetalert2.github.io/#download) - for box alert hat was used on the contact form as a response generated on user action when the form is submitted
+
+    - [Bootstrap](https://getbootstrap.com/) – CSS framework used to help with the navbar, cards, forms, modal and other classes that were used to make the app responsive.
+
+    - [Bootstrap Modal JS](https://getbootstrap.com/docs/4.6/components/modal/) - Code snipet adapted for update the modal content with information that has to be edited / deleted
 
     - [Favicon](https://favicon.io/favicon-converter/) - for the code for use in this project; the favicon was created by the developer and saved in all sizes that were needed
+
+    - Pagination was inspired from this two website and modified and adapted to my understanding on my project
+
+        - [https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9) 
+
+        - [https://harishvc.com/2015/04/15/pagination-flask-mongodb/](https://harishvc.com/2015/04/15/pagination-flask-mongodb/)
+    
+    - [Decorate routes to require login](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/) - function adapted and used for user authentication in my project
+
+    - [bson.errors.InvalidId](https://www.programcreek.com/python/example/87925/bson.errors.InvalidId) - used to check the ObjectId of each recipe/category before edit or delete
+
+    - [https://jqueryvalidation.org/documentation/](https://jqueryvalidation.org/documentation/) - used for validation on Frontend
+
+    - [Change the broken image URL](https://stackoverflow.com/questions/39326500/why-does-onerror-event-not-work-for-img-tag-when-jquery-is-put-in-footer) - used to change the broken image URL on recipe cards, as my function did not work properly
+
+    - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events) - for touch events on IOS as the navbar didn't close on click event on IOS when the click was on document. Also used MDN Web Docs for general info
+
+    - [Jinja Docs](https://jinja.palletsprojects.com/en/3.0.x/templates/#import) - for import and general info
 
   - #### Content
 
