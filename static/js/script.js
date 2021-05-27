@@ -37,7 +37,7 @@ $(document).ready(function(){
     });
     // End Credit code
 
-    // Update the modal content with information that has to be deleted
+    // Update the modal content with information that has to be edited
     // Credit code https://getbootstrap.com/docs/4.6/components/modal/
     $('#editModal').on('show.bs.modal', function (event) {
         // Button that triggered the modal
