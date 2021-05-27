@@ -74,6 +74,11 @@
                             {% endfor %}
                         </div>
                     </li>
+                    {% if session["user"] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('add_recipe') }}" aria-label="Add Recipe Page">Add Recipe</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('shop') }}" aria-label="Shop Page">Shop</a>
                     </li>
@@ -93,11 +98,6 @@
                         <a class="nav-link" href="{{ url_for('login') }}" aria-label="Login Page">Login</a>
                     </li>
                 </ul>
-
-                <form class="form-inline my-2 my-lg-0 w-auto" method="GET" action="{{ url_for('search') }}">
-                    <input class="form-control mr-sm-2 form-search" type="text" name="query" placeholder="Search Recipe" aria-label="Search" required>
-                    <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit">Search</button>
-                </form>
                 {% endif %}
             </div>
         </nav>
