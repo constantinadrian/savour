@@ -1,10 +1,10 @@
 # Savour
 
-![Savour](static/readme/savour.png)
+![Savour](static/readme/savour.jpg)
 
-Savour is a web app build to attract all categories of users that are interrested in cooking, eager to lear new recipes and also to be able to share their own recipe from different cuisine. 
+Savour is a web app build to attract all categories of users that are interested in cooking, eager to learn new recipes and also be able to share their own recipe from different cuisine. 
 
-[View live project here]()
+[View live project here](https://savour-food.herokuapp.com/)
 
 ## Table of Contents
 
@@ -168,11 +168,11 @@ Savour is a web app build to attract all categories of users that are interreste
 
 - #### Skeleton
 
-    -  Phone Wireframes: [Home](static/wireframes/index-phone.png) [Recipe]()
+    -  Phone Wireframes: [Home](static/wireframes/phone/index-phone.png) [Recipes](static/wireframes/phone/all-recipes-phone.png) [Category](static/wireframes/phone/category-phone.png) [Contact](static/wireframes/phone/contact-phone.png) [Add Category](static/wireframes/phone/create-category-phone.png) [Add Recipe](static/wireframes/phone/create-recipe-phone.png) [Delete Category](static/wireframes/phone/delete-category-phone.png) [Delete Recipe](static/wireframes/phone/delete-recipe-phone.png) [Edit Category](static/wireframes/phone/edit-category-phone.png) [Edit Recipe](static/wireframes/phone/edit-recipe-phone.png) [Login](static/wireframes/phone/login-phone.png) [Manage Categories](static/wireframes/phone/manage-category-phone.png) [Profile Page](static/wireframes/phone/profile-phone.png) [Recipe Page](static/wireframes/phone/recipe-phone.png) [Register](static/wireframes/phone/register-phone.png) [Shop](static/wireframes/phone/shop-phone.png) 
 
-    -  Tablet Wireframes: [Home](static/wireframes/index-tablet.png) [Recipe]()
+    -  Tablet Wireframes: [Home](static/wireframes/tablet/index-tablet.png) [Recipes](static/wireframes/tablet/all-recipes-tablet.png) [Category](static/wireframes/tablet/category-tablet.png) [Contact](static/wireframes/tablet/contact-tablet.png) [Add Category](static/wireframes/tablet/create-category-tablet.png) [Add Recipe](static/wireframes/tablet/create-recipe-tablet.png) [Delete Category](static/wireframes/tablet/delete-category-tablet.png) [Delete Recipe](static/wireframes/tablet/delete-recipe-tablet.png) [Edit Category](static/wireframes/tablet/edit-category-tablet.png) [Edit Recipe](static/wireframes/tablet/edit-recipe-tablet.png) [Login](static/wireframes/tablet/login-tablet.png) [Manage Categories](static/wireframes/tablet/manage-category-tablet.png) [Profile Page](static/wireframes/tablet/profile-tablet.png) [Recipe Page](static/wireframes/tablet/recipe-tablet.png) [Register](static/wireframes/tablet/register-tablet.png) [Shop](static/wireframes/tablet/shop-tablet.png) 
 
-    -  Desktop Wireframes: [Home](static/wireframes/index-desktop.png) [Recipe]()
+    -  Desktop Wireframes: [Home](static/wireframes/desktop/index-page.png) [Recipes](static/wireframes/desktop/all-recipes-page.png) [Category](static/wireframes/desktop/category-page.png) [Contact](static/wireframes/desktop/contact-page.png) [Add Category](static/wireframes/desktop/create-category-page.png) [Add Recipe](static/wireframes/desktop/create-recipe-page.png) [Delete Category](static/wireframes/desktop/delete-category-page.png) [Delete Recipe](static/wireframes/desktop/delete-recipe-page.png) [Edit Category](static/wireframes/desktop/edit-category-page.png) [Edit Recipe](static/wireframes/desktop/edit-recipe-page.png) [Login](static/wireframes/desktop/login-page.png) [Manage Categories](static/wireframes/desktop/manage-category-page.png) [Profile Page](static/wireframes/desktop/profile-page.png) [Recipe Page](static/wireframes/desktop/recipe-page.png) [Register](static/wireframes/desktop/register-page.png) [Shop](static/wireframes/desktop/shop-page.png) 
 
 [Back to Top](#table-of-contents)
 
@@ -184,15 +184,23 @@ Savour is a web app build to attract all categories of users that are interreste
 
         - Palette:
 
-            ![Palette Colors](static/readme/palette-colors.png) 
+            ![Palette Colors](static/readme/palette_coolors.png) 
 
     -  ##### Typography
 
-        - For the consistency...
+        - For this project I choose three types of Google Fonts: 'Crete Round', 'Lato' and 'Mr Dafoe'.
+
+          For the consistency:
+
+            - 'Mr Dafoe' fonts were used for the welcome text on landing page when user enters the site
+
+            - 'Crete Round' fonts were used for the recipes and products title
+
+            - 'Lato' fonts were used for the section titles and all other paragraphs within the page.
 
     -  ##### Imagery
 
-        - 
+        - Because imagery is important I have carefully chosen the background hero image on landing page, as well as all others banners within the site that will reflect the site and each page purpose.
 
 [Back to Top](#table-of-contents)
 
@@ -214,9 +222,9 @@ Savour is a web app build to attract all categories of users that are interreste
 
   - #### Frameworks, Libraries & Programs:
 
-    - [Bootstrap](https://getbootstrap.com/) – CSS framework used to help with the navbar, contact form, and other classes that were used to make the app responsive.
+    - [Bootstrap](https://getbootstrap.com/) – CSS framework used to help with the navbar, cards, forms, modal and other classes that were used to make the app responsive.
 
-    - [Google Fonts](https://fonts.google.com/) - to import the font-family used in the website: PT Serif.
+    - [Google Fonts](https://fonts.google.com/) - to import the font-family used in the website: 'Crete Round', 'Lato' and 'Mr Dafoe'.
 
     - [Font Awesome](https://fontawesome.com/) - icons are a visual way to help add meaning to elements.
 
@@ -261,7 +269,7 @@ Savour is a web app build to attract all categories of users that are interreste
 
     - [Coolors](https://coolors.co/) - used for color palette
 
-    - [Adobe Photoshop 2020](https://www.adobe.com/ie/products/photoshop.html?gclid=Cj0KCQjwrsGCBhD1ARIsALILBYpcZ9gNDfvVo1tJUaPzX_D5Bbo7kr6tDseIjZmjRTGbiBTqIURjULAaAvGnEALw_wcB&mv=search&sdid=LZ32SYVR&ef_id=Cj0KCQjwrsGCBhD1ARIsALILBYpcZ9gNDfvVo1tJUaPzX_D5Bbo7kr6tDseIjZmjRTGbiBTqIURjULAaAvGnEALw_wcB:G:s&s_kwcid=AL!3085!3!441664403997!b!!g!!%2Bphotoshop!1423510553!55397634865) - used to create logo and favicon for this project
+    - [Adobe Photoshop 2020](https://www.adobe.com/ie/products/photoshop.html?gclid=Cj0KCQjwrsGCBhD1ARIsALILBYpcZ9gNDfvVo1tJUaPzX_D5Bbo7kr6tDseIjZmjRTGbiBTqIURjULAaAvGnEALw_wcB&mv=search&sdid=LZ32SYVR&ef_id=Cj0KCQjwrsGCBhD1ARIsALILBYpcZ9gNDfvVo1tJUaPzX_D5Bbo7kr6tDseIjZmjRTGbiBTqIURjULAaAvGnEALw_wcB:G:s&s_kwcid=AL!3085!3!441664403997!b!!g!!%2Bphotoshop!1423510553!55397634865) - used to create the savour logo (all rights reserved) and favicon for this project
 
 [Back to Top](#table-of-contents)
 
