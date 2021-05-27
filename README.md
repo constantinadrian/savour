@@ -377,7 +377,11 @@ Savour is a web app build to attract all categories of users that are interested
 
   - #### Media
 
-    - 
+    - All photos used on this project as hero image, banners, default banner and default recipe image were from:
+
+        - [Pexels](https://www.pexels.com/)
+
+        - [Pixabay](https://pixabay.com/)
 
   - #### Acknowledgements
 
