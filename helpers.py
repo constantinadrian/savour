@@ -42,6 +42,9 @@ def is_valid(oid):
 
 
 def check_form(form_data):
+    """
+    Function that perform a small check on submited form data
+    """
     # check if there are any empty fields
     for key, value in form_data:
         if value == "":
@@ -142,7 +145,7 @@ def update_recipe_rating(mongo, rating, recipe):
 
         return round(weighted_average, 1)
 
-    # if user vote for second time updated the old rate and new rate
+    # if user vote for second time updated the old rate with new rate
     # define path for old rating path
     old_rated_field = "ratings.rated_stars." + str(old_user_rating)
 
