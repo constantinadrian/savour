@@ -34,6 +34,11 @@ def get_page_items():
     # get the page number
     try:
         page = int(request.args.get('page', 1))
+
+        # check if page is positive integer
+        if page <= 0:
+            abort(404)
+
     except ValueError:
         abort(404)
 
@@ -44,6 +49,10 @@ def get_page_items():
     else:
         try:
             per_page = int(per_page)
+
+            # check if per_page is positive integer
+            if per_page <= 0:
+                abort(404)
         except ValueError:
             abort(404)
 
@@ -747,7 +756,8 @@ def manage_categories():
         return redirect(url_for('error', code=403))
 
     # query for all categories from categories collection
-    manage_categories = list(mongo.db.categories.find().sort("category_name", 1))
+    manage_categories = list(mongo.db.categories.find().sort(
+        "category_name", 1))
 
     # get the categories that are in use for navigation menu
     nav_categories = mongo.db.recipes.distinct("category_name")
