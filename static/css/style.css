@@ -586,8 +586,8 @@ main .alert-primary {
 } 
 
 @media only screen and (max-width: 479px) {
-    .recipes-section-row-recipes a,
-    .shop-section-row-products a {
+    .recipes-section-row-recipes a.recipe-ancor-tag,
+    .shop-section-row-products a.shop-ancor-tag {
         width: 80%;
     }
         
