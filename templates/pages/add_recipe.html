@@ -75,7 +75,7 @@
                                                 </li>
                                             {% else %}
                                                 <li class="ingredient">
-                                                    <input type="text" class="form-control" name="recipe-ingredient" value="{{- ingredient -}}" required>
+                                                    <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-{{- loop.index -}}" value="{{- ingredient -}}" required>
                                                 </li>
                                             {% endif %}
                                         {% endfor %}
@@ -121,7 +121,7 @@
                                                 </li>
                                             {% else %}
                                                 <li class="methods">
-                                                    <textarea class="form-control" name="recipe-methods" rows="1" maxlength="320" required>
+                                                    <textarea class="form-control js-recipe-methods" name="recipe-methods-{{- loop.index -}}" rows="1" maxlength="320" required>
                                                         {{- method -}}
                                                     </textarea>
                                                 </li>
