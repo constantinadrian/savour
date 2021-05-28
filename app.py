@@ -747,10 +747,20 @@ def manage_categories():
         return redirect(url_for('error', code=403))
 
     # query for all categories from categories collection
-    manage_categories = mongo.db.categories.find().sort("category_name", 1)
+    manage_categories = list(mongo.db.categories.find().sort("category_name", 1))
 
     # get the categories that are in use for navigation menu
     nav_categories = mongo.db.recipes.distinct("category_name")
+
+    # call the paginated function to display only the
+    # specific number of categories per page
+    paginated_categories = paginated(manage_categories)
+
+    # get the page pagination
+    pagination = get_pagination(manage_categories)
+
+    # total number of categories found
+    total = len(manage_categories)
 
     # set up the page_set object
     page_set = {
@@ -760,7 +770,9 @@ def manage_categories():
     return render_template("pages/manage_categories.html",
                            page_set=page_set,
                            nav_categories=nav_categories,
-                           manage_categories=manage_categories)
+                           manage_categories=paginated_categories,
+                           pagination=pagination,
+                           total=total)
 
 
 @app.route("/add_categories", methods=["POST"])

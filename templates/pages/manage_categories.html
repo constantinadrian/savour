@@ -21,23 +21,31 @@
     <section class="recipes-section">
         <div class="container">
             <div class="recipes-section-row-recipes">
-                {% for category in manage_categories %}
-                    <div class="card category-card">
-                        <div class="card-body">
-                            <p class="category-card-title">{{ category.category_name|title }}</p>
-                            <hr>
-                            <div class="card-body-footer">
-                                <div>
-                                    <button class="btn btn--spanish-pink my-2 my-sm-0" type="button" data-toggle="modal" data-target="#deleteModal" data-item="category" data-id="{{- category._id -}}">Delete</button>
-                                </div>
-                                <div>
-                                    <button class="btn btn--champagne-pink my-2 my-sm-0" type="button" data-toggle="modal" data-target="#editModal" data-item="{{- category.category_name -}}" data-id="{{- category._id -}}" data-type="Edit">Edit</button>
+                {% if manage_categories %}
+                    {% for category in manage_categories %}
+                        <div class="card category-card">
+                            <div class="card-body">
+                                <p class="category-card-title">{{ category.category_name|title }}</p>
+                                <hr>
+                                <div class="card-body-footer">
+                                    <div>
+                                        <button class="btn btn--spanish-pink my-2 my-sm-0" type="button" data-toggle="modal" data-target="#deleteModal" data-item="category" data-id="{{- category._id -}}">Delete</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn--champagne-pink my-2 my-sm-0" type="button" data-toggle="modal" data-target="#editModal" data-item="{{- category.category_name -}}" data-id="{{- category._id -}}" data-type="Edit">Edit</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
             </div>
+                    {% if total > 1 %}
+                        {{ pagination.info }}
+                    {% endif %}   
+                    {{ pagination.links }}
+                {% else %}
+                    <p>No Results Found</p>
+                {% endif %}
         </div>
     </section>
     <!-- /.Recipe section -->
