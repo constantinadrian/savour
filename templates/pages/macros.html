@@ -74,12 +74,15 @@
                 <h2 class="section-title">SIGN UP TO OUR NEWSLETTER</h2>
             </div>
 
-            <form class="form-inline my-2 my-lg-0" id="subscribe-form" method="POST" action="{{ url_for('subscribe_ajax') }}">
-                <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="Your Email" aria-label="Subscribe" required>
-                <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit" id="btn-submit-subscribe">Subscribe Now</button>
+            <form class="form-subscribe my-2 my-lg-0" id="subscribe-form" method="POST" action="{{ url_for('subscribe_ajax') }}">
+                <div class="subscribe-input-group">
+                    <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="Your Email" aria-label="Subscribe" required>
+                </div>
+                <div class="subscribe-ajax-response"></div>
+                <button class="btn btn--champagne-pink my-2 my-sm-0" type="submit" id="btn-submit-subscribe">Subscribe Now</button>               
             </form>
 
-            <div class="subscribe-ajax-response"></div>
+            
         </div>
     </section>
 {%- endmacro -%}

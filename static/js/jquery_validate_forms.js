@@ -10,7 +10,7 @@ $(document).ready(function () {
             },
             email: {
                 required: true,
-                email: true 
+                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             },
             password: {
                 required: true
@@ -22,7 +22,7 @@ $(document).ready(function () {
         },
         messages: {
             username: {required: "Please fill out this field", pattern: "Name must be between 3 and 20 characters long, and can contain letters and numbers only."},
-            email: {required: "Please fill out this field", email: "Please enter a valid email address" },
+            email: {required: "Please fill out this field", pattern: "Please enter a valid email address" },
             password: {required: "Please fill out this field" },
             passwordConfirmation: {required: "Please fill out this field", equalTo: "Please enter the same password again" }   
         },
@@ -310,7 +310,7 @@ $(document).ready(function () {
             },
             email: {
                 required: true,
-                email: true 
+                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             },
             query: {
                 required: true
@@ -321,7 +321,7 @@ $(document).ready(function () {
         },
         messages: {
             name: {required: "Please fill out this field"},
-            email: {required: "Please fill out this field", email: "Please enter a valid email address" },
+            email: {required: "Please fill out this field", pattern: "Please enter a valid email address" },
             query: {required: "Please fill out this field"},
             message: {required: "Please fill out this field"}
         },
@@ -346,6 +346,43 @@ $(document).ready(function () {
         // get input field for validate 
         // the hidden fields are ignored by default
         let checkField = $('#contact-form').find(":input");
+
+        // if fields are invalid prevent submit form
+        if (!checkField.valid()){
+            e.preventDefault();
+        }
+    });
+
+
+    // Use jQuery validate for Contact form and return form to emailjs for submit
+    // https://jqueryvalidation.org/documentation/
+    $("#subscribe-form").validate({
+        rules: {
+            email: {
+                required: true,
+                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            }
+        },
+        messages: {
+            email: {required: "Please fill out this field", pattern: "Please enter a valid email address" }
+        },
+        errorElement: 'span',
+        highlight: function(element) {
+            $(element).addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('has-error');
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+        }
+    });
+
+    // Click event  call jQuery validate
+    $('#btn-submit-subscribe').click(function(e) {
+        // get input field for validate 
+        // the hidden fields are ignored by default
+        let checkField = $('#subscribe-form').find(":input");
 
         // if fields are invalid prevent submit form
         if (!checkField.valid()){

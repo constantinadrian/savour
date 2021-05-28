@@ -75,10 +75,7 @@ $("#subscribe-form").submit(function(event) {
     // prevent from submitting a form
     event.preventDefault();
 
-    // clear the previous message is the user it trying to submit again
-    $(".subscribe-ajax-response").html("");
-
-    // make an AJAX call to server side
+    // submit form with ajax
     $.ajax({
         url: $(event.target).prop("action"),
         data: $("#subscribe-form").serialize(),
@@ -103,6 +100,11 @@ $("#subscribe-form").submit(function(event) {
             subscribedErrorMessage();
         }
     });
+
+    // use setTimeout function to remove the message after 3.5 seconds
+    setTimeout(function(){
+        $(".subscribe-ajax-response").html("");
+    },3500);
 });
 
 /**

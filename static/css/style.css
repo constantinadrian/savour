@@ -599,6 +599,13 @@ main .alert-primary {
 /* ----------------------------- End of Recipe section ------------------------------- */
 
 /* -------------------------------- Search section ----------------------------------- */
+.search-container .form-inline {
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
 .form-search {
     background: transparent;
     border: 4px solid #E8D1C5;
@@ -648,12 +655,39 @@ main .alert-primary {
     background-color: #EFE5DC;
 }
 
-.subscribe .form-inline,
-.search-container .form-inline {
-    width: 100%;
+.form-subscribe {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -webkit-box-align: center;   
+        -ms-flex-align: center;   
+            align-items: center;
+    -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+}
+
+.subscribe-input-group {
+    margin-bottom: 1rem;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;   
+        -ms-flex-align: center;   
+            align-items: center;
+    -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    text-align: center;
 }
 
 .subscribe .form-control:focus {
@@ -667,8 +701,8 @@ main .alert-primary {
 }
 
 @media only screen and (min-width: 992px) {
-    .subscribe .form-inline .form-control {
-        width: 30%;
+    .subscribe .subscribe-input-group .form-control {
+        width: 50%;
     }
 
     .search-container .form-inline .form-control {
@@ -677,8 +711,8 @@ main .alert-primary {
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px){
-    .subscribe .form-inline .form-control {
-        width: 40%;
+    .subscribe .subscribe-input-group .form-control {
+        width: 60%;
     }
 
     .search-container .form-inline .form-control {
@@ -687,8 +721,8 @@ main .alert-primary {
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .subscribe .form-inline .form-control {
-        width: 50%;
+    .subscribe .subscribe-input-group .form-control {
+        width: 70%;
     }
 
     .search-container .form-inline .form-control {

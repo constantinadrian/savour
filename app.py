@@ -94,10 +94,15 @@ def home():
 
     # get three sample kitchen tools to display on home page
     products = mongo.db.shop.aggregate([{'$sample': {'size': 3}}])
+
+    page_set = {
+        "type": "form"
+    }
     return render_template("pages/index.html",
                            recipes=recipes,
                            products=products,
-                           nav_categories=nav_categories)
+                           nav_categories=nav_categories,
+                           page_set=page_set)
 
 
 @app.route("/all_recipes", methods=["GET", "POST"])
@@ -127,7 +132,8 @@ def all_recipes():
 
     # set up the page_set object
     page_set = {
-        "title": "Recipes"
+        "title": "Recipes",
+        "type": "form"
     }
     return render_template("pages/all_recipes.html",
                            nav_categories=nav_categories,
@@ -169,7 +175,8 @@ def category(category):
 
     # set up the page_set object
     page_set = {
-        "title": category.title()
+        "title": category.title(),
+        "type": "form"
     }
     return render_template("pages/category.html",
                            recipes=paginated_recipes,
@@ -196,7 +203,8 @@ def category_search(category):
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # the query for existing recipes on the database for specific search query
-    recipes = list(mongo.db.recipes.find({"category_name": category, "$text": {"$search": query}}))
+    recipes = list(mongo.db.recipes.find(
+        {"category_name": category, "$text": {"$search": query}}))
 
     # call the paginated function to display only the
     # specific number of recipes per page
@@ -210,15 +218,16 @@ def category_search(category):
 
     # set up the page_set object
     page_set = {
-        "title": "Search"
+        "title": "Search",
+        "type": "form"
     }
     return render_template("pages/category.html",
-                        recipes=paginated_recipes,
-                        pagination=pagination,
-                        total=total,
-                        nav_categories=nav_categories,
-                        page_set=page_set,
-                        category=category)
+                           recipes=paginated_recipes,
+                           pagination=pagination,
+                           total=total,
+                           nav_categories=nav_categories,
+                           page_set=page_set,
+                           category=category)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -251,7 +260,8 @@ def search():
 
     # set up the page_set object
     page_set = {
-        "title": "Search"
+        "title": "Search",
+        "type": "form"
     }
     return render_template("pages/search.html",
                            recipes=paginated_recipes,
