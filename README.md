@@ -371,6 +371,8 @@ Savour is a web app build to attract all categories of users that are interested
 
     - [Jinja Docs](https://jinja.palletsprojects.com/en/3.0.x/templates/#import) - for import and general info
 
+    - [Email Regex](https://emailregex.com/) - used as pattern for validate email address
+
   - #### Content
 
     - [Taste Life](https://www.tasteshow.com/) - used as general inspiration
