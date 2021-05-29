@@ -111,7 +111,7 @@ $(document).ready(function () {
             },
             ["recipe-image-url"]: {
                 required: "Please add recipe image",
-                url: "Please enter a valid URL (e.g https://images.pexels.com/photos/1070850/pexels-photo-1070850.jpeg)"
+                url: "Please enter a valid URL (e.g https://images.pexels.com/photos/1464880/pexels-photo-1464880.jpeg)"
             },
             ["recipe-cook-time"]: {
                 required: "Please fill out the cooking time"
@@ -133,11 +133,11 @@ $(document).ready(function () {
         errorPlacement: function(error, element) {
             if (element.parent('.ingredient').length || element.parent('.methods').length)
             {
-                if (element.next().length) {
-                    error.insertAfter(element.next());
+                if (element.next().next().length) {
+                    error.insertAfter(element.next().next());
                 }
                 else {
-                    error.insertAfter(element);
+                    error.insertAfter(element.next());
                 }
             }
             else

@@ -419,8 +419,8 @@ main .alert-primary {
         justify-content: space-around;
 }
 
-.recipes-section-row-recipes a,
-.shop-section-row-products a {
+.recipes-section-row-recipes a.recipe-ancor-tag,
+.shop-section-row-products a.shop-ancor-tag {
     margin: 2rem 0;
 }
 
