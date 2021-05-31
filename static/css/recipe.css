@@ -1,3 +1,11 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+/* ----------------------------------- Recipe Page --------------------------------- */
 .recipe-description-section {
     width: 100%;
 }
@@ -48,7 +56,8 @@
 .recipe-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     border-top-right-radius: 1.2rem;
     border-bottom-left-radius: 1.2rem;
     border-top-left-radius: .25rem;
@@ -61,7 +70,9 @@
     border-top-left-radius: 1.2rem;
     border: 1px solid #E8D1C5;
     padding: 0.8rem;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
 }
 
 .about-recipe-title {
@@ -145,7 +156,9 @@
     border-top-left-radius: 1.2rem;
     border: 1px solid #E8D1C5;
     padding: 0.8rem;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
 }
 
 h3.recipe-method-title {
@@ -190,8 +203,13 @@ h3.recipe-method-title {
 }
 
 .rating-stars {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
@@ -243,7 +261,9 @@ h3.recipe-method-title {
     text-align: center;
     word-wrap: break-word;
 }
+/* ------------------------------- End of Recipe Page ------------------------------ */
 
+/* ----------------------------------- Media Query --------------------------------- */
 @media only screen and (min-width: 992px) {
     .recipe-container {
         padding: 2rem 6rem;
@@ -259,7 +279,8 @@ h3.recipe-method-title {
         margin-bottom: 1rem;
         width: 22rem;
         min-height: 192px;
-        flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
     }
 
     .recipe-top-description {
@@ -300,7 +321,8 @@ h3.recipe-method-title {
         margin-right: 1rem;
         width: 22rem;
         min-height: 192px;
-        flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
     }
 
     .recipe-methods {
@@ -323,3 +345,4 @@ h3.recipe-method-title {
         color: rgb(255, 179, 0);
     }
 }
+/* ------------------------------End of Media Query --------------------------------- */

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /* -------------------------------- Custom form display  ---------------------------------- */
 .login-container,
 .register-container,
@@ -119,13 +126,15 @@ textarea {
 .form-contact .form-control:focus,
 .form-contact .custom-select:focus {
     background-color: #f0efeb;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     border-color:#b38989;
 }
 
 #editModal .form-control:focus {
     background-color: transparent;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     border-color:#b38989;
 }
 
@@ -166,12 +175,12 @@ textarea {
 .form-contact .form-group textarea:valid + label span,
 #editModal .form-group .form-control:focus + label span, 
 #editModal .form-group input:valid + label span {
-    transform: translateY(-25px);
+    -webkit-transform: translateY(-25px);
+        -ms-transform: translateY(-25px);
+            transform: translateY(-25px);
     font-size: 12px;
     color: #b38989;
     -webkit-transition: all 0.4s ease-in-out;
-       -moz-transition: all 0.4s ease-in-out;
-        -ms-transition: all 0.4s ease-in-out;
          -o-transition: all 0.4s ease-in-out;
             transition: all 0.4s ease-in-out;
 }
@@ -185,7 +194,7 @@ textarea {
             align-items: center;
 }
 
-/* -------------------------------- For Contact form Custom display  ---------------------------------- */
+/* ----- For Contact form Custom display  -------- */
 .form-contact .fa-paper-plane {
     margin-right: 1rem;
 }
@@ -209,16 +218,8 @@ textarea {
     margin-left: 1.7rem;
     width: calc(100% - 1.7rem);
 }
-/* -------------------------------- End Contact form  ---------------------------------- */
+/* ------------ End Contact form  ---------------- */
 
-@media only screen and (min-width: 992px) {
-    .form-login,
-    .form-register,
-    .form-recipe,
-    .form-contact {
-        width: 70%;
-    }
-}
 /* -------------------------------- End of Custom form display  ---------------------------------- */
 
 
@@ -233,3 +234,15 @@ span.error{
     color: #e70101;
 }
 /* -------------- End of jQuery validation error classes -------------- */
+
+/* ----------------------------------- Media Query --------------------------------- */
+@media only screen and (min-width: 992px) {
+    .form-login,
+    .form-register,
+    .form-recipe,
+    .form-contact {
+        width: 70%;
+    }
+}
+/* ------------------------------End of Media Query --------------------------------- */
+
