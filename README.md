@@ -313,15 +313,67 @@ Savour is a web app build to attract all categories of users that are interested
 
     - The project was deployed to Heroku using the following steps:
 
-        1. 
+        1. Create ```requirements.txt``` file that contains a list of our Python dependencies by typing in the terminal 
+        
+            ```
+            pip3 freeze --local > requirements.txt
+            ```
 
-        2. 
+        2. Create ```Procfile``` file that tells Heroku how to run our project by typing in the terminal
 
-        3. 
+            ```
+            echo web: python run.py > Procfile
+            ```
 
-        4. 
+        3. Push the ```requirements.txt``` and ```Procfile``` file to github with the following commands
 
-        5. 
+            ```
+            git add -A
+
+            git commit -m
+
+            git push
+            ```
+
+        4. In order to deploy to Heroku you need an [account](https://signup.heroku.com/login?redirect-url=https%3A%2F%2Fid.heroku.com%2Foauth%2Fauthorize%3Fclient_id%3Dd2ef2b24-e72c-4adf-8506-28db2218547d%26response_type%3Dcode%26scope%3Dglobal%252Cplatform%26state%3DSFMyNTY.g2gDbQAAADFodHRwczovL2Rhc2hib2FyZC5oZXJva3UuY29tL2F1dGgvaGVyb2t1L2NhbGxiYWNrbgYAnwF4L3kBYgABUYA.q2PQc0k53ICJ0LR6VFKbOkyuEqmEtG0iuVzTM38UNAI)
+
+        5. Now you can create an new app from the dashboard ````New``` Menu
+
+        ![](static/readme/heroku-app.jpg)
+
+        6. Now you need to set up a name and select a region closest to you
+
+            NOTE: Remember the name has to be unique and generally use a dash and lowercase letters
+
+        6. From the dashboard of your app click on the settings and go to Reveal Config variables
+
+        ![](static/readme/heroku-settings.jpg)
+
+        7. Set up the Config Vars 
+
+            | Key             | Value                                                                                                       |
+            | :---------------| :---------------------------------------------------------------------------------------------------------: |
+            | IP              | 0.0.0.0                                                                                                     |
+            | MONGO_DBNAME    | <your_database>                                                                                             |
+            | MONGO_URI       | mongodb+srv://<user>:<password>@<your_cluster>.ol3x3.mongodb.net/<yourdatabase>?retryWrites=true&w=majority |
+            | PORT            | 5000                                                                                                        |
+            | SECRET_KEY      | <your_secret_key>                                                                                           |      
+
+        8. Hide the Config Vars
+
+        9. Now from the dashboard of your app click on the Deploy and from Deployment method select ```Github - Connect to Github```. Next on the search field type the name of the repository you want to deploy.
+        
+        ![](static/readme/heroku-deploy.jpg)
+
+        10. Once it finds your repository click ```Connect``` 
+
+        11. Next you can click ```Enable Automatic Deploys```
+
+        ![](static/readme/heroku-enable-automatic-deploys.jpg)
+
+        12. Now From Manual Deploy you can click ```Deploy Branch``` and once it's finish you can click ```View```
+
+        ![](static/readme/heroku-deploy-branch-view.jpg) 
 
   - #### Local Clone
 
@@ -379,7 +431,7 @@ Savour is a web app build to attract all categories of users that are interested
 
     Note: For upgrade PIP type this command ```pip3 install --upgrade pip```
 
-    5. Declare default environment variables in a filed ```env.py``` 
+    5. Declare default environment variables in a file ```env.py``` 
 
     ```
     import os
