@@ -1,0 +1,11 @@
+[
+    {
+        "_id":{
+            "$oid": "<ObjectId>"
+        },
+        "category_name": "<string>",
+        "product_title": "<string>",
+        "image_url": "<string>",
+        "price": "<string>"
+    }
+]

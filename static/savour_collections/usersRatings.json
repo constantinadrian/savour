@@ -1,0 +1,14 @@
+[
+    {
+        "_id": {
+            "$oid": "<ObjectId>"
+        },
+        "user": "<string>",
+        "recipe_id": {
+            "$oid": "<ObjectId>"
+        },
+        "rating": {
+            "$numberInt": "0"
+        }
+    }
+]

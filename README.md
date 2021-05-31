@@ -122,39 +122,39 @@ Savour is a web app build to attract all categories of users that are interested
     
         1. Home Page 
 
-          - The logo of Savour
+            - The logo of Savour
 
-          - Navigation bar - to help user navigate between the site pages: Categories, Recipes, Shop, Register, Login
-          
-          - Landing section - Where the user it's welcome with a hero image and welcome text.
+            - Navigation bar - to help user navigate between the site pages: Categories, Recipes, Shop, Register, Login
+            
+            - Landing section - Where the user it's welcome with a hero image and welcome text.
 
-          - Recipe section - Where the user can see three random recipes
+            - Recipe section - Where the user can see three random recipes
 
-          - Shop section - Where the user can see the kitchen tools
+            - Shop section - Where the user can see the kitchen tools
 
-          - Footer - Where user can find links to site social media pages
+            - Footer - Where user can find links to site social media pages
 
         2. Recipe Page 
 
-          - Landing section - Where user can see the recipe of the day 
+            - Landing section - Where user can see the recipe of the day 
 
-          - Search field - Where user can search specific recipe
+            - Search field - Where user can search specific recipe
 
-        3. Shop Page
+        3. Shop Page 
 
-          - Where site owner promote a brand of cooking tools
+            - Where site owner promote a brand of cooking tools
 
-        4. Register
+        4. Register 
 
-          - Where the user can create an account.
+            - Where the user can create an account.
 
-        5. Login Page
+        5. Login Page 
 
-          - Where the user can login in into their account
+            - Where the user can login in into their account
 
-        6. 404 Page
+        6. 404 Page 
 
-          - 404 Page - was added in case users redirect to a page that does not exist.
+            - 404 Page - was added in case users redirect to a page that does not exist.
  
       - ##### Future Features to Implement:
 
@@ -325,15 +325,85 @@ Savour is a web app build to attract all categories of users that are interested
 
   - #### Local Clone
 
-    1. Log in to GitHub and locate GitHub Repository
+    ##### In oder to run this project locally you should have installed this 3 requirements on your machine plus an account on [MongoDB Atlas](https://www.mongodb.com/):
 
-    2. At the top of the repository click on Code 
+    1. [VS Code](https://code.visualstudio.com/) - IDE or your personal preference
 
-    3. From the dropdown menu under HTTPS copy the link
+    2. [Pyhton3](https://www.python.org/) - to run the application on your local machine
 
-    4. Now on your IDE create a directory where you wanna make the clone 
+    3. [PIP](https://pypi.org/project/pip/) for installation of tools needed in this project.
 
-    5. Type git clone and paste the link that you copy from step 3. 
+    Now you can create an account on [MongoDB Atlas](https://www.mongodb.com/) and follow the steps from [here](https://docs.atlas.mongodb.com/getting-started/). The MongoDB collection for this project can be found [here](static/savour_collections)
+    
+    Optional: you can install [Git](https://git-scm.com/)
+
+    ##### Steps to follow
+
+    1. At the top of the repository click on Code and click on download zip and extracting the zip file to your chosen folder or keep the same name
+
+        ![](static/readme/code-clone.jpg)
+
+    Optional: if you have [Git](https://git-scm.com/) install on your machine you can type
+
+    ```
+    git clone https://github.com/constantinadrian/savour
+    ```
+
+    or to clone the repository into different name on the folder you can run 
+
+    ```
+    git clone https://github.com/constantinadrian/savour folder_name
+    ```
+
+    more info about cloning with git [here](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository).
+
+    2. Create a virtual environment within the project directory to keep dependencies required by the project separate from other projects by creating an isolated Python virtual environment.
+
+    ```
+    py -3 -m venv venv
+    ```
+
+    3. Activate the environment
+
+    ```
+    venv\Scripts\activate
+    ```
+
+    NOTE: If you run on Linux/maxOS more info for step 2 and 3 [here](https://flask.palletsprojects.com/en/2.0.x/installation/) 
+
+    4. Install all dependencies from requirements.txt:
+
+    ```
+    pip3 install -r requirements.txt
+    ```
+
+    Note: For upgrade PIP type this command ```pip3 install --upgrade pip```
+
+    5. Declare default environment variables in a filed ```env.py``` 
+
+    ```
+    import os
+
+    os.environ.setdefault("SECRET_KEY", "your_secret_key")
+    os.environ.setdefault(
+        "MONGO_URI", "mongodb+srv://<user>:<password>@<your_cluster>.ol3x3.mongodb.net/<yourdatabase>?retryWrites=true&w=majority")   
+    os.environ.setdefault("MONGO_DBNAME", "<yourdatabase>")
+    ```
+    6. Add ```env.py``` to your ```.gitignore``` file.
+
+    7. To run the project run 
+    ```
+    flask run
+    ```
+
+    NOTE: to run the project with ```py app.py``` on the ```app.py``` file change the code from line 1068 to
+
+    ```
+    if __name__ == "__main__":
+        app.run()
+    ``` 
+
+    8. Now you can visit the website at http://127.0.0.1:5000
 
 [Back to Top](#table-of-contents)
 

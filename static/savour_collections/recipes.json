@@ -1,0 +1,43 @@
+[    
+    {
+        "_id": {
+            "$oid": "<ObjectId>"
+        },
+        "category_name": "<string>",
+        "recipe_name": "<string>",
+        "description": "<string>",
+        "image_url": "<string>",
+        "ingredients": ["<array>"],
+        "methods": ["<array>"],
+        "tips": "<string>",
+        "time": "<string>",
+        "serve": "<string>",
+        "ratings": {
+            "status": "<Boolean>",
+            "number_of_ratings": {
+                "$numberInt": "0"
+            },
+            "weighted_average": {
+                "$numberDouble": "0.0"
+            },
+            "rated_stars": {
+                "1": {
+                    "$numberInt": "0"
+                },
+                "2": {
+                    "$numberInt": "0"
+                },
+                "3": {
+                    "$numberInt": "0"
+                },
+                "4": {
+                    "$numberInt": "0"
+                },
+                "5": {
+                    "$numberInt": "0"
+                }
+            }
+        },
+        "created_by": "<string>"
+    }
+]
