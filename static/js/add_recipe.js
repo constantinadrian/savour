@@ -43,7 +43,7 @@ function addIngredients(referenceNode) {
         let listItem = document.createElement('li');
         
         let inputField = `
-                            <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-${nameIngredientsCount}" required>
+                            <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-${nameIngredientsCount}" data-msg-required="Please fill out ingredient field" required>
                             <div class="ingredients-btn-container">
                                 <div class="input-group-btn">
                                     <span class="input-group-remove-ingredients">
@@ -109,7 +109,7 @@ function addMethods(referenceNode) {
         let stepItem = document.createElement('li');
         
         let textareaField = `
-                                <textarea class="form-control js-recipe-methods" name="recipe-methods-${stepsCount}" rows="1" maxlength="320" required></textarea>
+                                <textarea class="form-control js-recipe-methods" name="recipe-methods-${stepsCount}" rows="1" maxlength="320" data-msg-required="Please fill out step field" required></textarea>
                                 <div class="steps-btn-container">
                                     <div class="input-group-btn">
                                         <span class="input-group-remove-steps">
