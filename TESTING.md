@@ -195,15 +195,51 @@
 
     I. First Time Visitor Goals
 
-   
+    - To be able to quickly understand the purpose of the website. 
+
+        - When the user enters the site he can easily understand the purpose of the website from the hero image, the welcome text and the easy-to-read-navigation menu 
+
+    - To be able to search recipes uploaded by other users
+
+        - On Recipes Page / Search Page the users can search any recipes uploaded by each user
+
+    - To be able to find recipe from different categories like: appetizer, breakfast, lunch etc.
+
+        - On Recipes Page / Search Page users can search recipes from different categories
+
+        - On Category Page users can search recipes within the specific category
 
     II.	Returning User Goals:
 
-   
+    - When I return to the website, I wanna be able to register to website.
+
+        - The app was build with the register/login functionality 
+
+    - I wanna be able to share my recipe thru the website to other users, by uploading my own recipes.
+    
+        - After register on navigation page the user can use the link to "Add recipe page" and on profile page the user have a button which will take him on "Add recipe page" 
+
+    - I wanna be able to edit/delete the recipes the was uploaded by me.  
+
+        - When user is login and access his recipes from profile page / recipes page / category page all individual recipes will display an "Edit" link on the top left side of the recipe
 
     III. Site Owner Goals:
 
-    
+    - To be able to add, edit and delete my own recipes
+
+        - The site Owner, as well as the users, can add, edit or delete his own recipes
+
+    - To be able to add, edit and delete recipe categories.
+
+        - The site his the only on who can add, edit or delete recipe categories.
+
+    - Be able to receive feedback from user.
+
+        - The owner of the website can receive any message/feedback from register users or first time users thru the contact form 
+
+    - To promote my brand of cooking tools
+
+        - The purpose of the website it's for the owner to promote his brand of kitchen tools.
 
 [Back to Top](#table-of-contents)
 
