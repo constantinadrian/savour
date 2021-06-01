@@ -50,7 +50,7 @@ Savour is a web app build to attract all categories of users that are interested
 
     - To be able to quickly understand the purpose of the website. 
 
-    - To be able to find recipe from different cuisine.
+    - To be able to search recipes uploaded by other users
 
     - To be able to find recipe from different categories like: appetizer, breakfast, lunch etc.
 
@@ -158,7 +158,9 @@ Savour is a web app build to attract all categories of users that are interested
  
       - ##### Future Features to Implement:
 
-        - Email Verification - Before registraion is complete 
+        - To be able to find recipe from different cuisine.
+
+        - Email Verification - Before registraion is complete, in order to check the email address and so we know that the user is willingly register and we don't have a case where users is using other person email for their registration.
 
         - Reset/Forget Password - Where user can recover their password
 
