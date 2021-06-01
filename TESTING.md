@@ -36,13 +36,9 @@
     
         HTML checked was done with [The W3C Markup Validation Service](https://validator.w3.org/)
         
-         - Home Page
+         - All Pages 
          
-            ![Home](static/readme/index-page-test.png)
-
-         - Recipe Page 
-         
-            ![Recipe](static/readme/recipe-page-test.png) 
+            ![](static/readme/index-page-test.png)
 
     - #### CSS 
     
@@ -50,25 +46,106 @@
     
         - CSS - style.css
         
-            ![Result CSS Validator](static/readme/style-css-validator-result.png)
+            ![](static/readme/w3c-css-validator-style-css.jpg)
 
-            - 
+            - The warnings were for:
 
+                The value break-word is deprecated.
+
+                Same color for background-color and border color on pagination links
+
+                And the rest for unknown vendor extension
+
+        - CSS - recipe.css
+
+            ![](static/readme/w3c-css-validator-recipe-css.jpg)
+
+            - The warnings were for:
+
+                The value break-word is deprecated.
+
+                And the rest for unknown vendor extension
+
+        - CSS - forms.css
+
+            ![](static/readme/w3c-css-validator-forms-css.jpg)
+
+            - The warnings were for:
+
+                The value break-word is deprecated.
+
+                And the rest for unknown vendor extension
+        
 
     - #### JS 
     
         JS checked was done with [JSHint, a JavaScript Code Quality Tool](https://jshint.com/)
 
-        - Emailjs
+        - script.js
 
-        ![emailjs](assets/readme/emailjs.png)
-
-            - 
+            - 21 warnings: 
+                
+                'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz). 
 
             - Unused variable:
 
-                sendMail - function that it's call with onsubmit attribute when the contact form is submitted
+                $ - jquery function.
 
+        - recipe.js
+
+            - 15 warnings:
+
+                'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz). 
+
+                'template literal syntax' is only available in ES6 (use 'esversion: 6').
+
+            - Unused variable:
+
+                $ - jquery function.
+
+        - jquery_validate_forms.js
+
+            - 30 warnings:
+
+                'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz). 
+
+                'computed property names' is only available in ES6 (use 'esversion: 6').
+
+            - Unused variable:
+
+                $ - jquery function.
+
+                sendMail - function that it's call with onsubmit attribute when the contact form is submitted with emailjs
+
+        - emailjs.js
+
+            - The three undefined variable are:
+
+                emailJS - is a service that allows us to send emails directly from your client-side JavaScript code.
+
+                $ - jquery function.
+
+                Swal - sweetalert2 library that acts as a replacement for the JavaScript’s alert() function.
+
+            - Unused variable:
+
+                sendMail - function that it's call with onsubmit attribute when the contact form is submitted with emailjs
+
+        - add_recipe.js
+
+            - 21 warnings
+
+                'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz). 
+
+                'const' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).
+
+                'template literal syntax' is only available in ES6 (use 'esversion: 6').
+
+                Missing semicolon
+
+            - Unused variable:
+
+                $ - jquery function.
 
     - #### PEP8 
     

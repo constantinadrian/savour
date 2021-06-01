@@ -187,23 +187,23 @@ function windowResize(textarea) {
 resizeTextarea(textarea);
 
 // Call the function to initiale all toolips on the page 
-initializeToolip()
+initializeToolip();
 
 // display the maximum numbers of ingredients fields
-$(".max-ingredients-number").html(MAXINGREDIENTS)
+$(".max-ingredients-number").html(MAXINGREDIENTS);
 
 // display the maximum numbers of ingredients fields
-$(".max-steps-number").html(MAXSTEPS)
+$(".max-steps-number").html(MAXSTEPS);
 
 
 // Add more ingredients fields
 $(".ingredients-list").on("click", ".btn-add-ingredients", function(){
-    addIngredients($(this)[0])
+    addIngredients($(this)[0]);
 });
 
 // Remove ingredients fields
 $(".ingredients-list").on("click", ".btn-remove-ingredients", function(){
-    removeIngredients($(this)[0])
+    removeIngredients($(this)[0]);
 });
 
 // Add more methods fields
