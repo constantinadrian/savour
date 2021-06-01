@@ -10,23 +10,19 @@
 
     - [JS](#js)
 
-    - [PEP8](#PEP8)
+    - [PEP8](#pep8)
 
-2. [Lighthouse in Chrome DevTools](#lighthouse-in-chrome-devtools) 
-
-3. [GTmetrix Website Performance Testing and Monitoring](#gtmetrix-website-performance-testing-and-monitoring)
-
-4. [Browser compatibility and responsiveness](#browser-compatibility-and-responsiveness)
+2. [Browser compatibility and responsiveness](#browser-compatibility-and-responsiveness)
 
     - [Testing on Different Browsers](#testing-on-different-browsers)
 
     - [Testing on Different Devices](#testing-on-different-devices)
 
-5. [Testing User Stories](#testing-user-stories)
+3. [Testing User Stories](#testing-user-stories)
 
-6. [Manual testing](#manual-testing)
+4. [Manual testing](#manual-testing)
 
-7. [Bugs and Fixs](#bugs-and-fixs)
+5. [Bugs and Fixs](#bugs-and-fixs)
 
 -----
 
@@ -149,41 +145,16 @@
 
     - #### PEP8 
     
-        [PEP8 Validator](http://pep8online.com/) was used to validate Python
+        [PEP8 Validator](http://pep8online.com/) was used to validate Python code
+
+        - app.py - All right
+
+        - helpers.py - All right
 
 [Back to Top](#table-of-contents)
 
 -----
-
-- ### Lighthouse in Chrome DevTools 
-
-    - Home page - desktop
-
-        ![Home](static/readme/lighthouse-index-desktop.png)
-        
-
-    - Home page - mobile
-
-        ![Home](static/readme/lighthouse-index-mobile.png)
-        
-
-[Back to Top](#table-of-contents)
-
------
-
-- ### GTmetrix Website Performance Testing and Monitoring
-
-    - [GTMetrix](https://gtmetrix.com/) 
-    
-    - Home page
-    
-    - ![Home](static/readme/gtmetrix-index.png) 
-
-
-[Back to Top](#table-of-contents)
-
------
-
+       
 - ### Browser compatibility and responsiveness
 
   - #### Testing on Different Browsers
@@ -200,6 +171,8 @@
 
         All test was good. 
 
+        Note: No test was perform for Internet Explorer.
+
   - #### Testing on Different Devices
 
     1. iPhone 11 - IOS 14.0.1
@@ -210,7 +183,7 @@
 
     4. iPhone 5S - IOS 10.2.1
 
-    All test was good.
+    All test was good with some exceptions from IOS (see Bugs and Fixs).
 
   - A large amount of testing was done to ensure that all pages were linked correctly.
 
