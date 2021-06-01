@@ -82,7 +82,7 @@
                                                 </li>
                                             {% else %}
                                                 <li class="ingredient">
-                                                    <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-{{- loop.index -}}" value="{{- ingredient -}}" required>
+                                                    <input type="text" class="form-control js-recipe-ingredient" name="recipe-ingredient-{{- loop.index -}}" value="{{- ingredient -}}" data-msg-required="Please fill out ingredient field" required>
                                                     <div class="ingredients-btn-container">
                                                         <div class="input-group-btn">
                                                             <span class="input-group-remove-ingredients">
@@ -137,7 +137,7 @@
                                                 </li>
                                             {% else %}
                                                 <li class="methods">
-                                                    <textarea class="form-control js-recipe-methods" name="recipe-methods-{{- loop.index -}}" rows="1" maxlength="320" required>
+                                                    <textarea class="form-control js-recipe-methods" name="recipe-methods-{{- loop.index -}}" rows="1" maxlength="320" data-msg-required="Please fill out step field" required>
                                                         {{- method -}}
                                                     </textarea>
                                                     <div class="steps-btn-container">
