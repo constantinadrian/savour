@@ -267,11 +267,63 @@
 
 - ### Bugs and Fixs
 
-    - 
+    - After login users can access the profile of other users
 
-        - 
+        - To fix: I block access of each user viewing the other profile I added a check and if user is not in session["user"] will be redirect to Denied/Forbidden Page
 
-        - 
+        ```
+        if username != session["user"]:
+            return redirect(url_for('error', code=403))
+        ``` 
 
+    - If user alterats the recipe id when trying to view/edit/delete the recipe the app crashes with the following error
+
+        ![](static/readme/bson-errors-InvalidId.jpg)
+
+        - To fix: I added a function to check the ObjectId if is valid or not (See Credit Code)
+
+    - If admin decided to Delete a category the specific category was deleted automatic but was creating an issue if the category was having one or more recipes
+    
+        - To fix: a query was made on recipes collection to count how many recipes the specific category has. If the return was one or more we revoke the delete command and show an message to admin. 
+
+    - If admin decided to edit category already in use the category was updated but now we couldn't access the recipes from the old category on the Recipes dropmenu on navbar
+
+        - To fix: I update the old category with different query using "find_one_and_update" and return the old document. After returning the old documment made a second query and update the category on each recipe that were in the specific category
+
+    - Required atribute not working on Safari (IOS) and when user submitted an empty form on add recipe an error occurred
+
+        ![](static/readme/attribute-error.png)
+
+        - To fix: I added jquery validation on client side to stop user from submitting an empty form and I added a check on server side to check if user fill each field
+
+    - jQuery validation error messages not working properly on fields created dynamic
+
+        - This was happening because all the ingredients/steps fields created dynamic were having the same name atribute
+
+        - To fix: I made each name unique by adding an number at the end of each name
+
+    - On Safari (IOS) the colapse menu is not closing when click/touch outside the navbar
+
+        - To fix: I added touch event "touchstart" and was working after that
+
+    - When click on shop items and the modal is display the item card had an blue outline border on IOS devices only
+
+        - To fix: add new rule on css "outline: 0 !important;"
+
+    - Pagination for Search Page not displaying properly when accessing second page 
+
+        - To fix: change the form method from POST to GET and everything was working fine
+
+    - On small screen size the width for display cards were not the same
+
+        ![](static/readme/display-card-width-issue.jpg)
+
+        - To fix: added width of 100% on cards and change the width of card parrent for different screen size
+
+    - All fields created dynamically had a different message when displaying the required error message compared to the first field
+
+        ![](static/readme/error_validation_message.jpg)
+
+        - To fix added data attribute from javascript for each field when is created dynamically
 
 Return to [README.md](README.md)
