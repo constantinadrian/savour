@@ -141,7 +141,7 @@ Savour is a web app build to attract all categories of users that are interested
 
         2. Recipes Page 
 
-            - Landing section - Where user can see the our suggestion recipe and navigate on that specific recipe page
+            - Landing section - Where user can see our suggestion recipe and navigate on that specific recipe page
 
             - Search field - Where users can search specific recipe by keywords
 
@@ -165,17 +165,17 @@ Savour is a web app build to attract all categories of users that are interested
  
         7. Recipe Page 
 
-            - Where the users can view the recipe information. From this page, if logged in, the owner of the recipe can click on edit link if he want's to edit his recipe
+            - Where the users can view the recipe information. From this page, if logged in, the owner of the recipe can click on the edit link if he wants to edit his recipe
 
-            - From this page they can navigate to the category that the recipe is from
+            - From this page, they can navigate to the category that the recipe is from
 
-            - From this page they can navigate to see all the recipes that was uploaded by the specific user
+            - From this page, they can navigate to see all the recipes that were uploaded by the specific user
 
             - All users that are registered can rate on this page the recipes of other users
 
         8. Profile Page
 
-            - Where the user can see all this recipes
+            - Where the user can see all his recipes
 
         9. Manage Categories Page (Admin Only)
 
@@ -187,7 +187,7 @@ Savour is a web app build to attract all categories of users that are interested
 
         11. Terms and Conditions Page
 
-            - Was added to state the website status, information regarding the registration and the copyrights of some recipes
+            - Was added to state the website status, information regarding the registration, and the copyrights of some recipes
 
         12. 401 Page 
 
