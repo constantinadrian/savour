@@ -398,7 +398,7 @@
 
         1. Expected: if the user tries to access a page that does exist display the ``` No Results Found``` message.
 
-            - Testing: On the URL we added a page that does not exist http://savour-food.herokuapp.com/category/mains```?page=15```
+            - Testing: On the URL we added a page that does not exist savour-food.herokuapp.com/category/mains```?page=15```
 
             - Result: As expected the ``` No Results Found``` message is displayed.
 
@@ -406,17 +406,17 @@
 
         2. Expected if the user wants less or more item ```per_page``` he can change/add the number of items on URL and the number of items should change accordingly
 
-            - Testing: On the URL we added/change the ```per_page``` items:  http://savour-food.herokuapp.com/all_recipes?page=1```&per_page=1```
+            - Testing: On the URL we added/change the ```per_page``` items: savour-food.herokuapp.com/all_recipes?page=1```&per_page=1```
 
             - Result: As expected the number of items per page change and the pagination increases
 
         3. Expected if the user input for ``` page``` and ```per_page``` is a positive integer greater than ```0``` redirect the user to 404 Page
 
-            - Testing: On the URL we added/change the ```page``` number:  http://savour-food.herokuapp.com/all_recipes?page=```0```&per_page=1
+            - Testing: On the URL we added/change the ```page``` number: savour-food.herokuapp.com/all_recipes?page=```0```&per_page=1
 
-            - Testing: On the URL we added/change the ```page``` number:  http://savour-food.herokuapp.com/all_recipes?page=```-1```&per_page=1
+            - Testing: On the URL we added/change the ```page``` number: savour-food.herokuapp.com/all_recipes?page=```-1```&per_page=1
 
-            - Testing: On the URL we added/change the ```per_page``` items:  http://savour-food.herokuapp.com/all_recipes?page=0&per_page=```f```
+            - Testing: On the URL we added/change the ```per_page``` items: savour-food.herokuapp.com/all_recipes?page=0&per_page=```f```
 
             - Result: As expected the user is redirected in each case on the 404 Not Found page 
 
