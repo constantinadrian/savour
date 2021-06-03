@@ -836,7 +836,7 @@ def add_categories():
             {"category_name": category_name.lower()})
 
         if check_category:
-            flash("You have submited the same category",
+            flash("Category Already Exists",
                   category="alert-warning")
             return redirect(url_for('manage_categories'))
 
