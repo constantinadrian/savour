@@ -185,6 +185,7 @@ function windowResize(textarea) {
 
 // Call the resize function 
 resizeTextarea(textarea);
+windowResize(textarea);
 
 // Call the function to initiale all toolips on the page 
 initializeToolip();
