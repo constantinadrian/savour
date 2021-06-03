@@ -40,6 +40,11 @@
     list-style: none;
 }
 
+.ingredient:hover .form-control, 
+.methods:hover .form-control {
+    background-color: #FFEBCD;
+}
+
 .max-fields {
     color: #724242;
     position: absolute;
