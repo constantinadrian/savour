@@ -221,7 +221,7 @@
 
     - I wanna be able to edit/delete the recipes the was uploaded by me.  
 
-        - When a user is login and access his recipes from the profile page/recipes page/category page all individual recipes will display an "Edit" link on the top left side of the recipe
+        - When a user is a login and access his recipes from the profile page/recipes page/category page all individual recipes will display an "Edit" link on the top left side of the recipe
 
     III. Site Owner Goals:
 
@@ -440,6 +440,20 @@
 
             - Result: As Expected the user it's logged in, redirects to the profile page and it's shown a flash message with ```Registration Successful!```.
 
+    - Login
+
+        1. Expected: If the user types an email that was not used for registration display the error flash message
+          
+            - Testing: Used an email that was not registered before and press login
+
+            - Result: As Expected the user it's shown a flash message with ```Incorrect Email and/or Password ```.
+
+        2. Expected: If the user types a wrong password but the email is valid display the error flash message
+          
+            - Testing: Used a registered email and type a random password
+
+            - Result: As Expected the user it's shown a flash message with ```Incorrect Email and/or Password ```.
+
     - Logout
 
         - Expected: When the user press the ```Logout``` remove the user from the session, redirect to the Login page and show a flash message
@@ -511,6 +525,22 @@
             - Testing: Pressed ```Edit``` button on a category card and change the name to an existing category
 
             - Result: As expected on the Manage Categories Page the Admin get a flash message that a specific category already exists
+    
+    - Contact Page
+
+        - Success
+
+            - Expected: After the user fills the contact form and press submit if the response from emailjs is successful display the success message
+
+            - Result: The message is displayed as expected.
+
+        - Error
+
+            - Expected: If the user message could not send an error message will be shown to the user.
+
+            - Testing: Disconnected the internet, fill in the contact form, and submit it.
+
+            - Result: The error message is displayed as expected.
 
     - 401 page
 
