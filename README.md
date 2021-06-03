@@ -2,7 +2,7 @@
 
 ![Savour](static/readme/savour.jpg)
 
-Savour is a web app build to attract all categories of users that are interested in cooking, eager to learn new recipes and also be able to share their own recipe from different cuisine. 
+Savour is a web app build to attract all categories of users that are interested in cooking, eager to learn new recipes, and also be able to share their own recipes from different cuisine. 
 
 [View live project here](https://savour-food.herokuapp.com/)
 
@@ -52,11 +52,11 @@ Savour is a web app build to attract all categories of users that are interested
 
     - To be able to search recipes uploaded by other users
 
-    - To be able to find recipe from different categories like: appetizer, breakfast, lunch etc.
+    - To be able to find recipes from different categories like appetizer, breakfast, lunch, etc.
 
     II.	Returning User Goals:
 
-    - When I return to the website, I wanna be able to register to website.
+    - When I return to the website, I wanna be able to register to the website.
 
     - I wanna be able to share my recipe thru the website to other users, by uploading my own recipes.
 
@@ -68,23 +68,24 @@ Savour is a web app build to attract all categories of users that are interested
 
     - To be able to add, edit and delete recipe categories.
 
-    - Be able to receive feedback from user.
+    - Be able to receive feedback from users.
 
     - To promote my brand of cooking tools
 
 
  - #### Strategy
 
-    - The website was build to those users who love to cook and are eager to learn and try new recipe. The website is designed with search functionality that allow users to search recipes from different category and with different keywords. In order to attract more users and keep them on the website users can register and share their own recipe as well with other users by create/edit/delete their recipe. The purpose of all functionality it's for the owner of website to promote his brand of kitchen tools.
+    - The website was build for those users who love to cook and are eager to learn and try a new recipe. The website is designed with search functionality that allows users to search recipes from different categories and with different keywords. In order to attract more users and keep them on the website, users can register and share their own recipes as well with other users by creating/edit/delete their recipes. The purpose of all functionality it's for the owner of the website to promote his brand of kitchen tools.
 
     | Opportunity                                 | Importance | Viability / Feasibility |
     | :------------------------------------------ | :--------: | :---------------------: |
     | Home Page                                   |     5      |            5            |
     | Recipe Page - Search Recipes By Keywords    |     5      |            5            |
-    | Shop Page                                   |     5      |            5            |
+    | Shop Page - Search Products By Keywords     |     5      |            5            |
     | Register Page                               |     4      |            5            |
     | Login Page                                  |     4      |            5            |
-    | Manage Recipe Category Page                 |     5      |            5            |
+    | Manage Category Page                        |     5      |            5            |
+    | Recipe Category Page                        |     5      |            5            |
     | Create / Edit / Delete Recipes              |     5      |            4            |
 
 
@@ -98,15 +99,19 @@ Savour is a web app build to attract all categories of users that are interested
 
     - Home page - to quickly understand the purpose of the website
 
-    - Recipe Page - where users can view all recipes
+    - Recipes Page - where users can view all recipes
 
-    - Shop Page - where the owner of website can promote his brand of kitchen tools
+    - Shop Page - where the owner of a website can promote his brand of kitchen tools
 
     - Register Page - where user can create an account on the website
 
-    - Login Page - where user can login to the his profile to add/edit/delete recipes
+    - Login Page - where user can log in to his profile to add/edit/delete recipes
 
-    - Manage Recipe Category Page - where the admin can create/edit/ delete category
+    - Manage Category Page - where the admin can create/edit/ delete category
+
+    - Recipe Category Page - where users can view all the recipes from a specific category and search a recipe within a category
+
+    - Add Recipe - where users can add their own recipes
 
 [Back to Top](#table-of-contents)
 
@@ -124,25 +129,27 @@ Savour is a web app build to attract all categories of users that are interested
 
             - The logo of Savour
 
-            - Navigation bar - to help user navigate between the site pages: Categories, Recipes, Shop, Register, Login
+            - Navigation bar - to help the user navigate between the site pages: Categories, Recipes, Shop, Register, Login
             
             - Landing section - Where the user it's welcome with a hero image and welcome text.
 
             - Recipe section - Where the user can see three random recipes
 
-            - Shop section - Where the user can see the kitchen tools
+            - Shop section - Where the user can see three random kitchen tools
 
             - Footer - Where user can find links to site social media pages
 
-        2. Recipe Page 
+        2. Recipes Page 
 
-            - Landing section - Where user can see the recipe of the day 
+            - Landing section - Where user can see the our suggestion recipe and navigate on that specific recipe page
 
-            - Search field - Where user can search specific recipe
+            - Search field - Where users can search specific recipe by keywords
+
+            - Recipe section - Where users can see all the recipes that are uploaded on the website
 
         3. Shop Page 
 
-            - Where site owner promote a brand of cooking tools
+            - Where site owner promotes a brand of cooking tools
 
         4. Register 
 
@@ -150,9 +157,47 @@ Savour is a web app build to attract all categories of users that are interested
 
         5. Login Page 
 
-            - Where the user can login in into their account
+            - Where the user can log in to their account
+ 
+        6. Category Page 
 
-        6. 404 Page 
+            - Where the users can view the recipes from just a category
+ 
+        7. Recipe Page 
+
+            - Where the users can view the recipe information. From this page, if logged in, the owner of the recipe can click on edit link if he want's to edit his recipe
+
+            - From this page they can navigate to the category that the recipe is from
+
+            - From this page they can navigate to see all the recipes that was uploaded by the specific user
+
+            - All users that are registered can rate on this page the recipes of other users
+
+        8. Profile Page
+
+            - Where the user can see all this recipes
+
+        9. Manage Categories Page (Admin Only)
+
+            - Where the Admin can add/edit/delete categories
+
+        10. Contact Page 
+
+            - Was added in case users wants to give any feedback or they have any comments about the website/recipes/products
+
+        11. Terms and Conditions Page
+
+            - Was added to state the website status, information regarding the registration and the copyrights of some recipes
+
+        12. 401 Page 
+
+            - 401 Page - was added in case users wants to access the profile without being logged in
+
+        13. 403 Page 
+
+            - 403 Page - was added in case users wants to access other profile after they logged in
+
+        14. 404 Page 
 
             - 404 Page - was added in case users redirect to a page that does not exist.
  
@@ -160,7 +205,11 @@ Savour is a web app build to attract all categories of users that are interested
 
         - To be able to find recipe from different cuisine.
 
-        - Email Verification - Before registraion is complete, in order to check the email address and so we know that the user is willingly register and we don't have a case where users is using other person email for their registration.
+        - To able to add recipes on favorites
+
+        - Form Validation with WTForms.
+
+        - Email Verification - Before registration is complete, in order to check the email address and so we know that the user is willingly registered and we don't have a case where users are using other person's emails for their registration.
 
         - Reset/Forget Password - Where user can recover their password
 
@@ -194,7 +243,7 @@ Savour is a web app build to attract all categories of users that are interested
 
           For the consistency:
 
-            - 'Mr Dafoe' fonts were used for the welcome text on landing page when user enters the site
+            - 'Mr Dafoe' fonts were used for the welcome text on the landing page when a user enters the site
 
             - 'Crete Round' fonts were used for the recipes and products title
 
@@ -202,7 +251,7 @@ Savour is a web app build to attract all categories of users that are interested
 
     -  ##### Imagery
 
-        - Because imagery is important I have carefully chosen the background hero image on landing page, as well as all others banners within the site that will reflect the site and each page purpose.
+        - Because imagery is important I have carefully chosen the background hero image on the landing page, as well as all others banners within the site that will reflect the site and each page's purpose.
 
 [Back to Top](#table-of-contents)
 
@@ -327,7 +376,7 @@ Savour is a web app build to attract all categories of users that are interested
             echo web: python run.py > Procfile
             ```
 
-        3. Push the ```requirements.txt``` and ```Procfile``` file to github with the following commands
+        3. Push the ```requirements.txt``` and ```Procfile``` file to GitHub with the following commands
 
             ```
             git add -A
@@ -339,7 +388,7 @@ Savour is a web app build to attract all categories of users that are interested
 
         4. In order to deploy to Heroku you need an [account](https://signup.heroku.com/login?redirect-url=https%3A%2F%2Fid.heroku.com%2Foauth%2Fauthorize%3Fclient_id%3Dd2ef2b24-e72c-4adf-8506-28db2218547d%26response_type%3Dcode%26scope%3Dglobal%252Cplatform%26state%3DSFMyNTY.g2gDbQAAADFodHRwczovL2Rhc2hib2FyZC5oZXJva3UuY29tL2F1dGgvaGVyb2t1L2NhbGxiYWNrbgYAnwF4L3kBYgABUYA.q2PQc0k53ICJ0LR6VFKbOkyuEqmEtG0iuVzTM38UNAI)
 
-        5. Now you can create an new app from the dashboard ````New``` Menu
+        5. Now you can create a new app from the dashboard ````New``` Menu
 
         ![](static/readme/heroku-app.jpg)
 
@@ -363,7 +412,7 @@ Savour is a web app build to attract all categories of users that are interested
 
         8. Hide the Config Vars
 
-        9. Now from the dashboard of your app click on the Deploy and from Deployment method select ```Github - Connect to Github```. Next on the search field type the name of the repository you want to deploy.
+        9. Now from the dashboard of your app click on the Deploy and from the Deployment method select ``` Github - Connect to Github```. Next on the search field type the name of the repository you want to deploy.
         
         ![](static/readme/heroku-deploy.jpg)
 
@@ -373,13 +422,13 @@ Savour is a web app build to attract all categories of users that are interested
 
         ![](static/readme/heroku-enable-automatic-deploys.jpg)
 
-        12. Now From Manual Deploy you can click ```Deploy Branch``` and once it's finish you can click ```View```
+        12. Now From Manual Deploy you can click ```Deploy Branch``` and once it's finished you can click ```View```
 
         ![](static/readme/heroku-deploy-branch-view.jpg) 
 
   - #### Local Clone
 
-    ##### In oder to run this project locally you should have installed this 3 requirements on your machine plus an account on [MongoDB Atlas](https://www.mongodb.com/):
+    ##### In order to run this project locally you should have installed these 3 requirements on your machine plus an account on [MongoDB Atlas](https://www.mongodb.com/):
 
     1. [VS Code](https://code.visualstudio.com/) - IDE or your personal preference
 
@@ -393,7 +442,7 @@ Savour is a web app build to attract all categories of users that are interested
 
     ##### Steps to follow
 
-    1. At the top of the repository click on Code and click on download zip and extracting the zip file to your chosen folder or keep the same name
+    1. At the top of the repository click on Code and click on download zip and extract the zip file to your chosen folder or keep the same name
 
         ![](static/readme/code-clone.jpg)
 
@@ -403,7 +452,7 @@ Savour is a web app build to attract all categories of users that are interested
     git clone https://github.com/constantinadrian/savour
     ```
 
-    or to clone the repository into different name on the folder you can run 
+    or to clone the repository into a different name on the folder you can run 
 
     ```
     git clone https://github.com/constantinadrian/savour folder_name
@@ -473,11 +522,11 @@ Savour is a web app build to attract all categories of users that are interested
 
     - [Bootstrap](https://getbootstrap.com/) – CSS framework used to help with the navbar, cards, forms, modal and other classes that were used to make the app responsive.
 
-    - [Bootstrap Modal JS](https://getbootstrap.com/docs/4.6/components/modal/) - Code snipet adapted for update the modal content with information that has to be edited / deleted
+    - [Bootstrap Modal JS](https://getbootstrap.com/docs/4.6/components/modal/) - Code snippet adapted for update the modal content with information that has to be edited/deleted
 
     - [Favicon](https://favicon.io/favicon-converter/) - for the code for use in this project; the favicon was created by the developer and saved in all sizes that were needed
 
-    - Pagination was inspired from this two website and modified and adapted to my understanding on my project
+    - Pagination was inspired by this two website and modified and adapted to my understanding of my project
 
         - [https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9) 
 
@@ -491,7 +540,7 @@ Savour is a web app build to attract all categories of users that are interested
 
     - [w3schools](https://www.w3schools.com/jsref/event_onerror.asp) - used if an error occurs when loading an image
 
-    - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events) - for touch events on IOS as the navbar didn't close on click event on IOS when the click was on document. Also used MDN Web Docs for general info
+    - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events) - for touch events on IOS as the navbar didn't close on click event on IOS when the click was on the document. Also used MDN Web Docs for general info
 
     - [Jinja Docs](https://jinja.palletsprojects.com/en/3.0.x/templates/#import) - for import and general info
 
@@ -507,7 +556,7 @@ Savour is a web app build to attract all categories of users that are interested
 
   - #### Media
 
-    - All photos used on this project as hero image, banners, default banner and default recipe image were from:
+    - All photos used on this project as a hero image, banners, default banner, and default recipe image were from:
 
         - [Pexels](https://www.pexels.com/)
 
