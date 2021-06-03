@@ -225,6 +225,8 @@ Savour is a web app build to attract all categories of users that are interested
 
     -  Desktop Wireframes: [Home](static/wireframes/desktop/index-page.png) [Recipes](static/wireframes/desktop/all-recipes-page.png) [Category](static/wireframes/desktop/category-page.png) [Contact](static/wireframes/desktop/contact-page.png) [Add Category](static/wireframes/desktop/create-category-page.png) [Add Recipe](static/wireframes/desktop/create-recipe-page.png) [Delete Category](static/wireframes/desktop/delete-category-page.png) [Delete Recipe](static/wireframes/desktop/delete-recipe-page.png) [Edit Category](static/wireframes/desktop/edit-category-page.png) [Edit Recipe](static/wireframes/desktop/edit-recipe-page.png) [Login](static/wireframes/desktop/login-page.png) [Manage Categories](static/wireframes/desktop/manage-category-page.png) [Profile Page](static/wireframes/desktop/profile-page.png) [Recipe Page](static/wireframes/desktop/recipe-page.png) [Register](static/wireframes/desktop/register-page.png) [Shop](static/wireframes/desktop/shop-page.png) 
 
+    Note: A couple of pages have been slightly changed from the initial design and others like the Contact page have been added
+
 [Back to Top](#table-of-contents)
 
 -----
