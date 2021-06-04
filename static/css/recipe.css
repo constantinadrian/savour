@@ -41,6 +41,11 @@
     text-decoration: none;
 }
 
+.recipe-ancor-tag-info-delete {
+    outline: none;
+    border: none;
+}
+
 .recipe-ancor-tag-info-category,
 .recipe-ancor-tag-info-delete {
     margin-right: 0.5rem;

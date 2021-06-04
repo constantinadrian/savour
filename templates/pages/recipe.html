@@ -10,7 +10,7 @@
                 </div>
                 {% if session and session["user"] == recipe.created_by %}
                 <div class="recipe-row-info-item">
-                    <a class="recipe-ancor-tag-info recipe-ancor-tag-info-delete" type="button" data-toggle="modal" data-target="#deleteModal" data-item="recipe" data-id="{{- recipe._id -}}">Delete <i class="far fa-trash-alt"></i></a>
+                    <button class="recipe-ancor-tag-info recipe-ancor-tag-info-delete" type="button" data-toggle="modal" data-target="#deleteModal" data-item="recipe" data-id="{{- recipe._id -}}">Delete <i class="far fa-trash-alt"></i></button>
 
                     <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag-info"><span class="text-center">Edit <i class="far fa-edit"></i></span></a>
                 </div>
