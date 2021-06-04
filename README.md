@@ -28,9 +28,7 @@ Savour is a web app build to attract all categories of users that are interested
 
 4. [Deployment](#deployment)
 
-    - [Inception project](#inception-project)
-
-    - [GitHub Pages](#github-pages)
+    - [Heroku](#heroku)
 
     - [Local Clone](#local-clone)
 
@@ -337,30 +335,6 @@ Savour is a web app build to attract all categories of users that are interested
 -----
 
 - ### Deployment
-
-  - #### Inception project 
-
-    1. This project was created from the Code Institute project template from [here](https://github.com/Code-Institute-Org/gitpod-full-template) on Github by clicking on "Use this template"
-
-        ![](static/readme/code-institute-project-template.png)
-
-    2. Once the project was created I rename it from the settings 
-
-        ![](static/readme/rename-project-from-settings.png)
-
-    3. When the repository was finally completed I open the project with [Gitpod](https://chrome.google.com/webstore/detail/gitpod-dev-environments-i/dodmmooeoklaejobgleioelladacbeki?hl=en) in Chrome browser
-
-    4. In order to push this project from Gitpod on Github a set of commands were used:
-
-        ```
-        - git status  - Check the status of the repository and see if there were any changes in files 
-
-        - git add .  - Add the files that were modified/created, so we can commit it 
-
-        - git commit -m "message for commit"  - Commits all the changes
-
-        - git push  - Pushes all committed versions to Github
-        ```
 
   - #### Heroku
 
