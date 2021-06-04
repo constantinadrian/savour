@@ -75,7 +75,8 @@ $(document).ready(function () {
             },
             ["recipe-image-url"]: {
                 required: true,
-                url: true
+                url: true,
+                pattern: /^(https)\:///
             },
             ["recipe-cook-time"]: {
                 required: true,                
@@ -111,7 +112,8 @@ $(document).ready(function () {
             },
             ["recipe-image-url"]: {
                 required: "Please add recipe image",
-                url: "Please enter a valid URL (e.g https://images.pexels.com/photos/1464880/pexels-photo-1464880.jpeg)"
+                url: "Please enter a valid URL (e.g https://images.pexels.com/photos/1464880/pexels-photo-1464880.jpeg)",
+                pattern: "URL must start with: 'https'"
             },
             ["recipe-cook-time"]: {
                 required: "Please fill out the cooking time"
