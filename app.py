@@ -99,10 +99,10 @@ def home():
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # get three sample recipe to display on home page
-    recipes = mongo.db.recipes.aggregate([{'$sample': {'size': 3}}])
+    recipes = mongo.db.recipes.find().sort("_id", -1).limit(3)
 
     # get three sample kitchen tools to display on home page
-    products = mongo.db.shop.aggregate([{'$sample': {'size': 3}}])
+    products = mongo.db.shop.find().sort("_id", -1).limit(3)
 
     page_set = {
         "type": "form"
@@ -127,7 +127,7 @@ def all_recipes():
     sugestion_recipe = mongo.db.recipes.aggregate([{'$sample': {'size': 1}}])
 
     # the query for existing recipes on the database
-    recipes = list(mongo.db.recipes.find())
+    recipes = list(mongo.db.recipes.find().sort("_id", -1))
 
     # call the paginated function to display only the
     # specific number of recipes per page
@@ -172,7 +172,8 @@ def category(category):
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # the query for existing recipes on the database for specific category
-    recipes = list(mongo.db.recipes.find({"category_name": category}))
+    recipes = list(mongo.db.recipes.find(
+        {"category_name": category}).sort("_id", -1))
 
     # call the paginated function to display only the
     # specific number of recipes per page
@@ -212,8 +213,12 @@ def category_search(category):
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # the query for existing recipes on the database for specific search query
-    recipes = list(mongo.db.recipes.find(
-        {"category_name": category, "$text": {"$search": query}}))
+    recipes = list(
+        mongo.db.recipes.find({
+            "category_name": category,
+            "$text": {"$search": query}
+        }).sort("_id", -1)
+    )
 
     # call the paginated function to display only the
     # specific number of recipes per page
@@ -255,7 +260,11 @@ def search():
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # the query for existing recipes on the database for specific search query
-    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    recipes = list(
+        mongo.db.recipes.find({
+            "$text": {"$search": query}
+        }).sort("_id", -1)
+    )
 
     # call the paginated function to display only the
     # specific number of recipes per page
@@ -296,7 +305,11 @@ def users(username):
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # the query to show the recipes from specific user on the database
-    recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
+    recipes = list(
+        mongo.db.recipes.find(
+            {"created_by": username.lower()}
+        ).sort("_id", -1)
+    )
 
     # call the paginated function to display only the
     # specific number of recipes per page
@@ -516,7 +529,11 @@ def profile(username):
     nav_categories = mongo.db.recipes.distinct("category_name")
 
     # the query to show the recipes from specific user on the database
-    recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
+    recipes = list(
+        mongo.db.recipes.find({
+            "created_by": username.lower()
+        }).sort("_id", -1)
+    )
 
     # call the paginated function to display only the
     # specific number of recipes per page
@@ -887,7 +904,7 @@ def shop():
     Display the shop page
     """
     # query all products from shop collection
-    products = list(mongo.db.shop.find())
+    products = list(mongo.db.shop.find().sort("_id", -1))
 
     # call the paginated function to display only the
     # specific number of product per page
@@ -931,7 +948,11 @@ def shop_search():
         return redirect(url_for('error', code=404))
 
     # get the requested product(s)
-    products = list(mongo.db.shop.find({"$text": {"$search": query}}))
+    products = list(
+        mongo.db.shop.find({
+            "$text": {"$search": query}
+        }).sort("_id", -1)
+    )
 
     # call the paginated function to display only the
     # specific number of product per page
