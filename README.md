@@ -175,6 +175,10 @@ Savour is a web app build to attract all categories of users that are interested
 
             - Where the user can see all his recipes
 
+        9. Add/Edit Recipe Page
+
+            - Where the user can add his own recipe
+
         9. Manage Categories Page (Admin Only)
 
             - Where the Admin can add/edit/delete categories
