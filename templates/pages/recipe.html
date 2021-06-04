@@ -6,10 +6,12 @@
         <div class="recipe-container">
             <div class="recipe-row-info">
                 <div class="recipe-row-info-item">
-                    <span class="text-center">Category <i class="fas fa-chevron-right"></i></span> <a href="{{ url_for('category', category=recipe.category_name) }}" class="recipe-ancor-tag-info">{{ recipe.category_name|title }}</a>
+                    <span class="text-center">Category <i class="fas fa-chevron-right"></i></span> <a href="{{ url_for('category', category=recipe.category_name) }}" class="recipe-ancor-tag-info recipe-ancor-tag-info-category">{{ recipe.category_name|title }}</a>
                 </div>
                 {% if session and session["user"] == recipe.created_by %}
                 <div class="recipe-row-info-item">
+                    <a class="recipe-ancor-tag-info recipe-ancor-tag-info-delete" type="button" data-toggle="modal" data-target="#deleteModal" data-item="recipe" data-id="{{- recipe._id -}}">Delete <i class="far fa-trash-alt"></i></a>
+
                     <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="recipe-ancor-tag-info"><span class="text-center">Edit <i class="far fa-edit"></i></span></a>
                 </div>
                 {% endif %}

@@ -16,28 +16,34 @@
 }
 
 .recipe-row-info {
-    margin-bottom: 1rem;
     word-wrap: break-word;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+}
+
+.recipe-row-info .recipe-row-info-item {
+    margin-bottom: 1rem;
 }
 
 .recipe-row-info .fa-chevron-right {
     font-size: 10px;
 }
 
-.recipe-ancor-tag-info {
+.recipe-ancor-tag-info,
+.recipe-ancor-tag-info:hover {
     color: #a50000;
     text-decoration: none;
 }
 
-.recipe-ancor-tag-info:hover {
-    color: #a50000;
-    text-decoration: none;
+.recipe-ancor-tag-info-category,
+.recipe-ancor-tag-info-delete {
+    margin-right: 0.5rem;
 }
 
 .recipe-top-items {
