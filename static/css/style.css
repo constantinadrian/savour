@@ -99,7 +99,14 @@ main .alert-primary {
     background-size: cover;
 }
 
-.landing-textbox {
+.landing-textbox-1 {
+    position: absolute;
+    background-color: rgba(250,250,250,0.5);
+    padding: 0.625rem 1rem 0;
+    text-align: center;
+}
+
+.landing-textbox-2 {
     position: absolute;
     right: 0px;
     bottom: 30px;
@@ -1005,6 +1012,12 @@ main .alert-primary {
 /* ---------------------------------- End of Footer -------------------------------- */
 
 /* ----------------------------------- Media Query --------------------------------- */
+@media only screen and (min-width: 1060px) { 
+    .landing-textbox-1 {
+        background-color: transparent;
+    }
+}
+        
 @media only screen and (min-width: 992px) {
     .navbar {
         padding: 1rem 6rem;
@@ -1013,8 +1026,11 @@ main .alert-primary {
         margin-right: 1rem;
         margin-left: 1rem;
     }
+    .landing-textbox-1 {
+        padding: 0.625rem 6rem 0;
+    }
 
-    .landing-textbox {
+    .landing-textbox-2 {
         padding: 0 6rem;
         bottom: 10px;
     }
@@ -1061,7 +1077,7 @@ main .alert-primary {
 }
 
 @media only screen and (min-width:576px) and (max-width: 991px){
-    .landing-textbox {
+    .landing-textbox-2 {
         bottom: 60px;
         background-color: rgba(250,250,250,0.5);
     }
