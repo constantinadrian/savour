@@ -131,9 +131,9 @@ Savour is a web app build to attract all categories of users that are interested
             
             - Landing section - Where the user it's welcome with a hero image and welcome text.
 
-            - Recipe section - Where the user can see three random recipes
+            - Recipe section - Where the user can see the most recent recipes uploaded
 
-            - Shop section - Where the user can see three random kitchen tools
+            - Shop section - Where the user can see the most recent kitchen tools uploaded
 
             - Footer - Where user can find links to site social media pages
 
