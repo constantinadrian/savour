@@ -12,17 +12,19 @@
 
     - [PEP8](#pep8)
 
-2. [Browser compatibility and responsiveness](#browser-compatibility-and-responsiveness)
+2. [Lighthouse in Chrome DevTools](#lighthouse-in-chrome-devtools) 
+
+3. [Browser compatibility and responsiveness](#browser-compatibility-and-responsiveness)
 
     - [Testing on Different Browsers](#testing-on-different-browsers)
 
     - [Testing on Different Devices](#testing-on-different-devices)
 
-3. [Testing User Stories](#testing-user-stories)
+4. [Testing User Stories](#testing-user-stories)
 
-4. [Manual testing](#manual-testing)
+5. [Manual testing](#manual-testing)
 
-5. [Bugs and Fixes](#bugs-and-fixes)
+6. [Bugs and Fixes](#bugs-and-fixes)
 
 -----
 
@@ -154,7 +156,55 @@
 [Back to Top](#table-of-contents)
 
 -----
-       
+
+- ### Lighthouse in Chrome DevTools 
+
+    - Desktop test
+
+        | Pages                                | Performance | Accessibility | Best Practices | SEO |
+        | :----------------------------------- | :---------: | :-----------: | :------------: | :-: |
+        | Home Page                            |     98      |      100      |        93      |  91 |
+        | Recipes Page                         |     93      |      100      |        93      |  82 |
+        | Category Page                        |     98      |      100      |        93      |  91 |
+        | Recipe Page                          |     96      |      100      |        93      |  91 |
+        | Shop Page                            |     95      |      100      |        93      |  82 |
+        | Register Page                        |     97      |      100      |        93      |  91 |
+        | Login Page                           |     99      |      100      |        93      |  91 |
+        | Profile Page                         |     99      |      100      |        93      |  91 |
+        | Manage Category Page                 |     97      |      100      |        93      |  82 |
+        | Add Recipe Page                      |     99      |       98      |        93      |  91 |
+        | Edit Recipe Page                     |     99      |       92      |        93      |  91 |
+        | Contact Page                         |     90      |      100      |        93      |  91 |
+        | Terms and Conditions                 |    100      |      100      |        93      |  91 |
+        | 401 Page                             |     99      |      100      |        93      |  91 |
+        | 403 Page                             |     99      |      100      |        93      |  91 |
+        | 404 Page                             |     94      |      100      |        93      |  91 |
+
+    - Mobile test
+
+        | Pages                                | Performance | Accessibility | Best Practices | SEO |
+        | :----------------------------------- | :---------: | :-----------: | :------------: | :-: |
+        | Home Page                            |     78      |      100      |       100      |  91 |
+        | Recipes Page                         |     85      |      100      |       100      |  83 |
+        | Category Page                        |     75      |      100      |       100      |  91 |
+        | Recipe Page                          |     96      |      100      |       100      |  90 |
+        | Shop Page                            |     70      |      100      |       100      |  83 |
+        | Register Page                        |     90      |      100      |       100      |  91 |
+        | Login Page                           |     91      |      100      |       100      |  90 |
+        | Profile Page                         |     82      |      100      |        93      |  91 |
+        | Manage Category Page                 |     97      |      100      |        93      |  83 |
+        | Add Recipe Page                      |     93      |       98      |        93      |  91 |
+        | Edit Recipe Page                     |     90      |       92      |        93      |  88 |
+        | Contact Page                         |     83      |      100      |        93      |  90 |
+        | Terms and Conditions                 |     91      |      100      |        87      |  90 |
+        | 401 Page                             |     89      |      100      |        93      |  90 |
+        | 403 Page                             |     90      |      100      |        93      |  90 |
+        | 404 Page                             |     73      |      100      |        93      |  90 |
+
+[Back to Top](#table-of-contents)
+
+-----
+
 - ### Browser compatibility and responsiveness
 
   - #### Testing on Different Browsers
