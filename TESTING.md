@@ -681,4 +681,22 @@
 
         - To fix added data attribute from javascript for each field when is created dynamically
 
+    - On Tablet/Mobile devices after each rating that was not "successful" the stars were showing fill, instead of empty, and after the second click/touch event was showing empty
+
+        ![](static/readme/tablet-mobile-first-click.jpg)
+
+        ![](static/readme/tablet-mobile-second-click.jpg)
+
+        - To fix I added another class "no-fill" to each stars and set the pseudo-class :: after to have the content none. After that everything was working as expected
+
+            ```
+            .rating-stars .star.disabled.no-fill::after,
+            .rating-stars input:not(:checked) ~ .star.disabled.no-fill::after
+            {
+                content: "";
+            }
+            ```
+
+    > NOTE: No other bugs that I'm aware of were left unsolved.
+
 Return to [README.md](README.md)

@@ -268,6 +268,12 @@ h3.recipe-method-title {
     color: #afa0a0;
 }
 
+.rating-stars .star.disabled.no-fill::after,
+.rating-stars input:not(:checked) ~ .star.disabled.no-fill::after
+{
+    content: "";
+}
+
 .rating-ajax-response {
     text-align: center;
     word-wrap: break-word;
