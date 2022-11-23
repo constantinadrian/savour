@@ -1,4 +1,5 @@
 import os
+import certifi
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for, json, abort)
@@ -19,7 +20,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 
-mongo = PyMongo(app)
+mongo = PyMongo(app, tlsCAFile=certifi.where())
 
 
 # Pagination for recipes was inspired from this two website
