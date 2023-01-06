@@ -4,7 +4,7 @@
 
 Savour is a web app build to attract all categories of users that are interested in cooking, eager to learn new recipes, and also be able to share their own recipes from different cuisine. 
 
-[View live project here](https://savour-food.herokuapp.com/)
+[View live project here](https://savour.onrender.com)
 
 ## Table of Contents
 
@@ -27,6 +27,8 @@ Savour is a web app build to attract all categories of users that are interested
 3. [Testing](#testing)
 
 4. [Deployment](#deployment)
+
+    - [Render](#render)
 
     - [Heroku](#heroku)
 
@@ -340,6 +342,94 @@ Savour is a web app build to attract all categories of users that are interested
 
 - ### Deployment
 
+  - #### Render
+
+    - The project was deployed to Render using the following steps:
+
+        1. Create ```requirements.txt``` file that contains a list of our Python dependencies by typing in the terminal 
+        
+            ```
+            pip3 freeze --local > requirements.txt
+            ```
+
+        2. Push the ```requirements.txt``` file to GitHub with the following commands
+
+            ```
+            git add -A
+
+            git commit -m
+
+            git push
+            ```
+
+        3. Create an account on [render](https://dashboard.render.com/register?next=/)
+
+        4. From the dashboard press ```New``` and can create a ```Web Service``` 
+
+            ![](static/readme/render-new-web-service.jpg)
+
+        5. Search for relevant repository and click “Connect”
+
+        6. Choose a unique ```Name``` for your web service.
+
+            Note: If the name is not unique on Render.com, a random hash with be appended to the name given, e.g. < name >-8wk9.onrender.com
+
+        7. Choose a ```Region```
+
+            Note: The [region](https://render.com/docs/regions) where your web service runs.
+
+        8. Choose a ``` Branch ```
+
+            Note: The repository branch used for your web service.
+
+        9. Build Command
+
+            ```
+            pip install -r requirements.txt
+            ```
+
+            Note: This command runs in the root directory of your repository when a new version of your code is pushed, or when you deploy manually. It is typically a script that installs libraries, runs migrations, or compiles resources needed by your app.
+
+        10. Start Command
+
+            ```
+            python app.py
+            ```
+
+            Note: This command runs in the root directory of your app and is responsible for starting its processes. It is typically used to start a webserver for your app. It can access environment variables defined by you in Render.
+
+        11. Select Instance Type
+
+            ![](static/readme/render-instance-type.jpg)
+
+            Note: For the purpose of this project I select the free type, but feel free to explore their [pricing structure](https://render.com/pricing) and [free plan limitations](https://render.com/docs/free#free-web-services).
+
+        12. Click on the ``` Advance ``` in order to set up the Environment variables
+
+            ![](static/readme/render-advance-setting.jpg)
+
+        12. Click on the ``` Add Environment Variable ``` and your variable
+
+            ![](static/readme/render-add-environment-variable.jpg)
+
+            | Key             | Value                                                                                                                        |
+            | :---------------| :--------------------------------------------------------------------------------------------------------------------------: |
+            | IP              | 0.0.0.0                                                                                                                      |
+            | MONGO_DBNAME    | <your_database>                                                                                                              |
+            | MONGO_URI       | mongodb+srv://<user>:<password>@<your_cluster>.ol3x3.mongodb.net/<yourdatabase>?retryWrites=true&w=majority&authSource=admin |
+            | PORT            | 5000                                                                                                                         |
+            | SECRET_KEY      | <your_secret_key>                                                                                                            |
+        
+            Note: The IP and PORT variables are used within the Flask application and should not be modified.
+
+        13. Select option for ```Auto-Deploy```
+
+            Note: For the purpose of this project I select ```No``` 
+
+        14. Finally click ``` Create Web Service ```
+
+            ![](static/readme/render-create-web-service.jpg)
+
   - #### Heroku
 
     - The project was deployed to Heroku using the following steps:
@@ -368,7 +458,7 @@ Savour is a web app build to attract all categories of users that are interested
 
         4. In order to deploy to Heroku you need an [account](https://signup.heroku.com/login?redirect-url=https%3A%2F%2Fid.heroku.com%2Foauth%2Fauthorize%3Fclient_id%3Dd2ef2b24-e72c-4adf-8506-28db2218547d%26response_type%3Dcode%26scope%3Dglobal%252Cplatform%26state%3DSFMyNTY.g2gDbQAAADFodHRwczovL2Rhc2hib2FyZC5oZXJva3UuY29tL2F1dGgvaGVyb2t1L2NhbGxiYWNrbgYAnwF4L3kBYgABUYA.q2PQc0k53ICJ0LR6VFKbOkyuEqmEtG0iuVzTM38UNAI)
 
-        5. Now you can create a new app from the dashboard ````New``` Menu
+        5. Now you can create a new app from the dashboard ```New``` Menu
 
         ![](static/readme/heroku-app.jpg)
 
